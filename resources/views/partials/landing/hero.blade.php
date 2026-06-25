@@ -3,7 +3,7 @@
     <div class="absolute left-1/2 top-0 -z-10 h-[640px] w-[900px] -translate-x-1/2 rounded-full bg-primary-300/25 blur-3xl" aria-hidden="true"></div>
 
     <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="grid items-center gap-16 lg:grid-cols-2 lg:gap-12">
+        <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-12">
 
             <div class="reveal">
                 <p class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-1.5 text-sm font-medium text-slate-700 shadow-sm">

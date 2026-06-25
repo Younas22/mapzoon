@@ -72,7 +72,87 @@ function initCounters() {
     counterEls.forEach((el) => observer.observe(el));
 }
 
+function initAccordions() {
+    const triggers = document.querySelectorAll('.faq-trigger');
+
+    if (!triggers.length) return;
+
+    triggers.forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+            const panel = document.getElementById(trigger.getAttribute('aria-controls'));
+            const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+            triggers.forEach((other) => {
+                if (other === trigger) return;
+                other.setAttribute('aria-expanded', 'false');
+                document.getElementById(other.getAttribute('aria-controls')).style.gridTemplateRows = '0fr';
+                other.querySelector('.faq-icon')?.classList.remove('rotate-180');
+            });
+
+            trigger.setAttribute('aria-expanded', String(!isOpen));
+            panel.style.gridTemplateRows = isOpen ? '0fr' : '1fr';
+            trigger.querySelector('.faq-icon')?.classList.toggle('rotate-180', !isOpen);
+        });
+    });
+}
+
+function initStickyNavbar() {
+    const nav = document.getElementById('site-navbar');
+
+    if (!nav) return;
+
+    const scrolledClasses = ['bg-white/90', 'backdrop-blur-xl', 'shadow-lg', 'border-b', 'border-slate-200/80'];
+
+    const onScroll = () => {
+        if (window.scrollY > 8) {
+            nav.classList.remove('bg-transparent');
+            nav.classList.add(...scrolledClasses);
+        } else {
+            nav.classList.add('bg-transparent');
+            nav.classList.remove(...scrolledClasses);
+        }
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+function initMobileMenu() {
+    const openBtn = document.getElementById('nav-menu-open');
+    const closeBtn = document.getElementById('nav-menu-close');
+    const menu = document.getElementById('mobile-menu');
+
+    if (!openBtn || !menu) return;
+
+    const links = menu.querySelectorAll('a');
+
+    const openMenu = () => {
+        menu.classList.remove('translate-x-full');
+        menu.classList.add('translate-x-0');
+        document.body.classList.add('overflow-hidden');
+        openBtn.setAttribute('aria-expanded', 'true');
+    };
+
+    const closeMenu = () => {
+        menu.classList.add('translate-x-full');
+        menu.classList.remove('translate-x-0');
+        document.body.classList.remove('overflow-hidden');
+        openBtn.setAttribute('aria-expanded', 'false');
+    };
+
+    openBtn.addEventListener('click', openMenu);
+    closeBtn?.addEventListener('click', closeMenu);
+    links.forEach((link) => link.addEventListener('click', closeMenu));
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initRevealAnimations();
     initCounters();
+    initAccordions();
+    initStickyNavbar();
+    initMobileMenu();
 });

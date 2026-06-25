@@ -1,0 +1,85 @@
+<footer class="relative border-t border-white/10 bg-slate-950 pt-16 pb-8">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+
+            <div class="sm:col-span-2 lg:col-span-4">
+                <a href="/" class="inline-flex items-center gap-2.5">
+                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-500 text-white">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 21s-7-7.58-7-12a7 7 0 1 1 14 0c0 4.42-7 12-7 12z" />
+                            <path d="M9 9.5l2 2 4-4.5" />
+                        </svg>
+                    </span>
+                    <span class="text-xl font-extrabold tracking-tight text-white">MAPZOON</span>
+                </a>
+                <p class="mt-3 text-sm font-semibold text-primary-400">Rank Higher. Get More Leads.</p>
+                <p class="mt-3 max-w-sm text-sm leading-relaxed text-slate-400">
+                    Helping local businesses dominate Google Maps, build modern websites, and run smarter operations — all from one growth partner.
+                </p>
+            </div>
+
+            <div class="lg:col-span-2">
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Quick Links</h3>
+                <ul class="mt-5 space-y-3 text-sm">
+                    <li><a href="/" class="text-slate-400 transition hover:text-primary-400">Home</a></li>
+                    <li><a href="#services" class="text-slate-400 transition hover:text-primary-400">Services</a></li>
+                    <li><a href="#maps-process" class="text-slate-400 transition hover:text-primary-400">Our Process</a></li>
+                    <li><a href="#why-us" class="text-slate-400 transition hover:text-primary-400">Why Choose Us</a></li>
+                    <li><a href="#faq" class="text-slate-400 transition hover:text-primary-400">FAQ</a></li>
+                    <li><a href="#contact" class="text-slate-400 transition hover:text-primary-400">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="lg:col-span-3">
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Services</h3>
+                <ul class="mt-5 space-y-3 text-sm">
+                    <li><a href="#contact" class="text-slate-400 transition hover:text-primary-400">Google Business Profile Optimization</a></li>
+                    <li><a href="#maps-process" class="text-slate-400 transition hover:text-primary-400">Google Maps Ranking</a></li>
+                    <li><a href="#contact" class="text-slate-400 transition hover:text-primary-400">Local SEO</a></li>
+                    <li><a href="#contact" class="text-slate-400 transition hover:text-primary-400">Citation Management</a></li>
+                    <li><a href="#contact" class="text-slate-400 transition hover:text-primary-400">Review Management</a></li>
+                    <li><a href="#website-development" class="text-slate-400 transition hover:text-primary-400">Website Development</a></li>
+                    <li><a href="#pos-billing" class="text-slate-400 transition hover:text-primary-400">POS &amp; Billing System</a></li>
+                </ul>
+            </div>
+
+            <div class="lg:col-span-3">
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Contact Information</h3>
+                <ul class="mt-5 space-y-4 text-sm">
+                    <li>
+                        <a href="tel:+923266787997" class="flex items-center gap-3 text-slate-300 transition hover:text-primary-400">
+                            <span class="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-white/5 text-primary-400">
+                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
+                                </svg>
+                            </span>
+                            0326 6787997
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:contact@mapzoon.com" class="flex items-center gap-3 text-slate-300 transition hover:text-primary-400">
+                            <span class="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-white/5 text-primary-400">
+                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                                    <path d="M3.5 6.5 12 13l8.5-6.5" />
+                                </svg>
+                            </span>
+                            contact@mapzoon.com
+                        </a>
+                    </li>
+                </ul>
+                <a href="#contact" class="mt-5 inline-flex items-center gap-2 rounded-xl bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-600">
+                    Get Free Audit
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-14 flex flex-col items-center gap-3 border-t border-white/10 pt-6 text-center sm:flex-row sm:justify-between sm:text-left">
+            <p class="text-sm text-slate-500">&copy; {{ now()->year }} MAPZOON. All rights reserved.</p>
+            <p class="text-xs text-slate-500">Local SEO &middot; Google Maps Ranking &middot; Website Development &middot; POS &amp; Billing Systems</p>
+        </div>
+    </div>
+</footer>

@@ -1,7 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('sections.navbar')
     @include('partials.landing.hero')
     @include('partials.landing.stats')
     @include('partials.landing.services')
+    @include('partials.landing.maps-process')
+    @include('partials.landing.website')
+    @include('partials.landing.pos')
+    @include('partials.landing.testimonials')
+    @include('partials.landing.why-us')
+    @include('partials.landing.faq')
+    @include('partials.landing.contact')
+    @include('partials.landing.footer')
 @endsection
