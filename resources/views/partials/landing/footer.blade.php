@@ -22,24 +22,27 @@
                 <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Quick Links</h3>
                 <ul class="mt-5 space-y-3 text-sm">
                     <li><a href="/" class="text-slate-400 transition hover:text-primary-400">Home</a></li>
-                    <li><a href="#services" class="text-slate-400 transition hover:text-primary-400">Services</a></li>
-                    <li><a href="#maps-process" class="text-slate-400 transition hover:text-primary-400">Our Process</a></li>
-                    <li><a href="#why-us" class="text-slate-400 transition hover:text-primary-400">Why Choose Us</a></li>
-                    <li><a href="#faq" class="text-slate-400 transition hover:text-primary-400">FAQ</a></li>
-                    <li><a href="#contact" class="text-slate-400 transition hover:text-primary-400">Contact</a></li>
+                    <li><a href="/#about" class="text-slate-400 transition hover:text-primary-400">About</a></li>
+                    <li><a href="/#services" class="text-slate-400 transition hover:text-primary-400">Services</a></li>
+                    <li><a href="/#maps-process" class="text-slate-400 transition hover:text-primary-400">Our Process</a></li>
+                    <li><a href="/#team" class="text-slate-400 transition hover:text-primary-400">Team</a></li>
+                    <li><a href="/#why-us" class="text-slate-400 transition hover:text-primary-400">Why Choose Us</a></li>
+                    <li><a href="/#blog" class="text-slate-400 transition hover:text-primary-400">Blog</a></li>
+                    <li><a href="/#faq" class="text-slate-400 transition hover:text-primary-400">FAQ</a></li>
+                    <li><a href="/#contact" class="text-slate-400 transition hover:text-primary-400">Contact</a></li>
                 </ul>
             </div>
 
             <div class="lg:col-span-3">
                 <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Services</h3>
                 <ul class="mt-5 space-y-3 text-sm">
-                    <li><a href="#contact" class="text-slate-400 transition hover:text-primary-400">Google Business Profile Optimization</a></li>
-                    <li><a href="#maps-process" class="text-slate-400 transition hover:text-primary-400">Google Maps Ranking</a></li>
-                    <li><a href="#contact" class="text-slate-400 transition hover:text-primary-400">Local SEO</a></li>
-                    <li><a href="#contact" class="text-slate-400 transition hover:text-primary-400">Citation Management</a></li>
-                    <li><a href="#contact" class="text-slate-400 transition hover:text-primary-400">Review Management</a></li>
-                    <li><a href="#website-development" class="text-slate-400 transition hover:text-primary-400">Website Development</a></li>
-                    <li><a href="#pos-billing" class="text-slate-400 transition hover:text-primary-400">POS &amp; Billing System</a></li>
+                    <li><a href="/#contact" class="text-slate-400 transition hover:text-primary-400">Google Business Profile Optimization</a></li>
+                    <li><a href="/#maps-process" class="text-slate-400 transition hover:text-primary-400">Google Maps Ranking</a></li>
+                    <li><a href="/#contact" class="text-slate-400 transition hover:text-primary-400">Local SEO</a></li>
+                    <li><a href="/#contact" class="text-slate-400 transition hover:text-primary-400">Citation Management</a></li>
+                    <li><a href="/#contact" class="text-slate-400 transition hover:text-primary-400">Review Management</a></li>
+                    <li><a href="/#website-development" class="text-slate-400 transition hover:text-primary-400">Website Development</a></li>
+                    <li><a href="/#pos-billing" class="text-slate-400 transition hover:text-primary-400">POS &amp; Billing System</a></li>
                 </ul>
             </div>
 
@@ -68,7 +71,7 @@
                         </a>
                     </li>
                 </ul>
-                <a href="#contact" class="mt-5 inline-flex items-center gap-2 rounded-xl bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-600">
+                <a href="/#contact" class="mt-5 inline-flex items-center gap-2 rounded-xl bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-600">
                     Get Free Audit
                     <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M5 12h14M13 6l6 6-6 6" />
