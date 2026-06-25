@@ -6,16 +6,27 @@
 
     <title>{{ $title ?? 'MAPZOON — Rank Higher on Google Maps & Grow Your Local Business' }}</title>
     <meta name="description" content="{{ $description ?? 'MAPZOON helps local businesses rank higher on Google Maps and grow with Local SEO, Google Business Profile optimization, professional websites, and POS billing solutions.' }}">
-    <meta name="keywords" content="Local SEO, Google Maps Ranking, Google Business Profile Optimization, Citation Management, Review Management, Website Development, POS Billing System">
+    <meta name="keywords" content="{{ $keywords ?? 'Local SEO, Google Maps Ranking, Google Business Profile Optimization, Citation Management, Review Management, Website Development, POS Billing System' }}">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ $canonical ?? url()->current() }}">
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="{{ $ogType ?? 'website' }}">
     <meta property="og:site_name" content="MAPZOON">
-    <meta property="og:title" content="{{ $title ?? 'MAPZOON — Rank Higher on Google Maps & Grow Your Local Business' }}">
-    <meta property="og:description" content="{{ $description ?? 'Local SEO, Google Maps Ranking, Websites & POS Billing built to get local businesses more calls and customers.' }}">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{ $ogTitle ?? $title ?? 'MAPZOON — Rank Higher on Google Maps & Grow Your Local Business' }}">
+    <meta property="og:description" content="{{ $ogDescription ?? $description ?? 'Local SEO, Google Maps Ranking, Websites & POS Billing built to get local businesses more calls and customers.' }}">
+    <meta property="og:url" content="{{ $canonical ?? url()->current() }}">
+    @if (! empty($ogImage))
+        <meta property="og:image" content="{{ $ogImage }}">
+    @endif
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="{{ $twitterCard ?? 'summary_large_image' }}">
+    <meta name="twitter:title" content="{{ $twitterTitle ?? $ogTitle ?? $title ?? 'MAPZOON' }}">
+    <meta name="twitter:description" content="{{ $twitterDescription ?? $ogDescription ?? $description ?? '' }}">
+    @if (! empty($twitterImage ?? $ogImage ?? null))
+        <meta name="twitter:image" content="{{ $twitterImage ?? $ogImage }}">
+    @endif
 
     <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
 
@@ -37,6 +48,8 @@
         'sameAs' => [],
     ], JSON_UNESCAPED_SLASHES) !!}
     </script>
+
+    @stack('schema')
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

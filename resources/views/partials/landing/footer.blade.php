@@ -4,12 +4,7 @@
 
             <div class="sm:col-span-2 lg:col-span-4">
                 <a href="/" class="inline-flex items-center gap-2.5">
-                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-500 text-white">
-                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M12 21s-7-7.58-7-12a7 7 0 1 1 14 0c0 4.42-7 12-7 12z" />
-                            <path d="M9 9.5l2 2 4-4.5" />
-                        </svg>
-                    </span>
+                    <img src="{{ asset('logo.png') }}" alt="MAPZOON" class="h-9 w-auto" />
                     <span class="text-xl font-extrabold tracking-tight text-white">MAPZOON</span>
                 </a>
                 <p class="mt-3 text-sm font-semibold text-primary-400">Rank Higher. Get More Leads.</p>

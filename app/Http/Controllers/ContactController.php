@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lead;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -19,6 +20,12 @@ class ContactController extends Controller
         ]);
 
         Log::info('New MAPZOON consultation request', $validated);
+
+        Lead::query()->create([
+            ...$validated,
+            'status' => 'new',
+            'source' => 'website_contact',
+        ]);
 
         return redirect('/#contact', 303)->with('success', "Thanks {$validated['name']}! We've received your request and will reach out within 24 hours.");
     }

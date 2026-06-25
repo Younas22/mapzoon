@@ -2,26 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogPost;
+use App\Models\Category;
 use Illuminate\View\View;
 
 class BlogController extends Controller
 {
     public function show(string $slug): View
     {
-        $posts = config('blog.posts');
-        $index = collect($posts)->search(fn (array $post) => $post['slug'] === $slug);
+        $post = BlogPost::query()
+            ->published()
+            ->with(['category', 'tags', 'author', 'seo', 'faqs'])
+            ->where('slug', $slug)
+            ->firstOrFail();
 
-        abort_if($index === false, 404);
+        $related = BlogPost::query()
+            ->published()
+            ->where('id', '!=', $post->id)
+            ->where('category_id', $post->category_id)
+            ->latest('published_at')
+            ->limit(4)
+            ->get();
 
-        $post = $posts[$index];
+        $previous = BlogPost::query()->published()->where('published_at', '<', $post->published_at)->latest('published_at')->first();
+        $next = BlogPost::query()->published()->where('published_at', '>', $post->published_at)->oldest('published_at')->first();
+
+        $seo = $post->seo;
 
         return view('frontend.blog-details', [
             'post' => $post,
-            'related' => collect($posts)->reject(fn (array $p) => $p['slug'] === $slug)->values()->all(),
-            'previous' => $posts[$index - 1] ?? null,
-            'next' => $posts[$index + 1] ?? null,
-            'title' => $post['title'].' — MAPZOON Blog',
-            'description' => $post['excerpt'],
+            'related' => $related,
+            'previous' => $previous,
+            'next' => $next,
+            'recentPosts' => BlogPost::query()->published()->where('id', '!=', $post->id)->latest('published_at')->limit(3)->get(),
+            'categories' => Category::query()->whereHas('posts', fn ($query) => $query->published())->orderBy('name')->get(),
+            'title' => ($seo?->meta_title ?: $post->title).' — MAPZOON Blog',
+            'description' => $seo?->meta_description ?: $post->excerpt,
+            'keywords' => $seo?->focus_keyword,
+            'canonical' => $seo?->canonical_url ?: url()->current(),
+            'ogTitle' => $seo?->og_title ?: $post->title,
+            'ogDescription' => $seo?->og_description ?: $post->excerpt,
+            'ogImage' => $post->featuredImageUrl(),
+            'ogType' => 'article',
+            'twitterCard' => $seo?->twitter_card ?: 'summary_large_image',
+            'twitterTitle' => $seo?->twitter_title ?: ($seo?->og_title ?: $post->title),
+            'twitterDescription' => $seo?->twitter_description ?: ($seo?->og_description ?: $post->excerpt),
+            'twitterImage' => $post->featuredImageUrl(),
         ]);
     }
 }
