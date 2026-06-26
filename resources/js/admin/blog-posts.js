@@ -1,17 +1,5 @@
-function emptyBlock(type) {
-    const base = { type, text: '', cite: '', items: [], headers: [], rows: [], image_url: '', caption: '' };
-
-    if (type === 'list') {
-        base.items = [''];
-    }
-
-    if (type === 'table') {
-        base.headers = ['Column 1', 'Column 2'];
-        base.rows = [['', '']];
-    }
-
-    return base;
-}
+import Quill from 'quill';
+import 'quill/dist/quill.snow.css';
 
 function slugify(value) {
     return value
@@ -54,11 +42,87 @@ export function blogPostManager(config) {
 
 export function blogPostForm(config) {
     return {
-        content: config.content?.length ? config.content : [],
+        config,
+        quill: null,
+        editorFullscreen: false,
         faqs: config.faqs?.length ? config.faqs : [],
         slugTouched: Boolean(config.slugTouched),
         featuredImagePreview: config.featuredImageUrl ?? null,
         status: config.status || 'draft',
+
+        init() {
+            this.quill = new Quill(this.$refs.editorContainer, {
+                theme: 'snow',
+                placeholder: 'Write the article…',
+                modules: {
+                    toolbar: [
+                        [{ header: [1, 2, 3, false] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ color: [] }, { background: [] }],
+                        [{ list: 'ordered' }, { list: 'bullet' }],
+                        [{ indent: '-1' }, { indent: '+1' }],
+                        [{ align: [] }],
+                        ['blockquote', 'code-block'],
+                        ['link', 'image'],
+                        ['clean'],
+                    ],
+                },
+            });
+
+            if (this.config.content) {
+                // Setting .innerHTML directly desyncs Quill's internal blot tree from the
+                // DOM, which later crashes selection lookups (e.g. on image upload). This
+                // routes the initial content through Quill's own clipboard parser instead.
+                this.quill.clipboard.dangerouslyPasteHTML(this.config.content);
+            }
+
+            this.quill.on('text-change', () => {
+                this.$refs.contentInput.value = this.quill.root.innerHTML;
+            });
+
+            this.quill.getModule('toolbar').addHandler('image', () => this.uploadContentImage());
+        },
+
+        uploadContentImage() {
+            // Selection must be captured now, synchronously, while the editor still
+            // has focus — by the time the file dialog closes Quill's selection is gone.
+            let range;
+            try {
+                range = this.quill.getSelection(true);
+            } catch {
+                range = null;
+            }
+            range ??= { index: this.quill.getLength() };
+
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = async () => {
+                const file = input.files[0];
+                if (!file) return;
+
+                const formData = new FormData();
+                formData.append('image', file);
+
+                const { ok, data } = await window.AdminUI.submitFormData(this.config.imageUploadUrl, 'POST', formData);
+
+                if (ok) {
+                    this.quill.insertEmbed(range.index, 'image', data.url, 'user');
+                    this.quill.setSelection(range.index + 1, 0, 'user');
+                } else {
+                    window.AdminUI.toast(data.message ?? 'Image upload failed.', 'error');
+                }
+            };
+            input.click();
+        },
+
+        toggleEditorFullscreen() {
+            this.editorFullscreen = !this.editorFullscreen;
+        },
+
+        syncContent() {
+            this.$refs.contentInput.value = this.quill.root.innerHTML;
+        },
 
         onTitleInput(event) {
             if (this.slugTouched) return;
@@ -74,51 +138,6 @@ export function blogPostForm(config) {
         onFeaturedImageChange(event) {
             const file = event.target.files[0];
             this.featuredImagePreview = file ? URL.createObjectURL(file) : this.featuredImagePreview;
-        },
-
-        addBlock(type) {
-            this.content.push(emptyBlock(type));
-        },
-
-        removeBlock(index) {
-            this.content.splice(index, 1);
-        },
-
-        moveBlock(index, direction) {
-            const target = index + direction;
-            if (target < 0 || target >= this.content.length) return;
-
-            const [block] = this.content.splice(index, 1);
-            this.content.splice(target, 0, block);
-        },
-
-        addListItem(blockIndex) {
-            this.content[blockIndex].items.push('');
-        },
-
-        removeListItem(blockIndex, itemIndex) {
-            this.content[blockIndex].items.splice(itemIndex, 1);
-        },
-
-        addTableColumn(blockIndex) {
-            const block = this.content[blockIndex];
-            block.headers.push(`Column ${block.headers.length + 1}`);
-            block.rows.forEach((row) => row.push(''));
-        },
-
-        removeTableColumn(blockIndex, columnIndex) {
-            const block = this.content[blockIndex];
-            block.headers.splice(columnIndex, 1);
-            block.rows.forEach((row) => row.splice(columnIndex, 1));
-        },
-
-        addTableRow(blockIndex) {
-            const block = this.content[blockIndex];
-            block.rows.push(block.headers.map(() => ''));
-        },
-
-        removeTableRow(blockIndex, rowIndex) {
-            this.content[blockIndex].rows.splice(rowIndex, 1);
         },
 
         addFaq() {

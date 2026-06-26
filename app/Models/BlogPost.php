@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Support\Facades\Storage;
 
 class BlogPost extends Model
 {
@@ -34,7 +33,6 @@ class BlogPost extends Model
     protected function casts(): array
     {
         return [
-            'content' => 'array',
             'published_at' => 'datetime',
             'is_featured' => 'boolean',
         ];
@@ -97,25 +95,15 @@ class BlogPost extends Model
 
     public function featuredImageUrl(): ?string
     {
-        return $this->featured_image ? Storage::disk('public')->url($this->featured_image) : null;
+        return $this->featured_image ? asset($this->featured_image) : null;
     }
 
     /**
-     * Estimated reading time in minutes, derived from the word count of all
-     * text-bearing content blocks (~200 words per minute).
+     * Estimated reading time in minutes (~200 words per minute).
      */
     public function readingTime(): int
     {
-        $words = 0;
-
-        foreach ($this->content ?? [] as $block) {
-            $words += match ($block['type'] ?? null) {
-                'paragraph', 'heading' => str_word_count($block['text'] ?? ''),
-                'list' => array_sum(array_map('str_word_count', $block['items'] ?? [])),
-                'quote' => str_word_count($block['text'] ?? ''),
-                default => 0,
-            };
-        }
+        $words = str_word_count(strip_tags($this->content ?? ''));
 
         return max(1, (int) ceil($words / 200));
     }

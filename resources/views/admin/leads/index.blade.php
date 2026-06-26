@@ -1,5 +1,5 @@
 @php
-    $serviceOptions = ['Google Maps Ranking', 'Local SEO', 'Website Development', 'POS & Billing System', 'Not Sure Yet'];
+    $serviceOptions = config('service_catalog.options');
 @endphp
 
 <x-admin-layout title="Leads">

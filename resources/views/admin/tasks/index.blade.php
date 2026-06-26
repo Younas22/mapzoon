@@ -116,12 +116,22 @@
                             <p class="mt-1 text-xs text-rose-600" x-show="errors.due_date" x-text="errors.due_date?.[0]"></p>
                         </div>
 
-                        <div class="sm:col-span-2">
+                        <div>
                             <label class="mb-1 block text-sm font-medium text-slate-700">Assign To</label>
-                            <select x-model="form.assigned_to" class="w-full max-w-sm rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200">
+                            <select x-model="form.assigned_to" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200">
                                 <option value="">Unassigned</option>
                                 @foreach ($assignees as $assignee)
                                     <option value="{{ $assignee->id }}">{{ $assignee->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="mb-1 block text-sm font-medium text-slate-700">Project</label>
+                            <select x-model="form.project_id" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200">
+                                <option value="">No project</option>
+                                @foreach ($projects as $project)
+                                    <option value="{{ $project->id }}">{{ $project->name }}</option>
                                 @endforeach
                             </select>
                         </div>

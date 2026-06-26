@@ -36,7 +36,12 @@
             @forelse ($tasks as $task)
                 <tr>
                     <td class="px-4 py-3">
-                        <a href="{{ route('admin.tasks.show', $task) }}" class="font-medium text-ink hover:underline">{{ $task->title }}</a>
+                        <a href="{{ route('admin.tasks.show', $task) }}" class="block hover:underline">
+                            <span class="block font-medium text-ink">{{ $task->title }}</span>
+                            @if ($task->project)
+                                <span class="block text-xs text-slate-500">{{ $task->project->name }}</span>
+                            @endif
+                        </a>
                     </td>
                     <td class="px-4 py-3">
                         <span class="rounded-full px-2 py-0.5 text-xs font-medium {{ $priorityColors[$task->priority] ?? 'bg-slate-100 text-slate-600' }}">

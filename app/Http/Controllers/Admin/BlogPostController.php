@@ -12,8 +12,9 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class BlogPostController extends Controller
@@ -57,7 +58,7 @@ class BlogPostController extends Controller
         $post = new BlogPost($this->postAttributes($request));
 
         if ($request->hasFile('featured_image')) {
-            $post->featured_image = $request->file('featured_image')->store('blog', 'public');
+            $post->featured_image = $this->storePublicImage($request->file('featured_image'), 'blog');
         }
 
         $post->save();
@@ -87,11 +88,9 @@ class BlogPostController extends Controller
         $blog_post->fill($this->postAttributes($request));
 
         if ($request->hasFile('featured_image')) {
-            if ($blog_post->featured_image) {
-                Storage::disk('public')->delete($blog_post->featured_image);
-            }
+            $this->deletePublicImage($blog_post->featured_image);
 
-            $blog_post->featured_image = $request->file('featured_image')->store('blog', 'public');
+            $blog_post->featured_image = $this->storePublicImage($request->file('featured_image'), 'blog');
         }
 
         $blog_post->save();
@@ -109,13 +108,30 @@ class BlogPostController extends Controller
     {
         $this->authorize('delete', $blog_post);
 
-        if ($blog_post->featured_image) {
-            Storage::disk('public')->delete($blog_post->featured_image);
-        }
+        $this->deletePublicImage($blog_post->featured_image);
 
         $blog_post->delete();
 
         return response()->json(['message' => 'Blog post deleted successfully.']);
+    }
+
+    /**
+     * Uploads an image dropped into the content editor and returns its public URL.
+     */
+    public function uploadImage(Request $request): JsonResponse
+    {
+        abort_unless(
+            $request->user()->hasPermission('blogs.create') || $request->user()->hasPermission('blogs.edit'),
+            403
+        );
+
+        $request->validate([
+            'image' => ['required', 'image', 'max:4096'],
+        ]);
+
+        $path = $this->storePublicImage($request->file('image'), 'blog-content');
+
+        return response()->json(['url' => asset($path)]);
     }
 
     public function preview(BlogPost $blog_post): View
@@ -153,7 +169,7 @@ class BlogPostController extends Controller
             'category_id' => $request->validated('category_id'),
             'author_id' => $request->validated('author_id') ?: Auth::id(),
             'excerpt' => $request->validated('excerpt'),
-            'content' => $this->cleanContentBlocks($request->validated('content', [])),
+            'content' => $request->validated('content'),
             'status' => $status,
             'published_at' => $publishedAt,
             'is_featured' => $request->boolean('is_featured'),
@@ -174,9 +190,7 @@ class BlogPostController extends Controller
             'twitter_card' => $seo['twitter_card'] ?? 'summary_large_image',
             'twitter_title' => $seo['twitter_title'] ?? null,
             'twitter_description' => $seo['twitter_description'] ?? null,
-            'enable_article_schema' => ! empty($seo['enable_article_schema']),
-            'enable_breadcrumb_schema' => ! empty($seo['enable_breadcrumb_schema']),
-            'enable_faq_schema' => ! empty($seo['enable_faq_schema']),
+            'custom_schema' => $seo['custom_schema'] ?? null,
         ];
     }
 
@@ -197,26 +211,29 @@ class BlogPostController extends Controller
             ->all();
     }
 
-    protected function cleanContentBlocks(array $blocks): array
+    /**
+     * Moves an uploaded image into public/uploads/{folder} and returns its relative path.
+     */
+    protected function storePublicImage(UploadedFile $file, string $folder): string
     {
-        return collect($blocks)
-            ->map(function ($block) {
-                if (! empty($block['items'])) {
-                    $block['items'] = array_values(array_filter($block['items'], fn ($item) => trim($item) !== ''));
-                }
+        $directory = "uploads/{$folder}";
 
-                if (! empty($block['headers'])) {
-                    $block['headers'] = array_values($block['headers']);
-                }
+        if (! is_dir(public_path($directory))) {
+            mkdir(public_path($directory), 0755, true);
+        }
 
-                if (! empty($block['rows'])) {
-                    $block['rows'] = array_values(array_map('array_values', $block['rows']));
-                }
+        $filename = Str::random(40).'.'.$file->getClientOriginalExtension();
 
-                return $block;
-            })
-            ->values()
-            ->all();
+        $file->move(public_path($directory), $filename);
+
+        return "{$directory}/{$filename}";
+    }
+
+    protected function deletePublicImage(?string $path): void
+    {
+        if ($path && file_exists(public_path($path))) {
+            unlink(public_path($path));
+        }
     }
 
     protected function filteredPosts(Request $request)

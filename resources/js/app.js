@@ -149,10 +149,49 @@ function initMobileMenu() {
     });
 }
 
+function initVideoModal() {
+    const triggers = document.querySelectorAll('[data-video-trigger]');
+    const modal = document.getElementById('video-modal');
+    const frame = document.getElementById('video-modal-frame');
+    const closeBtn = document.getElementById('video-modal-close');
+
+    if (!triggers.length || !modal || !frame) return;
+
+    const openModal = (youtubeId) => {
+        frame.innerHTML = `<iframe class="h-full w-full" src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0" title="Video testimonial" frameborder="0" allow="accelerate-magnetometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.classList.add('overflow-hidden');
+    };
+
+    const closeModal = () => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.classList.remove('overflow-hidden');
+        frame.innerHTML = '';
+    };
+
+    triggers.forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+            const youtubeId = trigger.dataset.youtubeId;
+            if (youtubeId) openModal(youtubeId);
+        });
+    });
+
+    closeBtn?.addEventListener('click', closeModal);
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeModal();
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initRevealAnimations();
     initCounters();
     initAccordions();
     initStickyNavbar();
     initMobileMenu();
+    initVideoModal();
 });

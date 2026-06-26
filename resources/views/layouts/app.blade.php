@@ -37,7 +37,7 @@
     <!-- JSON-LD: LocalBusiness -->
     <script type="application/ld+json">
     {!! json_encode([
-        '@context' => 'https://schema.org',
+        '@@context' => 'https://schema.org',
         '@type' => 'ProfessionalService',
         'name' => 'MAPZOON',
         'description' => 'Local SEO agency helping businesses rank higher on Google Maps with Local SEO, Google Business Profile optimization, websites, and POS billing systems.',

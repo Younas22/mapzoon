@@ -53,7 +53,7 @@
                         <select name="service" id="service"
                             class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 focus:border-primary-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/30">
                             <option value="">Select a service</option>
-                            @foreach (['Google Maps Ranking', 'Local SEO', 'Website Development', 'POS & Billing System', 'Not Sure Yet'] as $service)
+                            @foreach (config('service_catalog.options') as $service)
                                 <option value="{{ $service }}" @selected(old('service') === $service)>{{ $service }}</option>
                             @endforeach
                         </select>

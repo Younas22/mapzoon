@@ -1,52 +1,9 @@
 @extends('layouts.app')
 
 @push('schema')
-    @php
-        $schema = $post->seo;
-    @endphp
-
-    @if ($schema?->enable_article_schema ?? true)
+    @if ($post->seo?->custom_schema)
         <script type="application/ld+json">
-        {!! json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'Article',
-            'headline' => $post->title,
-            'description' => $post->excerpt,
-            'image' => $post->featuredImageUrl() ? [$post->featuredImageUrl()] : [],
-            'author' => ['@type' => 'Person', 'name' => $post->author?->name ?? 'MAPZOON'],
-            'publisher' => ['@type' => 'Organization', 'name' => 'MAPZOON'],
-            'datePublished' => $post->published_at?->toIso8601String(),
-            'dateModified' => $post->updated_at->toIso8601String(),
-            'mainEntityOfPage' => url()->current(),
-        ], JSON_UNESCAPED_SLASHES) !!}
-        </script>
-    @endif
-
-    @if ($schema?->enable_breadcrumb_schema ?? true)
-        <script type="application/ld+json">
-        {!! json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'BreadcrumbList',
-            'itemListElement' => [
-                ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => url('/')],
-                ['@type' => 'ListItem', 'position' => 2, 'name' => 'Blog', 'item' => url('/#blog')],
-                ['@type' => 'ListItem', 'position' => 3, 'name' => $post->title, 'item' => url()->current()],
-            ],
-        ], JSON_UNESCAPED_SLASHES) !!}
-        </script>
-    @endif
-
-    @if (($schema?->enable_faq_schema ?? false) && $post->faqs->isNotEmpty())
-        <script type="application/ld+json">
-        {!! json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'FAQPage',
-            'mainEntity' => $post->faqs->map(fn ($faq) => [
-                '@type' => 'Question',
-                'name' => $faq->question,
-                'acceptedAnswer' => ['@type' => 'Answer', 'text' => $faq->answer],
-            ])->all(),
-        ], JSON_UNESCAPED_SLASHES) !!}
+        {!! $post->seo->custom_schema !!}
         </script>
     @endif
 @endpush
@@ -108,83 +65,8 @@
             <div class="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-16">
 
                 <div class="lg:col-span-2">
-                    <div class="prose-content">
-                        @foreach ($post->content ?? [] as $block)
-                            @switch($block['type'] ?? null)
-                                @case('paragraph')
-                                    <p class="mt-6 text-base leading-relaxed text-slate-700">{{ $block['text'] }}</p>
-                                    @break
-
-                                @case('heading')
-                                    <h2 class="mt-10 text-2xl font-extrabold tracking-tight text-slate-900">{{ $block['text'] }}</h2>
-                                    @break
-
-                                @case('list')
-                                    <ul class="mt-6 space-y-3">
-                                        @foreach ($block['items'] ?? [] as $item)
-                                            <li class="flex items-start gap-3 text-base text-slate-700">
-                                                <span class="mt-1 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-primary-100 text-primary-600">
-                                                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                                        <path d="M5 13l4 4L19 7" />
-                                                    </svg>
-                                                </span>
-                                                {{ $item }}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                    @break
-
-                                @case('quote')
-                                    <blockquote class="mt-8 rounded-2xl border-l-4 border-primary-500 bg-primary-50 p-6">
-                                        <p class="text-lg font-medium italic text-slate-800">&ldquo;{{ $block['text'] }}&rdquo;</p>
-                                        @if(!empty($block['cite']))
-                                            <cite class="mt-3 block text-sm font-semibold not-italic text-primary-700">— {{ $block['cite'] }}</cite>
-                                        @endif
-                                    </blockquote>
-                                    @break
-
-                                @case('table')
-                                    <div class="mt-8 overflow-x-auto rounded-2xl border border-slate-200">
-                                        <table class="w-full text-left text-sm">
-                                            <thead class="bg-slate-50">
-                                                <tr>
-                                                    @foreach ($block['headers'] ?? [] as $header)
-                                                        <th class="px-4 py-3 font-semibold text-slate-700">{{ $header }}</th>
-                                                    @endforeach
-                                                </tr>
-                                            </thead>
-                                            <tbody class="divide-y divide-slate-100">
-                                                @foreach ($block['rows'] ?? [] as $row)
-                                                    <tr>
-                                                        @foreach ($row as $cell)
-                                                            <td class="px-4 py-3 text-slate-600">{{ $cell }}</td>
-                                                        @endforeach
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    @break
-
-                                @case('image')
-                                    <figure class="mt-8">
-                                        @if (!empty($block['image_url']))
-                                            <img src="{{ $block['image_url'] }}" alt="{{ $block['caption'] ?? '' }}" class="aspect-video w-full rounded-2xl object-cover">
-                                        @else
-                                            <div class="flex aspect-video items-center justify-center rounded-2xl bg-gradient-to-br from-primary-50 to-slate-100">
-                                                <svg class="h-14 w-14 text-primary-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                                    <rect x="3" y="4" width="18" height="16" rx="2" />
-                                                    <circle cx="9" cy="10" r="1.5" />
-                                                    <path d="M21 16l-5.5-5.5a1 1 0 0 0-1.4 0L7 17.5" />
-                                                </svg>
-                                            </div>
-                                        @endif
-                                        @if(!empty($block['caption']))
-                                            <figcaption class="mt-2 text-center text-sm text-slate-500">{{ $block['caption'] }}</figcaption>
-                                        @endif
-                                    </figure>
-                            @endswitch
-                        @endforeach
+                    <div class="prose prose-slate max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-slate-900 prose-a:text-primary-600 prose-img:rounded-2xl prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50 prose-blockquote:not-italic">
+                        {!! $post->content !!}
                     </div>
 
                     @if ($post->tags->isNotEmpty())

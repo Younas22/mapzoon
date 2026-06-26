@@ -25,6 +25,7 @@ class RolePermissionSeeder extends Seeder
         'reviews' => ['view', 'create', 'edit', 'delete'],
         'teams' => ['view', 'create', 'edit', 'delete'],
         'leads' => ['view', 'create', 'edit', 'delete'],
+        'credentials' => ['view', 'reveal', 'create', 'edit', 'delete'],
     ];
 
     /**
@@ -41,6 +42,7 @@ class RolePermissionSeeder extends Seeder
             'teams.view', 'teams.edit',
             'reviews.view',
             'leads.view', 'leads.edit',
+            'credentials.view', 'credentials.reveal', 'credentials.create', 'credentials.edit', 'credentials.delete',
         ],
         'SEO Specialist' => [
             'blogs.view', 'blogs.create', 'blogs.edit',
@@ -67,6 +69,7 @@ class RolePermissionSeeder extends Seeder
     {
         $actionLabels = [
             'view' => 'View',
+            'reveal' => 'Reveal',
             'create' => 'Create',
             'edit' => 'Edit',
             'delete' => 'Delete',

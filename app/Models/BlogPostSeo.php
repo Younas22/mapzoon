@@ -20,19 +20,8 @@ class BlogPostSeo extends Model
         'twitter_card',
         'twitter_title',
         'twitter_description',
-        'enable_article_schema',
-        'enable_breadcrumb_schema',
-        'enable_faq_schema',
+        'custom_schema',
     ];
-
-    protected function casts(): array
-    {
-        return [
-            'enable_article_schema' => 'boolean',
-            'enable_breadcrumb_schema' => 'boolean',
-            'enable_faq_schema' => 'boolean',
-        ];
-    }
 
     public function post(): BelongsTo
     {

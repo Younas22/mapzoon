@@ -5,15 +5,16 @@
 
 <div
     x-data="blogPostForm(@js([
-        'content' => $post->content ?: [],
+        'content' => old('content', $post->content) ?: '',
         'faqs' => $faqsForJs,
         'featuredImageUrl' => $post->featuredImageUrl(),
         'slugTouched' => (bool) $post->id,
         'status' => $post->status ?: 'draft',
+        'imageUploadUrl' => route('admin.blog-posts.upload-image'),
     ]))"
     class="mx-auto max-w-5xl"
 >
-    <form method="POST" action="{{ $action }}" enctype="multipart/form-data" class="space-y-6">
+    <form method="POST" action="{{ $action }}" enctype="multipart/form-data" class="space-y-6" @submit="syncContent()">
         @csrf
         @if ($method === 'PUT')
             @method('PUT')
@@ -141,100 +142,36 @@
 
         {{-- Content Editor --}}
         <div class="rounded-2xl border border-slate-200 bg-white p-6">
-            <h2 class="mb-1 text-base font-semibold text-ink">Content Editor</h2>
-            <p class="mb-4 text-sm text-slate-500">Build the article body block by block — this renders using the same design as the live MAPZOON blog.</p>
-
-            <div class="mb-4 flex flex-wrap gap-2">
-                <button type="button" @click="addBlock('paragraph')" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">+ Paragraph</button>
-                <button type="button" @click="addBlock('heading')" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">+ Heading</button>
-                <button type="button" @click="addBlock('list')" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">+ List</button>
-                <button type="button" @click="addBlock('quote')" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">+ Quote</button>
-                <button type="button" @click="addBlock('table')" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">+ Table</button>
-                <button type="button" @click="addBlock('image')" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">+ Image</button>
+            <div class="mb-1 flex items-center justify-between">
+                <h2 class="text-base font-semibold text-ink">Content Editor</h2>
+                <button type="button" x-show="!editorFullscreen" @click="toggleEditorFullscreen()" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">
+                    Full Screen
+                </button>
             </div>
+            <p class="mb-4 text-sm text-slate-500">Write the full article here. Format text, add images, drag the bottom-right corner to resize, or use Full Screen for more room.</p>
 
-            <template x-if="content.length === 0">
-                <p class="rounded-lg bg-slate-50 px-4 py-6 text-center text-sm text-slate-400">No content blocks yet. Add one above to start writing.</p>
-            </template>
-
-            <template x-for="(block, index) in content" :key="index">
-                <div class="mb-3 rounded-xl border border-slate-200 p-4">
-                    <input type="hidden" :name="'content['+index+'][type]'" :value="block.type">
-
-                    <div class="mb-3 flex items-center justify-between">
-                        <span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-slate-500" x-text="block.type"></span>
-                        <div class="flex items-center gap-2">
-                            <button type="button" @click="moveBlock(index, -1)" class="text-slate-400 hover:text-ink">&uarr;</button>
-                            <button type="button" @click="moveBlock(index, 1)" class="text-slate-400 hover:text-ink">&darr;</button>
-                            <button type="button" @click="removeBlock(index)" class="text-xs font-medium text-rose-600 hover:text-rose-700">Remove</button>
-                        </div>
-                    </div>
-
-                    <template x-if="block.type === 'paragraph' || block.type === 'heading'">
-                        <textarea :name="'content['+index+'][text]'" x-model="block.text" rows="3"
-                                  class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200"
-                                  placeholder="Block text"></textarea>
-                    </template>
-
-                    <template x-if="block.type === 'quote'">
-                        <div class="space-y-2">
-                            <textarea :name="'content['+index+'][text]'" x-model="block.text" rows="2" placeholder="Quote text"
-                                      class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200"></textarea>
-                            <input :name="'content['+index+'][cite]'" x-model="block.cite" placeholder="Citation (optional)"
-                                   class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200">
-                        </div>
-                    </template>
-
-                    <template x-if="block.type === 'list'">
-                        <div class="space-y-2">
-                            <template x-for="(item, itemIndex) in block.items" :key="itemIndex">
-                                <div class="flex gap-2">
-                                    <input :name="'content['+index+'][items]['+itemIndex+']'" x-model="block.items[itemIndex]"
-                                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200">
-                                    <button type="button" @click="removeListItem(index, itemIndex)" class="text-rose-600">&times;</button>
-                                </div>
-                            </template>
-                            <button type="button" @click="addListItem(index)" class="text-xs font-semibold text-primary-600 hover:text-primary-700">+ Add Item</button>
-                        </div>
-                    </template>
-
-                    <template x-if="block.type === 'table'">
-                        <div class="space-y-2 overflow-x-auto">
-                            <div class="flex gap-2">
-                                <template x-for="(header, colIndex) in block.headers" :key="colIndex">
-                                    <div class="flex min-w-[140px] flex-1 gap-1">
-                                        <input :name="'content['+index+'][headers]['+colIndex+']'" x-model="block.headers[colIndex]"
-                                               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200">
-                                        <button type="button" @click="removeTableColumn(index, colIndex)" class="text-rose-600">&times;</button>
-                                    </div>
-                                </template>
-                                <button type="button" @click="addTableColumn(index)" class="rounded-lg border border-slate-300 px-2 text-xs font-semibold text-slate-600 hover:bg-slate-50">+Col</button>
-                            </div>
-
-                            <template x-for="(row, rowIndex) in block.rows" :key="rowIndex">
-                                <div class="flex gap-2">
-                                    <template x-for="(cell, colIndex) in row" :key="colIndex">
-                                        <input :name="'content['+index+'][rows]['+rowIndex+']['+colIndex+']'" x-model="block.rows[rowIndex][colIndex]"
-                                               class="w-full min-w-[140px] flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200">
-                                    </template>
-                                    <button type="button" @click="removeTableRow(index, rowIndex)" class="text-rose-600">&times;</button>
-                                </div>
-                            </template>
-                            <button type="button" @click="addTableRow(index)" class="text-xs font-semibold text-primary-600 hover:text-primary-700">+ Add Row</button>
-                        </div>
-                    </template>
-
-                    <template x-if="block.type === 'image'">
-                        <div class="space-y-2">
-                            <input :name="'content['+index+'][image_url]'" x-model="block.image_url" placeholder="Image URL (https://...)"
-                                   class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200">
-                            <input :name="'content['+index+'][caption]'" x-model="block.caption" placeholder="Caption (optional)"
-                                   class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200">
-                            <p class="text-xs text-slate-400">Leave the URL blank to show the default placeholder graphic.</p>
-                        </div>
-                    </template>
+            <div
+                @keydown.escape.window="editorFullscreen = false"
+                :class="editorFullscreen ? 'fixed inset-0 z-50 flex flex-col bg-white p-4' : ''"
+            >
+                <div x-show="editorFullscreen" x-cloak class="mb-3 flex items-center justify-between">
+                    <span class="text-sm font-semibold text-ink">Content Editor — Full Screen</span>
+                    <button type="button" @click="toggleEditorFullscreen()" class="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">
+                        Exit Full Screen
+                    </button>
                 </div>
-            </template>
+                <div
+                    x-ref="editorContainer"
+                    class="bg-white"
+                    :class="editorFullscreen
+                        ? 'flex flex-1 flex-col [&_.ql-editor]:flex-1 [&_.ql-editor]:overflow-auto'
+                        : '[&_.ql-editor]:min-h-[420px] [&_.ql-editor]:resize-y [&_.ql-editor]:overflow-auto'"
+                ></div>
+            </div>
+            <textarea name="content" x-ref="contentInput" class="hidden">{{ old('content', $post->content) }}</textarea>
+            @error('content')
+                <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+            @enderror
         </div>
 
         {{-- SEO --}}
@@ -310,30 +247,19 @@
         <div class="rounded-2xl border border-slate-200 bg-white p-6">
             <h2 class="mb-4 text-base font-semibold text-ink">JSON-LD Schema</h2>
 
-            <div class="flex flex-wrap gap-6">
-                <label class="flex items-center gap-2 text-sm font-medium text-slate-700">
-                    <input type="hidden" name="seo[enable_article_schema]" value="0">
-                    <input type="checkbox" name="seo[enable_article_schema]" value="1" @checked(old('seo.enable_article_schema', $post->seo?->enable_article_schema ?? true))
-                           class="rounded border-slate-300 text-primary-600 focus:ring-primary-500">
-                    Article Schema
-                </label>
-                <label class="flex items-center gap-2 text-sm font-medium text-slate-700">
-                    <input type="hidden" name="seo[enable_breadcrumb_schema]" value="0">
-                    <input type="checkbox" name="seo[enable_breadcrumb_schema]" value="1" @checked(old('seo.enable_breadcrumb_schema', $post->seo?->enable_breadcrumb_schema ?? true))
-                           class="rounded border-slate-300 text-primary-600 focus:ring-primary-500">
-                    Breadcrumb Schema
-                </label>
-                <label class="flex items-center gap-2 text-sm font-medium text-slate-700">
-                    <input type="hidden" name="seo[enable_faq_schema]" value="0">
-                    <input type="checkbox" name="seo[enable_faq_schema]" value="1" @checked(old('seo.enable_faq_schema', $post->seo?->enable_faq_schema ?? false))
-                           class="rounded border-slate-300 text-primary-600 focus:ring-primary-500">
-                    FAQ Schema
-                </label>
+            <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">Custom JSON-LD Schema (optional)</label>
+                <textarea name="seo[custom_schema]" rows="6" placeholder='{"@@context": "https://schema.org", "@@type": "Article", ...}'
+                          class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm font-mono focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200">{{ old('seo.custom_schema', $post->seo?->custom_schema) }}</textarea>
+                <p class="mt-1 text-xs text-slate-400">Paste your own ready JSON-LD object (without the &lt;script&gt; tags). It will be output as-is on the live page. Leave blank for no schema markup.</p>
+                @error('seo.custom_schema')
+                    <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mt-6 border-t border-slate-100 pt-5">
                 <h3 class="mb-1 text-sm font-semibold text-ink">FAQ Items</h3>
-                <p class="mb-3 text-sm text-slate-500">These render as a visible FAQ section on the post and feed the FAQ schema above.</p>
+                <p class="mb-3 text-sm text-slate-500">These render as a visible FAQ section on the post.</p>
 
                 <template x-for="(faq, index) in faqs" :key="index">
                     <div class="mb-3 rounded-xl border border-slate-200 p-4">

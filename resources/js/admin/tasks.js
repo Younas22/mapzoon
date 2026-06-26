@@ -7,6 +7,7 @@ function emptyTaskForm() {
         start_date: '',
         due_date: '',
         assigned_to: '',
+        project_id: '',
     };
 }
 
@@ -62,7 +63,7 @@ export function taskManager(config) {
             const url = this.mode === 'create' ? this.config.storeUrl : `${this.config.baseUrl}/${this.editingId}`;
             const method = this.mode === 'create' ? 'POST' : 'PUT';
 
-            const payload = { ...this.form, assigned_to: this.form.assigned_to || null };
+            const payload = { ...this.form, assigned_to: this.form.assigned_to || null, project_id: this.form.project_id || null };
 
             const { ok, status, data } = await window.AdminUI.submitJson(url, method, payload);
 

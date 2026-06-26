@@ -28,18 +28,7 @@ class StoreBlogPostRequest extends FormRequest
             'tags' => ['array'],
             'tags.*' => ['integer', 'exists:tags,id'],
 
-            'content' => ['nullable', 'array'],
-            'content.*.type' => ['required', Rule::in(['paragraph', 'heading', 'list', 'quote', 'table', 'image'])],
-            'content.*.text' => ['nullable', 'string'],
-            'content.*.cite' => ['nullable', 'string', 'max:255'],
-            'content.*.items' => ['nullable', 'array'],
-            'content.*.items.*' => ['nullable', 'string', 'max:1000'],
-            'content.*.headers' => ['nullable', 'array'],
-            'content.*.headers.*' => ['nullable', 'string', 'max:255'],
-            'content.*.rows' => ['nullable', 'array'],
-            'content.*.rows.*.*' => ['nullable', 'string', 'max:1000'],
-            'content.*.image_url' => ['nullable', 'string', 'max:2048'],
-            'content.*.caption' => ['nullable', 'string', 'max:255'],
+            'content' => ['nullable', 'string'],
 
             'faqs' => ['nullable', 'array'],
             'faqs.*.question' => ['nullable', 'string', 'max:500'],
@@ -55,9 +44,7 @@ class StoreBlogPostRequest extends FormRequest
             'seo.twitter_card' => ['nullable', Rule::in(['summary', 'summary_large_image'])],
             'seo.twitter_title' => ['nullable', 'string', 'max:255'],
             'seo.twitter_description' => ['nullable', 'string', 'max:500'],
-            'seo.enable_article_schema' => ['boolean'],
-            'seo.enable_breadcrumb_schema' => ['boolean'],
-            'seo.enable_faq_schema' => ['boolean'],
+            'seo.custom_schema' => ['nullable', 'json'],
         ];
     }
 }

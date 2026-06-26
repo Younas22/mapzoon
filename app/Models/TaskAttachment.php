@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\FormatsFileSize;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TaskAttachment extends Model
 {
+    use FormatsFileSize;
+
     protected $fillable = [
         'task_id',
         'user_id',
@@ -24,20 +27,5 @@ class TaskAttachment extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function sizeForHumans(): string
-    {
-        $bytes = $this->size;
-
-        foreach (['B', 'KB', 'MB', 'GB'] as $unit) {
-            if ($bytes < 1024) {
-                return round($bytes, 1).' '.$unit;
-            }
-
-            $bytes /= 1024;
-        }
-
-        return round($bytes, 1).' TB';
     }
 }

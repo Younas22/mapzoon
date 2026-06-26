@@ -182,6 +182,17 @@
                             @endif
                         </div>
 
+                        @if ($task->project)
+                            <div>
+                                <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Project</p>
+                                @can('view', $task->project)
+                                    <a href="{{ route('admin.projects.show', $task->project) }}" class="mt-1 block font-medium text-primary-600 hover:text-primary-700">{{ $task->project->name }}</a>
+                                @else
+                                    <p class="mt-1 font-medium text-ink">{{ $task->project->name }}</p>
+                                @endcan
+                            </div>
+                        @endif
+
                         <div>
                             <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Start Date</p>
                             <p class="mt-1 font-medium text-ink">{{ $task->start_date?->format('M d, Y') ?? 'Not set' }}</p>

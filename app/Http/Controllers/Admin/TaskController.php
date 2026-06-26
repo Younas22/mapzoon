@@ -12,6 +12,7 @@ use App\Http\Requests\Admin\Task\UpdateTaskAssigneeRequest;
 use App\Http\Requests\Admin\Task\UpdateTaskProgressRequest;
 use App\Http\Requests\Admin\Task\UpdateTaskRequest;
 use App\Http\Requests\Admin\Task\UpdateTaskStatusRequest;
+use App\Models\Project;
 use App\Models\Subtask;
 use App\Models\Task;
 use App\Models\TaskAttachment;
@@ -32,6 +33,7 @@ class TaskController extends Controller
         return view('admin.tasks.index', [
             'tasks' => $this->filteredTasks($request),
             'assignees' => User::query()->orderBy('name')->get(),
+            'projects' => Project::query()->orderBy('name')->get(),
             'stats' => [
                 'total' => Task::query()->count(),
                 'in_progress' => Task::query()->where('status', 'in_progress')->count(),
@@ -87,7 +89,7 @@ class TaskController extends Controller
 
         return response()->json([
             'task' => [
-                ...$task->only(['id', 'title', 'description', 'priority', 'status', 'assigned_to']),
+                ...$task->only(['id', 'title', 'description', 'priority', 'status', 'assigned_to', 'project_id']),
                 'start_date' => $task->start_date?->format('Y-m-d'),
                 'due_date' => $task->due_date?->format('Y-m-d'),
             ],
@@ -129,7 +131,7 @@ class TaskController extends Controller
         $this->authorize('view', $task);
 
         return view('admin.tasks.show', [
-            'task' => $task->load(['assignedUser', 'creator', 'notes.user', 'comments.user', 'attachments.user', 'subtasks', 'activities.user']),
+            'task' => $task->load(['assignedUser', 'creator', 'project', 'notes.user', 'comments.user', 'attachments.user', 'subtasks', 'activities.user']),
             'assignees' => User::query()->orderBy('name')->get(),
         ]);
     }
@@ -312,7 +314,7 @@ class TaskController extends Controller
         $dir = $request->query('dir') === 'asc' ? 'asc' : 'desc';
 
         return Task::query()
-            ->with(['assignedUser', 'creator'])
+            ->with(['assignedUser', 'creator', 'project'])
             ->when($request->filled('q'), fn ($query) => $query->where('title', 'like', '%'.$request->query('q').'%'))
             ->when($request->filled('status'), fn ($query) => $query->where('status', $request->query('status')))
             ->when($request->filled('priority'), fn ($query) => $query->where('priority', $request->query('priority')))

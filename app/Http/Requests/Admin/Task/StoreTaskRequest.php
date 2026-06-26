@@ -23,6 +23,7 @@ class StoreTaskRequest extends FormRequest
             'start_date' => ['nullable', 'date'],
             'due_date' => ['nullable', 'date', 'after_or_equal:start_date'],
             'assigned_to' => ['nullable', 'integer', 'exists:users,id'],
+            'project_id' => ['nullable', 'integer', 'exists:projects,id'],
         ];
     }
 }

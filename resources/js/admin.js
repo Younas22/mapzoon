@@ -7,6 +7,10 @@ import categoryManager from './admin/categories';
 import tagManager from './admin/tags';
 import { blogPostManager, blogPostForm } from './admin/blog-posts';
 import { taskManager, taskShow } from './admin/tasks';
+import { clientManager, clientShow } from './admin/clients';
+import { projectManager, projectShow } from './admin/projects';
+import teamMemberManager from './admin/team-members';
+import videoReviewManager from './admin/video-reviews';
 
 window.Alpine = Alpine;
 Alpine.data('roleManager', roleManager);
@@ -20,6 +24,12 @@ Alpine.data('blogPostManager', blogPostManager);
 Alpine.data('blogPostForm', blogPostForm);
 Alpine.data('taskManager', taskManager);
 Alpine.data('taskShow', taskShow);
+Alpine.data('clientManager', clientManager);
+Alpine.data('clientShow', clientShow);
+Alpine.data('projectManager', projectManager);
+Alpine.data('projectShow', projectShow);
+Alpine.data('teamMemberManager', teamMemberManager);
+Alpine.data('videoReviewManager', videoReviewManager);
 
 function csrfToken() {
     return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ?? '';
