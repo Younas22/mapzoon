@@ -1,8 +1,9 @@
+<?php $settings = \App\Models\SiteSetting::current(); ?>
 <header id="site-navbar" class="reveal fixed inset-x-0 top-0 z-40 bg-transparent transition-all duration-300">
     <div class="mx-auto flex h-20 max-w-[1600px] items-center justify-between gap-4 px-6 lg:px-10">
         <a href="/#hero" class="flex flex-none items-center gap-2.5 whitespace-nowrap">
-            <img src="{{ asset('logo.png') }}" alt="MAPZOON" class="h-9 w-auto" />
-            <span class="text-xl font-extrabold tracking-tight text-slate-900">MAPZOON</span>
+            <img src="{{ $settings->logoDarkUrl() }}" alt="{{ $settings->company_name ?? 'MAPZOON' }}" class="h-9 w-auto" />
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">{{ $settings->company_name ?? 'MAPZOON' }}</span>
         </a>
 
         <nav class="hidden flex-1 items-center justify-center gap-5 xl:flex" aria-label="Primary">
@@ -71,8 +72,8 @@
 <div id="mobile-menu" class="fixed inset-0 z-50 flex translate-x-full flex-col bg-white transition-transform duration-300 xl:hidden">
     <div class="flex items-center justify-between border-b border-slate-100 px-6 py-5">
         <a href="/#hero" class="inline-flex items-center gap-2.5">
-            <img src="{{ asset('logo.png') }}" alt="MAPZOON" class="h-9 w-auto" />
-            <span class="text-xl font-extrabold tracking-tight text-slate-900">MAPZOON</span>
+            <img src="{{ $settings->logoDarkUrl() }}" alt="{{ $settings->company_name ?? 'MAPZOON' }}" class="h-9 w-auto" />
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">{{ $settings->company_name ?? 'MAPZOON' }}</span>
         </a>
         <button type="button" id="nav-menu-close" class="flex h-10 w-10 items-center justify-center rounded-xl text-slate-700 transition hover:bg-slate-100" aria-label="Close menu">
             <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

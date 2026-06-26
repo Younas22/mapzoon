@@ -11,6 +11,7 @@ import { clientManager, clientShow } from './admin/clients';
 import { projectManager, projectShow } from './admin/projects';
 import teamMemberManager from './admin/team-members';
 import videoReviewManager from './admin/video-reviews';
+import settingsForm from './admin/settings';
 
 window.Alpine = Alpine;
 Alpine.data('roleManager', roleManager);
@@ -30,6 +31,7 @@ Alpine.data('projectManager', projectManager);
 Alpine.data('projectShow', projectShow);
 Alpine.data('teamMemberManager', teamMemberManager);
 Alpine.data('videoReviewManager', videoReviewManager);
+Alpine.data('settingsForm', settingsForm);
 
 function csrfToken() {
     return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ?? '';

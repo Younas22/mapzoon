@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ProjectCredentialController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\TeamMemberController;
@@ -487,5 +488,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('video-reviews/{video_review}', [VideoReviewController::class, 'destroy'])
             ->middleware('permission:reviews.delete')
             ->name('video-reviews.destroy');
+
+        Route::get('settings', [SettingController::class, 'edit'])
+            ->middleware('permission:settings.view')
+            ->name('settings.edit');
+
+        Route::put('settings', [SettingController::class, 'update'])
+            ->middleware('permission:settings.edit')
+            ->name('settings.update');
     });
 });

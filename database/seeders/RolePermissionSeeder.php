@@ -26,6 +26,7 @@ class RolePermissionSeeder extends Seeder
         'teams' => ['view', 'create', 'edit', 'delete'],
         'leads' => ['view', 'create', 'edit', 'delete'],
         'credentials' => ['view', 'reveal', 'create', 'edit', 'delete'],
+        'settings' => ['view', 'edit'],
     ];
 
     /**
