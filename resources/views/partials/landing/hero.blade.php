@@ -1,173 +1,120 @@
-<section id="hero" class="relative overflow-hidden bg-white pt-28 pb-20 lg:pt-32 lg:pb-28">
-    <div class="absolute inset-0 -z-20 bg-grid opacity-40 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]" aria-hidden="true"></div>
-    <div class="absolute left-1/2 top-0 -z-10 h-[640px] w-[900px] -translate-x-1/2 rounded-full bg-primary-300/25 blur-3xl" aria-hidden="true"></div>
+<section id="hero" class="relative overflow-hidden bg-black pt-28 pb-20 lg:pt-36 lg:pb-28">
 
-    <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-12">
+    {{-- Background grid pattern --}}
+    <div class="absolute inset-0 -z-20 bg-grid opacity-[0.06]" aria-hidden="true"></div>
 
-            <div class="reveal">
-                <p class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-1.5 text-sm font-medium text-slate-700 shadow-sm">
-                    <span class="h-2 w-2 rounded-full bg-primary-500 animate-pulse-soft" aria-hidden="true"></span>
-                    Local SEO &amp; Growth Partner for 350+ Businesses
-                </p>
+    {{-- Glowing orbs --}}
+    <div class="absolute -left-20 top-0 -z-10 h-[600px] w-[600px] rounded-full bg-primary-600/25 blur-[130px]" aria-hidden="true"></div>
+    <div class="absolute -right-20 top-20 -z-10 h-[500px] w-[500px] rounded-full bg-violet-600/15 blur-[120px]" aria-hidden="true"></div>
+    <div class="absolute left-1/2 -z-10 top-1/2 h-[400px] w-[800px] -translate-x-1/2 rounded-full bg-primary-500/10 blur-[100px]" aria-hidden="true"></div>
+    <div class="absolute left-1/4 bottom-0 -z-10 h-[300px] w-[400px] rounded-full bg-cyan-500/10 blur-[100px]" aria-hidden="true"></div>
 
-                <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.75rem] lg:leading-[1.08]">
-                    Rank Higher on <span class="text-gradient">Google Maps</span> &amp; Grow Your Local Business
-                </h1>
+    {{-- Decorative floating rings --}}
+    <div class="absolute right-[8%] top-[15%] -z-10 h-64 w-64 rounded-full border border-white/5" aria-hidden="true"></div>
+    <div class="absolute right-[10%] top-[13%] -z-10 h-40 w-40 rounded-full border border-primary-500/20" aria-hidden="true"></div>
+    <div class="absolute left-[6%] bottom-[20%] -z-10 h-48 w-48 rounded-full border border-white/5" aria-hidden="true"></div>
 
-                <p class="mt-6 max-w-xl text-base text-slate-600 sm:text-lg">
-                    We help local businesses get more visibility, more calls, more customers, and better business management through Local SEO, Professional Websites, and POS Solutions.
-                </p>
+    <div class="relative mx-auto max-w-4xl px-6 text-center lg:max-w-6xl lg:px-8">
+        <div class="reveal">
 
-                <div class="mt-9 flex flex-col gap-4 sm:flex-row">
-                    <a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
-                        Get Free Audit
-                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M5 12h14M13 6l6 6-6 6" />
-                        </svg>
-                    </a>
-                    <a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-7 py-3.5 text-base font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
-                        Book Consultation
-                    </a>
-                </div>
+            {{-- Badge --}}
+            <p class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-1.5 text-sm font-medium text-slate-300 shadow-sm backdrop-blur-sm">
+                <span class="h-2 w-2 rounded-full bg-primary-400 animate-pulse-soft" aria-hidden="true"></span>
+                Local SEO &amp; Growth Partner for 350+ Businesses
+            </p>
 
-                <dl class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
-                    <div class="flex items-center gap-3">
-                        <div class="flex text-primary-500" aria-hidden="true">
-                            @for ($i = 0; $i < 5; $i++)
-                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                                </svg>
-                            @endfor
-                        </div>
-                        <div class="text-sm">
-                            <dt class="sr-only">Average rating</dt>
-                            <dd class="font-bold text-slate-900">4.9/5 <span class="font-normal text-slate-500">Reviews</span></dd>
-                        </div>
-                    </div>
-                    <div class="hidden h-8 w-px bg-slate-200 sm:block" aria-hidden="true"></div>
-                    <div>
-                        <dt class="text-sm text-slate-500">Businesses Served</dt>
-                        <dd class="text-xl font-extrabold text-slate-900">350+</dd>
-                    </div>
-                    <div class="hidden h-8 w-px bg-slate-200 sm:block" aria-hidden="true"></div>
-                    <div>
-                        <dt class="text-sm text-slate-500">Maps Rankings Improved</dt>
-                        <dd class="text-xl font-extrabold text-slate-900">1,200+</dd>
-                    </div>
-                </dl>
+            {{-- Headline --}}
+            <h1 class="mt-6 text-4xl font-black leading-tight tracking-tighter text-white sm:text-5xl sm:leading-[1.05] lg:text-6xl lg:leading-[1.08]">
+                Not Getting <span class="bg-green-500 text-white [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">Local Customers?</span><br>
+                <span class="text-gradient">Rank Higher</span> on Google Maps
+            </h1>
+
+            {{-- Subtext --}}
+            <p class="mx-auto mt-6 max-w-2xl text-base text-slate-400 sm:text-xl">
+                Increase your Google rankings, attract more leads, and grow faster with Local SEO, websites, and POS solutions.
+            </p>
+
+            {{-- CTAs --}}
+            <div class="mt-8 flex items-center justify-center gap-2">
+                <select id="hero-service-pick"
+                    class="rounded-xl border border-white/15 bg-white/10 px-3 py-2.5 text-sm font-medium text-white shadow-sm backdrop-blur-sm focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30 max-w-[190px] sm:max-w-[230px]">
+                    <option value="Google Business Profile Optimization" class="text-slate-900">Google Business Profile</option>
+                    <option value="Local SEO" class="text-slate-900">Local SEO</option>
+                    <option value="Website Development" class="text-slate-900">Website Development</option>
+                    <option value="POS &amp; Billing System" class="text-slate-900">POS &amp; Billing System</option>
+                </select>
+                <button type="button" id="open-quote-modal"
+                    class="inline-flex flex-none items-center gap-1.5 rounded-xl bg-primary-500 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-primary-500/40 transition hover:-translate-y-0.5 hover:bg-primary-400 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+                    Get Free Quote
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                </button>
             </div>
 
-            <div class="relative reveal reveal-delay-2" aria-hidden="true">
-                <div class="absolute -right-10 -top-10 h-72 w-72 rounded-full bg-primary-400/30 blur-3xl animate-blob"></div>
-                <div class="absolute -bottom-16 -left-10 h-72 w-72 rounded-full bg-primary-300/30 blur-3xl animate-blob" style="animation-delay:-7s"></div>
+            {{-- Trusted Platforms --}}
+            <div class="mt-10 border-t border-white/10 pt-8">
+                <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Trusted Tools &amp; Platforms</p>
 
-                <div class="relative mx-auto w-full max-w-lg">
-                    <div class="absolute -left-6 top-8 z-20 hidden items-center gap-3 rounded-2xl px-4 py-3 shadow-xl glass animate-float sm:flex">
-                        <svg class="h-5 w-5 text-primary-500" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                <div class="mt-5 flex flex-wrap items-center justify-center gap-3">
+
+                    {{-- Google --}}
+                    <span class="flex items-center gap-2 rounded-xl border border-white/10 bg-white/8 px-4 py-2.5 shadow-sm backdrop-blur-sm">
+                        <svg class="h-6 w-6 flex-none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                         </svg>
-                        <span class="text-sm font-semibold text-slate-800">4.9 Average Rating</span>
-                    </div>
+                        <span class="text-sm font-bold text-slate-300">Google</span>
+                    </span>
 
-                    <div class="absolute -right-6 bottom-12 z-20 hidden items-center gap-3 rounded-2xl px-4 py-3 shadow-xl glass animate-float-slow sm:flex">
-                        <svg class="h-5 w-5 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 17l5-5 4 4 8-9M14 7h6v6" />
+                    {{-- Google Maps --}}
+                    <span class="flex items-center gap-2 rounded-xl border border-white/10 bg-white/8 px-4 py-2.5 shadow-sm backdrop-blur-sm">
+                        <svg class="h-6 w-6 flex-none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#EA4335"/>
+                            <circle cx="12" cy="9" r="2.5" fill="white"/>
                         </svg>
-                        <span class="text-sm font-semibold text-slate-800">+128% Visibility</span>
-                    </div>
+                        <span class="text-sm font-bold text-slate-300">Google Maps</span>
+                    </span>
 
-                    <div class="relative z-10 overflow-hidden rounded-3xl border border-slate-200 bg-white/90 shadow-2xl ring-1 ring-slate-900/5 backdrop-blur-xl">
-                        <div class="flex items-center justify-between border-b border-slate-100 px-5 py-4">
-                            <div class="flex items-center gap-1.5">
-                                <span class="h-2.5 w-2.5 rounded-full bg-red-400"></span>
-                                <span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span>
-                                <span class="h-2.5 w-2.5 rounded-full bg-primary-500"></span>
-                            </div>
-                            <p class="text-xs font-medium text-slate-400">mapzoon.app/dashboard</p>
-                            <span class="inline-flex items-center gap-1.5 rounded-full bg-primary-50 px-2.5 py-1 text-[11px] font-semibold text-primary-700">
-                                <span class="h-1.5 w-1.5 rounded-full bg-primary-500 animate-pulse-soft"></span>
-                                Live
-                            </span>
-                        </div>
+                    {{-- Meta --}}
+                    <span class="flex items-center gap-2 rounded-xl border border-white/10 bg-white/8 px-4 py-2.5 shadow-sm backdrop-blur-sm">
+                        <svg class="h-6 w-6 flex-none" viewBox="0 0 24 24" fill="#0866FF" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12 2.04C6.48 2.04 2 6.52 2 12.04c0 5.02 3.66 9.18 8.44 9.96v-7.04H7.9v-2.92h2.54V9.9c0-2.51 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.81h2.77l-.44 2.92h-2.33v7.04C18.34 21.22 22 17.06 22 12.04 22 6.52 17.52 2.04 12 2.04z"/>
+                        </svg>
+                        <span class="text-sm font-bold text-slate-300">Meta</span>
+                    </span>
 
-                        <div class="grid grid-cols-1 gap-4 p-5 sm:grid-cols-2">
-                            <div class="rounded-2xl border border-slate-100 bg-gradient-to-br from-primary-50 to-white p-4 sm:col-span-2 sm:p-5">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center gap-3">
-                                        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-500 text-white">
-                                            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M12 21s-7-7.58-7-12a7 7 0 1 1 14 0c0 4.42-7 12-7 12z" />
-                                                <circle cx="12" cy="9" r="2.5" />
-                                            </svg>
-                                        </span>
-                                        <div>
-                                            <p class="text-xs font-medium text-slate-500">Google Maps Ranking</p>
-                                            <p class="text-2xl font-extrabold text-slate-900">#1 <span class="text-sm font-medium text-slate-500">"plumber near me"</span></p>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col items-end gap-2">
-                                        <span class="rounded-full bg-primary-100 px-2.5 py-1 text-xs font-semibold text-primary-700">+8 spots ↑</span>
-                                        <div class="flex items-end gap-1" aria-hidden="true">
-                                            <span class="h-3 w-1.5 rounded-sm bg-primary-200"></span>
-                                            <span class="h-5 w-1.5 rounded-sm bg-primary-300"></span>
-                                            <span class="h-7 w-1.5 rounded-sm bg-primary-500"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    {{-- Yelp --}}
+                    <span class="flex items-center gap-2 rounded-xl border border-white/10 bg-white/8 px-4 py-2.5 shadow-sm backdrop-blur-sm">
+                        <svg class="h-6 w-6 flex-none" viewBox="0 0 60 60" fill="#D32323" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M36.23 26.37c.74-.89 2.08-.81 2.78.11l8.05 10.85c.7.93.3 2.27-.83 2.64l-8.86 2.85c-1.13.36-2.25-.54-2.15-1.72l.81-12.78c.04-.73.43-1.43 1.2-1.95zM26.5 46.15l-3.53 9.22c-.44 1.15.43 2.35 1.64 2.23l9.32-.92c1.21-.12 1.84-1.47 1.14-2.44l-5.79-8.3c-.74-1.06-2.33-.93-2.78.21zM14.7 33.93l-9.5 1.7c-1.17.21-1.65 1.6-.87 2.51l6.18 7.09c.79.9 2.23.68 2.71-.39l3.32-8.78c.43-1.14-.6-2.32-1.84-2.13zM22.8 13.56l-6.18-7.09c-.79-.9-2.23-.68-2.71.39l-3.32 8.78c-.43 1.14.6 2.32 1.84 2.13l9.5-1.7c1.17-.21 1.65-1.6.87-2.51zM29.5 3.2l-1.05 12.77c-.08.97.88 1.72 1.82 1.41l8.87-2.85c.94-.3 1.22-1.49.52-2.2L31.9 3.54C31.2 2.83 29.61 2.78 29.5 3.2z"/>
+                        </svg>
+                        <span class="text-sm font-bold text-slate-300">Yelp</span>
+                    </span>
 
-                            <div class="rounded-2xl border border-slate-100 p-4">
-                                <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-700">
-                                    <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="9" cy="8" r="3.25" />
-                                        <path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5" />
-                                        <path d="M16 8.5a2.75 2.75 0 1 1 0 5.25M21 19c0-2.5-1.8-4.3-4-4.85" />
-                                    </svg>
-                                </span>
-                                <p class="mt-3 text-xs font-medium text-slate-500">New Leads</p>
-                                <p class="text-2xl font-extrabold text-slate-900">186</p>
-                                <p class="text-xs font-semibold text-primary-600">+32 this week</p>
-                            </div>
+                    {{-- Semrush --}}
+                    <span class="flex items-center gap-2 rounded-xl border border-white/10 bg-white/8 px-4 py-2.5 shadow-sm backdrop-blur-sm">
+                        <svg class="h-6 w-6 flex-none" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="40" height="40" rx="8" fill="#FF6A1A"/>
+                            <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="22" font-weight="900" font-family="Arial, sans-serif">S</text>
+                        </svg>
+                        <span class="text-sm font-bold text-slate-300">Semrush</span>
+                    </span>
 
-                            <div class="rounded-2xl border border-slate-100 p-4">
-                                <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-700">
-                                    <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                                    </svg>
-                                </span>
-                                <p class="mt-3 text-xs font-medium text-slate-500">Reviews</p>
-                                <p class="text-2xl font-extrabold text-slate-900">4.9<span class="text-sm font-medium text-slate-500">/5</span></p>
-                                <p class="text-xs font-semibold text-primary-600">62 new this month</p>
-                            </div>
+                    {{-- Ahrefs --}}
+                    <span class="flex items-center gap-2 rounded-xl border border-white/10 bg-white/8 px-4 py-2.5 shadow-sm backdrop-blur-sm">
+                        <svg class="h-6 w-6 flex-none" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="40" height="40" rx="8" fill="#1D52F0"/>
+                            <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="20" font-weight="900" font-family="Arial, sans-serif">A</text>
+                        </svg>
+                        <span class="text-sm font-bold text-slate-300">Ahrefs</span>
+                    </span>
 
-                            <div class="rounded-2xl border border-slate-100 p-4 sm:col-span-2">
-                                <div class="flex items-end justify-between">
-                                    <div>
-                                        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-700">
-                                            <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <rect x="3" y="6" width="18" height="13" rx="2" />
-                                                <circle cx="12" cy="12.5" r="2.5" />
-                                                <path d="M7 6V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1" />
-                                            </svg>
-                                        </span>
-                                        <p class="mt-3 text-xs font-medium text-slate-500">POS Sales · This Month</p>
-                                        <p class="text-2xl font-extrabold text-slate-900">$48,250</p>
-                                        <p class="text-xs font-semibold text-primary-600">+18% vs last month</p>
-                                    </div>
-                                    <div class="flex items-end gap-1.5" aria-hidden="true">
-                                        <span class="h-4 w-2 rounded-sm bg-primary-200"></span>
-                                        <span class="h-7 w-2 rounded-sm bg-primary-300"></span>
-                                        <span class="h-5 w-2 rounded-sm bg-primary-200"></span>
-                                        <span class="h-9 w-2 rounded-sm bg-primary-400"></span>
-                                        <span class="h-6 w-2 rounded-sm bg-primary-300"></span>
-                                        <span class="h-10 w-2 rounded-sm bg-primary-500"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+
+                <p class="mt-4 text-xs text-slate-600">Certified Google Maps &amp; Local SEO specialists · 350+ local businesses scaled worldwide</p>
             </div>
 
         </div>

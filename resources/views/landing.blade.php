@@ -3,7 +3,7 @@
 @section('content')
     @include('sections.navbar')
     @include('partials.landing.hero')
-    @include('partials.landing.stats')
+    {{-- @include('partials.landing.stats') --}}
     @include('partials.landing.services')
     @include('partials.landing.maps-process')
     @include('partials.landing.website')
@@ -16,4 +16,5 @@
     @include('partials.landing.faq')
     @include('partials.landing.contact')
     @include('partials.landing.footer')
+    @include('partials.landing.quote-modal')
 @endsection

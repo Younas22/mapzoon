@@ -15,7 +15,7 @@
         </div>
 
         @if ($videoReviews->isNotEmpty())
-            <ul class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            <ul class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
                 @foreach ($videoReviews as $i => $review)
                     @php $videoId = $review->youtubeVideoId(); @endphp
                     <li class="reveal reveal-delay-{{ ($i % 4) + 1 }} group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg transition duration-300 hover:-translate-y-1.5 hover:border-primary-200 hover:shadow-2xl">

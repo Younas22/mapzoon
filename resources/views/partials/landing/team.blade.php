@@ -25,9 +25,10 @@
         </div>
 
         @if ($teamMembers->isNotEmpty())
-            <ul class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            <ul class="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-6">
                 @foreach ($teamMembers as $i => $member)
-                    <li class="reveal reveal-delay-{{ ($i % 4) + 1 }} group relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg transition duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:ring-2 hover:ring-primary-300/60">
+                    @php $isCeo = Str::contains(strtolower($member->designation ?? ''), ['ceo', 'founder']); @endphp
+                    <li class="reveal reveal-delay-{{ ($i % 4) + 1 }} group relative overflow-hidden rounded-3xl border bg-white shadow-lg transition duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:ring-2 hover:ring-primary-300/60 {{ $isCeo ? 'z-10 scale-[1.07] border-primary-400 shadow-xl ring-2 ring-primary-300/60' : 'border-slate-200' }}">
                         <div class="relative overflow-hidden">
                             @if ($member->photoUrl())
                                 <img src="{{ $member->photoUrl() }}" alt="{{ $member->name }}" class="aspect-square w-full object-cover transition duration-500 group-hover:scale-105">
@@ -40,11 +41,11 @@
                         <div class="p-5">
                             <h3 class="text-base font-bold text-slate-900">{{ $member->name }}</h3>
                             <p class="text-sm font-semibold text-primary-600">{{ $member->designation }}</p>
-                            @if ($member->bio)
+                            <!-- @if ($member->bio)
                                 <p class="mt-2 text-sm leading-relaxed text-slate-600">{{ $member->bio }}</p>
-                            @endif
+                            @endif -->
 
-                            @if ($member->linkedin_url || $member->email)
+                            <!-- @if ($member->linkedin_url || $member->email)
                                 <div class="mt-4 flex items-center gap-3 border-t border-slate-100 pt-4">
                                     @if ($member->linkedin_url)
                                         <a href="{{ $member->linkedin_url }}" target="_blank" rel="noopener noreferrer" class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition hover:bg-primary-50 hover:text-primary-600" title="LinkedIn" aria-label="{{ $member->name }} on LinkedIn">
@@ -62,7 +63,7 @@
                                         </a>
                                     @endif
                                 </div>
-                            @endif
+                            @endif -->
                         </div>
                     </li>
                 @endforeach

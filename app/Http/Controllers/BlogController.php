@@ -4,10 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class BlogController extends Controller
 {
+    public function index(Request $request): View
+    {
+        $posts = BlogPost::query()
+            ->published()
+            ->with(['category', 'author'])
+            ->when($request->category, fn ($q, $slug) => $q->whereHas('category', fn ($c) => $c->where('slug', $slug)))
+            ->latest('published_at')
+            ->paginate(9);
+
+        $categories = Category::query()
+            ->whereHas('posts', fn ($q) => $q->published())
+            ->orderBy('name')
+            ->get();
+
+        $featured = BlogPost::query()->published()->featured()->latest('published_at')->first();
+
+        return view('pages.blog.index', [
+            'posts' => $posts,
+            'categories' => $categories,
+            'featured' => $featured,
+            'title' => 'Blog — MAPZOON',
+            'description' => 'Read MAPZOON\'s latest articles on Google Maps SEO, local business growth, website development, and POS billing tips.',
+        ]);
+    }
+
     public function show(string $slug): View
     {
         $post = BlogPost::query()

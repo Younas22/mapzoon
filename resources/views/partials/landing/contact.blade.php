@@ -1,4 +1,4 @@
-<section id="contact" class="relative overflow-hidden bg-slate-900 py-20 lg:py-28">
+<section id="contact" class="relative overflow-hidden bg-black py-20 lg:py-28">
     <div class="absolute inset-0 -z-20 bg-grid opacity-10" aria-hidden="true"></div>
     <div class="absolute -top-20 left-1/2 -z-10 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-primary-500/20 blur-3xl" aria-hidden="true"></div>
     <div class="absolute bottom-0 right-0 -z-10 h-72 w-72 rounded-full bg-primary-400/20 blur-3xl" aria-hidden="true"></div>

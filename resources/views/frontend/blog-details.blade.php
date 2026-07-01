@@ -17,9 +17,9 @@
 
             <div class="relative mx-auto max-w-4xl px-6 lg:px-8">
                 <nav class="flex items-center gap-2 text-sm text-slate-500" aria-label="Breadcrumb">
-                    <a href="/" class="transition hover:text-primary-600">Home</a>
+                    <a href="{{ url('/') }}" class="transition hover:text-primary-600">Home</a>
                     <span aria-hidden="true">/</span>
-                    <a href="/#blog" class="transition hover:text-primary-600">Blog</a>
+                    <a href="{{ url('/#blog') }}" class="transition hover:text-primary-600">Blog</a>
                     <span aria-hidden="true">/</span>
                     <span class="text-slate-700">{{ $post->category?->name ?? 'Uncategorized' }}</span>
                 </nav>

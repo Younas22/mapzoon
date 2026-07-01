@@ -18,9 +18,10 @@ class Lead extends Model
     ];
 
     public const SOURCES = [
-        'website_contact' => 'Website Contact Form',
+        'website_contact'  => 'Website Contact Form',
         'book_consultation' => 'Book Consultation Form',
-        'manual' => 'Manual Entry',
+        'quote_form'       => 'Get Free Quote Form',
+        'manual'           => 'Manual Entry',
     ];
 
     protected $fillable = [

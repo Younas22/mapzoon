@@ -161,7 +161,7 @@
                 </div>
             </li>
 
-            <li class="reveal reveal-delay-6 group relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-800 p-8 text-white shadow-lg transition duration-300 hover:-translate-y-1.5 hover:shadow-2xl sm:col-span-2 sm:p-10 lg:col-span-3">
+            <li class="reveal reveal-delay-6 group relative overflow-hidden rounded-3xl border border-white/10 bg-black p-8 text-white shadow-lg transition duration-300 hover:-translate-y-1.5 hover:shadow-2xl sm:col-span-2 sm:p-10 lg:col-span-3">
                 <div class="absolute -right-10 -top-16 h-72 w-72 rounded-full bg-primary-500/30 blur-3xl" aria-hidden="true"></div>
                 <div class="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition duration-700 group-hover:translate-x-full group-hover:opacity-100" aria-hidden="true"></div>
 

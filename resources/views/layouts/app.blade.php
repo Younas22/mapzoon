@@ -4,9 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? $settings->meta_title ?? 'MAPZOON — Rank Higher on Google Maps & Grow Your Local Business' }}</title>
-    <meta name="description" content="{{ $description ?? $settings->meta_description ?? 'MAPZOON helps local businesses rank higher on Google Maps and grow with Local SEO, Google Business Profile optimization, professional websites, and POS billing solutions.' }}">
+    <title>@yield('title', $settings->meta_title ?? 'MAPZOON — Rank Higher on Google Maps & Grow Your Local Business')</title>
+    <meta name="description" content="@yield('description', $settings->meta_description ?? 'MAPZOON helps local businesses rank higher on Google Maps and grow with Local SEO, Google Business Profile optimization, professional websites, and POS billing solutions.')">
     <meta name="keywords" content="{{ $keywords ?? $settings->meta_keywords ?? 'Local SEO, Google Maps Ranking, Google Business Profile Optimization, Citation Management, Review Management, Website Development, POS Billing System' }}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ $canonical ?? url()->current() }}">
