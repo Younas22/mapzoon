@@ -19,31 +19,48 @@
                 @endif
             </div>
 
+            @php
+                $quickLinks = [
+                    ['label' => 'About',         'url' => route('about'),          'hiring' => false],
+                    ['label' => 'Team',          'url' => route('team'),           'hiring' => false],
+                    ['label' => 'Blog',          'url' => route('blog.index'),     'hiring' => false],
+                    ['label' => 'FAQ',           'url' => route('faq'),            'hiring' => false],
+                    ['label' => 'Jobs',          'url' => route('jobs'),           'hiring' => true],
+                    ['label' => 'Contact',       'url' => route('contact.page'),   'hiring' => false],
+                ];
+
+                $serviceLinks = [
+                    ['label' => 'Google Business Profile Optimization', 'url' => route('services')],
+                    ['label' => 'Local SEO',                            'url' => route('services')],
+                    ['label' => 'Website Development',                  'url' => route('website')],
+                    ['label' => 'POS & Billing System',                 'url' => route('pos-system')],
+                    ['label' => 'Our Process',   'url' => route('process'),        'hiring' => false],
+                    ['label' => 'Why Choose Us', 'url' => route('why-choose-us'), 'hiring' => false],
+                ];
+            @endphp
+
             <div class="lg:col-span-2">
-                <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Quick Links</h3>
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Company</h3>
                 <ul class="mt-5 space-y-3 text-sm">
-                    <li><a href="{{ url('/') }}" class="text-slate-400 transition hover:text-primary-400">Home</a></li>
-                    <li><a href="{{ url('/#about') }}" class="text-slate-400 transition hover:text-primary-400">About</a></li>
-                    <li><a href="{{ url('/#services') }}" class="text-slate-400 transition hover:text-primary-400">Services</a></li>
-                    <li><a href="{{ url('/#maps-process') }}" class="text-slate-400 transition hover:text-primary-400">Our Process</a></li>
-                    <li><a href="{{ url('/#team') }}" class="text-slate-400 transition hover:text-primary-400">Team</a></li>
-                    <li><a href="{{ url('/#why-us') }}" class="text-slate-400 transition hover:text-primary-400">Why Choose Us</a></li>
-                    <li><a href="{{ url('/#blog') }}" class="text-slate-400 transition hover:text-primary-400">Blog</a></li>
-                    <li><a href="{{ url('/#faq') }}" class="text-slate-400 transition hover:text-primary-400">FAQ</a></li>
-                    <li><a href="{{ url('/#contact') }}" class="text-slate-400 transition hover:text-primary-400">Contact</a></li>
+                    @foreach ($quickLinks as $link)
+                        <li>
+                            <a href="{{ $link['url'] }}" class="inline-flex items-center gap-2 text-slate-400 transition hover:text-primary-400">
+                                {{ $link['label'] }}
+                                @if ($link['hiring'])
+                                    <span class="inline-flex items-center rounded-full bg-primary-500 px-1.5 py-0.5 text-[10px] font-bold leading-none text-white">Hiring</span>
+                                @endif
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
 
             <div class="lg:col-span-3">
                 <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Services</h3>
                 <ul class="mt-5 space-y-3 text-sm">
-                    <li><a href="{{ url('/#contact') }}" class="text-slate-400 transition hover:text-primary-400">Google Business Profile Optimization</a></li>
-                    <li><a href="{{ url('/#maps-process') }}" class="text-slate-400 transition hover:text-primary-400">Google Maps Ranking</a></li>
-                    <li><a href="{{ url('/#contact') }}" class="text-slate-400 transition hover:text-primary-400">Local SEO</a></li>
-                    <li><a href="{{ url('/#contact') }}" class="text-slate-400 transition hover:text-primary-400">Citation Management</a></li>
-                    <li><a href="{{ url('/#contact') }}" class="text-slate-400 transition hover:text-primary-400">Review Management</a></li>
-                    <li><a href="{{ url('/#website-development') }}" class="text-slate-400 transition hover:text-primary-400">Website Development</a></li>
-                    <li><a href="{{ url('/#pos-billing') }}" class="text-slate-400 transition hover:text-primary-400">POS &amp; Billing System</a></li>
+                    @foreach ($serviceLinks as $link)
+                        <li><a href="{{ $link['url'] }}" class="text-slate-400 transition hover:text-primary-400">{{ $link['label'] }}</a></li>
+                    @endforeach
                 </ul>
             </div>
 
@@ -52,8 +69,8 @@
                 <ul class="mt-5 space-y-4 text-sm">
                     <li>
                         <a href="tel:{{ $settings->phone ?? '+923266787997' }}" class="flex items-center gap-3 text-slate-300 transition hover:text-primary-400">
-                            <span class="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-white/5 text-primary-400">
-                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <span class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-[#00a656] text-white transition duration-200 hover:bg-[#008a47]">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
                                 </svg>
                             </span>
@@ -62,8 +79,8 @@
                     </li>
                     <li>
                         <a href="mailto:{{ $settings->email ?? 'contact@mapzoon.com' }}" class="flex items-center gap-3 text-slate-300 transition hover:text-primary-400">
-                            <span class="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-white/5 text-primary-400">
-                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <span class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-[#00a656] text-white transition duration-200 hover:bg-[#008a47]">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <rect x="3" y="5" width="18" height="14" rx="2" />
                                     <path d="M3.5 6.5 12 13l8.5-6.5" />
                                 </svg>
@@ -120,17 +137,30 @@
                 ],
             ];
         @endphp
-        <div class="mt-10 flex flex-wrap gap-3">
-            <p class="w-full text-xs font-semibold uppercase tracking-wider text-slate-500">Follow Us</p>
-            @foreach ($socials as $s)
-                <a href="{{ $s['url'] }}" target="{{ $s['url'] !== '#' ? '_blank' : '_self' }}" rel="noopener noreferrer"
-                   aria-label="{{ $s['label'] }}"
-                   class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#00a656] text-white transition duration-200 hover:bg-[#008a47]">
-                    <svg class="h-4 w-4" viewBox="0 0 24 24" @if($s['fill']) fill="currentColor" @else fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" @endif aria-hidden="true">
-                        <path d="{{ $s['icon'] }}" />
-                    </svg>
-                </a>
-            @endforeach
+        <div class="mt-10 flex flex-wrap items-end justify-between gap-6">
+            <div>
+                <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Follow Us</p>
+                <div class="flex flex-wrap gap-3">
+                    @foreach ($socials as $s)
+                        <a href="{{ $s['url'] }}" target="{{ $s['url'] !== '#' ? '_blank' : '_self' }}" rel="noopener noreferrer"
+                           aria-label="{{ $s['label'] }}"
+                           class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#00a656] text-white transition duration-200 hover:bg-[#008a47]">
+                            <svg class="h-6 w-6" viewBox="0 0 24 24" @if($s['fill']) fill="currentColor" @else fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" @endif aria-hidden="true">
+                                <path d="{{ $s['icon'] }}" />
+                            </svg>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="text-right">
+                <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Reviews & Ratings</p>
+                <div class="flex flex-wrap items-center justify-end gap-5">
+                    <img src="{{ asset('uploads/review-web/clutch.png') }}" alt="Clutch" class="h-11 w-auto object-contain brightness-0 invert opacity-60 transition hover:opacity-100">
+                    <img src="{{ asset('uploads/review-web/google-reviews-of-ignite-seo.jpg') }}" alt="Google Reviews" class="h-11 w-auto object-contain opacity-60 transition hover:opacity-100">
+                    <img src="{{ asset('uploads/review-web/trust-pilot-ignite-seo.png') }}" alt="Trustpilot" class="h-11 w-auto object-contain brightness-0 invert opacity-60 transition hover:opacity-100">
+                </div>
+            </div>
         </div>
 
     </div>

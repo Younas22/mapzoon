@@ -35,7 +35,7 @@
                 </div>
             </li>
 
-            <li class="reveal reveal-delay-2 group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-lg transition duration-300 hover:-translate-y-1.5 hover:border-primary-200 hover:shadow-2xl sm:p-8">
+            <li id="google-maps-ranking" class="reveal reveal-delay-2 group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-lg transition duration-300 hover:-translate-y-1.5 hover:border-primary-200 hover:shadow-2xl sm:p-8">
                 <div class="absolute -left-8 -top-8 h-32 w-32 rounded-full bg-primary-200/40 blur-2xl transition duration-500 group-hover:bg-primary-300/50" aria-hidden="true"></div>
                 <div class="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 transition duration-700 group-hover:translate-x-full group-hover:opacity-100" aria-hidden="true"></div>
 
@@ -85,7 +85,7 @@
                 </div>
             </li>
 
-            <li class="reveal reveal-delay-4 group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-lg transition duration-300 hover:-translate-y-1.5 hover:border-primary-200 hover:shadow-2xl sm:p-8">
+            <li id="citation-management" class="reveal reveal-delay-4 group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-lg transition duration-300 hover:-translate-y-1.5 hover:border-primary-200 hover:shadow-2xl sm:p-8">
                 <div class="absolute -left-8 -top-8 h-32 w-32 rounded-full bg-primary-200/40 blur-2xl transition duration-500 group-hover:bg-primary-300/50" aria-hidden="true"></div>
                 <div class="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 transition duration-700 group-hover:translate-x-full group-hover:opacity-100" aria-hidden="true"></div>
 
@@ -110,7 +110,7 @@
                 </div>
             </li>
 
-            <li class="reveal reveal-delay-5 group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-lg transition duration-300 hover:-translate-y-1.5 hover:border-primary-200 hover:shadow-2xl sm:p-8">
+            <li id="review-management" class="reveal reveal-delay-5 group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-lg transition duration-300 hover:-translate-y-1.5 hover:border-primary-200 hover:shadow-2xl sm:p-8">
                 <div class="absolute -left-8 -top-8 h-32 w-32 rounded-full bg-primary-200/40 blur-2xl transition duration-500 group-hover:bg-primary-300/50" aria-hidden="true"></div>
                 <div class="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 transition duration-700 group-hover:translate-x-full group-hover:opacity-100" aria-hidden="true"></div>
 
@@ -125,7 +125,12 @@
                     <p class="mt-2 text-sm leading-relaxed text-slate-600">
                         Generate, monitor, and respond to reviews that build reputation and influence buying decisions.
                     </p>
-                    <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 transition group-hover:gap-2.5">
+                    <div class="mt-4 flex items-center gap-3">
+                        <img src="{{ asset('uploads/review-web/clutch.png') }}" alt="Clutch" class="h-7 w-auto object-contain opacity-70 transition group-hover:opacity-100">
+                        <img src="{{ asset('uploads/review-web/google-reviews-of-ignite-seo.jpg') }}" alt="Google Reviews" class="h-7 w-auto object-contain opacity-70 transition group-hover:opacity-100">
+                        <img src="{{ asset('uploads/review-web/trust-pilot-ignite-seo.png') }}" alt="Trustpilot" class="h-7 w-auto object-contain opacity-70 transition group-hover:opacity-100">
+                    </div>
+                    <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 transition group-hover:gap-2.5">
                         Learn more
                         <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M5 12h14M13 6l6 6-6 6" />

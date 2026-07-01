@@ -9,7 +9,7 @@
     <div class="pt-20">
 
         {{-- Hero --}}
-        <section class="relative overflow-hidden bg-slate-900 py-20 lg:py-28">
+        <section class="relative overflow-hidden bg-black py-20 lg:py-28">
             <div class="absolute inset-0 -z-10" aria-hidden="true">
                 <div class="absolute -left-40 -top-40 h-[600px] w-[600px] rounded-full bg-primary-600/20 blur-3xl"></div>
                 <div class="absolute -bottom-40 right-0 h-[500px] w-[500px] rounded-full bg-primary-500/10 blur-3xl"></div>
