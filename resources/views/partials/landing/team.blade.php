@@ -28,7 +28,7 @@
             <ul class="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-6">
                 @foreach ($teamMembers as $i => $member)
                     @php $isCeo = Str::contains(strtolower($member->designation ?? ''), ['ceo', 'founder']); @endphp
-                    <li class="reveal reveal-delay-{{ ($i % 4) + 1 }} group relative overflow-hidden rounded-3xl border bg-white shadow-lg transition duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:ring-2 hover:ring-primary-300/60 {{ $isCeo ? 'z-10 scale-[1.07] border-primary-400 shadow-xl ring-2 ring-primary-300/60' : 'border-slate-200' }}">
+                    <li class="reveal reveal-delay-{{ ($i % 4) + 1 }} group relative overflow-hidden rounded-3xl border bg-white shadow-lg transition duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:ring-2 hover:ring-primary-300/60 {{ $isCeo ? 'col-span-2 sm:col-span-1 order-first sm:order-none z-10 scale-[1.07] border-primary-400 shadow-xl ring-2 ring-primary-300/60' : 'border-slate-200' }}">
                         <div class="relative overflow-hidden">
                             @if ($member->photoUrl())
                                 <img src="{{ $member->photoUrl() }}" alt="{{ $member->name }}" class="aspect-square w-full object-cover transition duration-500 group-hover:scale-105">

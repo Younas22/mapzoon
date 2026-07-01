@@ -125,11 +125,6 @@
                     <p class="mt-2 text-sm leading-relaxed text-slate-600">
                         Generate, monitor, and respond to reviews that build reputation and influence buying decisions.
                     </p>
-                    <div class="mt-4 flex items-center gap-3">
-                        <img src="{{ asset('uploads/review-web/clutch.png') }}" alt="Clutch" class="h-7 w-auto object-contain opacity-70 transition group-hover:opacity-100">
-                        <img src="{{ asset('uploads/review-web/google-reviews-of-ignite-seo.jpg') }}" alt="Google Reviews" class="h-7 w-auto object-contain opacity-70 transition group-hover:opacity-100">
-                        <img src="{{ asset('uploads/review-web/trust-pilot-ignite-seo.png') }}" alt="Trustpilot" class="h-7 w-auto object-contain opacity-70 transition group-hover:opacity-100">
-                    </div>
                     <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 transition group-hover:gap-2.5">
                         Learn more
                         <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
