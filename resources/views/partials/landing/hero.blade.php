@@ -24,8 +24,8 @@
             </p>
 
             {{-- Headline --}}
-            <h1 class="mt-6 text-4xl font-black leading-tight tracking-tighter text-white sm:text-5xl sm:leading-[1.05] lg:text-6xl lg:leading-[1.08]">
-                Not Getting <span class="text-primary-400 underline decoration-white decoration-[5px] underline-offset-[-2px]">Local Customers?</span><br>
+            <h1 class="mt-6 overflow-visible text-4xl font-black leading-tight tracking-tighter text-white sm:text-5xl sm:leading-[1.05] lg:text-6xl lg:leading-[1.08]">
+                Not Getting <span class="text-primary-400 underline decoration-white decoration-[5px] underline-offset-[1px]">Local Customers?</span><br>
                 <span class="text-gradient">Rank Higher</span> on Google Maps
             </h1>
 
