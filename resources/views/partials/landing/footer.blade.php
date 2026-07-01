@@ -155,10 +155,16 @@
 
             <div class="text-right">
                 <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Reviews & Ratings</p>
-                <div class="flex flex-wrap items-center justify-end gap-5">
-                    <img src="{{ asset('uploads/review-web/clutch.png') }}" alt="Clutch" class="h-11 w-auto object-contain brightness-0 invert opacity-60 transition hover:opacity-100">
-                    <img src="{{ asset('uploads/review-web/google-reviews-of-ignite-seo.jpg') }}" alt="Google Reviews" class="h-11 w-auto object-contain opacity-60 transition hover:opacity-100">
-                    <img src="{{ asset('uploads/review-web/trust-pilot-ignite-seo.png') }}" alt="Trustpilot" class="h-11 w-auto object-contain brightness-0 invert opacity-60 transition hover:opacity-100">
+                <div class="flex flex-wrap items-center justify-end gap-4">
+                    <div class="flex items-center justify-center rounded-xl bg-white px-4 py-2 opacity-80 transition hover:opacity-100">
+                        <img src="{{ asset('uploads/review-web/clutch.png') }}" alt="Clutch" class="h-8 w-auto object-contain" style="filter: invert(1) brightness(0);">
+                    </div>
+                    <div class="flex items-center justify-center rounded-xl bg-white px-4 py-2 opacity-80 transition hover:opacity-100">
+                        <img src="{{ asset('uploads/review-web/google-reviews-of-ignite-seo.jpg') }}" alt="Google Reviews" class="h-8 w-auto object-contain">
+                    </div>
+                    <div class="flex items-center justify-center rounded-xl bg-white px-4 py-2 opacity-80 transition hover:opacity-100">
+                        <img src="{{ asset('uploads/review-web/trust-pilot-ignite-seo.png') }}" alt="Trustpilot" class="h-8 w-auto object-contain">
+                    </div>
                 </div>
             </div>
         </div>
