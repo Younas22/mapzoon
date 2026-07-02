@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\BlogPostController;
+use App\Http\Controllers\Admin\CaseStudyController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -210,6 +211,34 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('blog-posts/{blog_post}', [BlogPostController::class, 'destroy'])
             ->middleware('permission:blogs.delete')
             ->name('blog-posts.destroy');
+
+        Route::get('case-studies/data', [CaseStudyController::class, 'data'])
+            ->middleware('permission:case-studies.view')
+            ->name('case-studies.data');
+
+        Route::get('case-studies', [CaseStudyController::class, 'index'])
+            ->middleware('permission:case-studies.view')
+            ->name('case-studies.index');
+
+        Route::get('case-studies/create', [CaseStudyController::class, 'create'])
+            ->middleware('permission:case-studies.create')
+            ->name('case-studies.create');
+
+        Route::post('case-studies', [CaseStudyController::class, 'store'])
+            ->middleware('permission:case-studies.create')
+            ->name('case-studies.store');
+
+        Route::get('case-studies/{case_study}/edit', [CaseStudyController::class, 'edit'])
+            ->middleware('permission:case-studies.edit')
+            ->name('case-studies.edit');
+
+        Route::put('case-studies/{case_study}', [CaseStudyController::class, 'update'])
+            ->middleware('permission:case-studies.edit')
+            ->name('case-studies.update');
+
+        Route::delete('case-studies/{case_study}', [CaseStudyController::class, 'destroy'])
+            ->middleware('permission:case-studies.delete')
+            ->name('case-studies.destroy');
 
         Route::get('my-tasks', [TaskController::class, 'myTasks'])->name('tasks.mine');
 

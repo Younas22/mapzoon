@@ -19,6 +19,7 @@ class RolePermissionSeeder extends Seeder
         'users' => ['view', 'create', 'edit', 'delete'],
         'roles' => ['view', 'create', 'edit', 'delete'],
         'blogs' => ['view', 'create', 'edit', 'delete'],
+        'case-studies' => ['view', 'create', 'edit', 'delete'],
         'projects' => ['view', 'create', 'edit', 'delete'],
         'tasks' => ['view', 'create', 'edit', 'delete'],
         'clients' => ['view', 'create', 'edit', 'delete'],
@@ -47,6 +48,7 @@ class RolePermissionSeeder extends Seeder
         ],
         'SEO Specialist' => [
             'blogs.view', 'blogs.create', 'blogs.edit',
+            'case-studies.view', 'case-studies.create', 'case-studies.edit',
             'reviews.view', 'reviews.create', 'reviews.edit',
             'projects.view', 'tasks.view', 'tasks.edit',
         ],

@@ -116,6 +116,14 @@
                     </a>
                 @endcan
 
+                @can('viewAny', App\Models\CaseStudy::class)
+                    <a href="{{ route('admin.case-studies.index') }}"
+                       class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition {{ request()->routeIs('admin.case-studies.*') ? 'bg-primary-50 text-primary-700' : 'text-slate-600 hover:bg-slate-100' }}">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5l5.5-5.5 4 4L20.5 4M20.5 4h-5M20.5 4v5M4.5 20h15a1 1 0 001-1V9.5" /></svg>
+                        Case Studies
+                    </a>
+                @endcan
+
                 @can('viewAny', App\Models\User::class)
                     <a href="{{ route('admin.users.index') }}"
                        class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition {{ request()->routeIs('admin.users.*') ? 'bg-primary-50 text-primary-700' : 'text-slate-600 hover:bg-slate-100' }}">
