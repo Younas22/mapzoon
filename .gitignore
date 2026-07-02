@@ -1,5 +1,4 @@
 *.log
-/.htaccess
 .DS_Store
 .env
 .env.backup
