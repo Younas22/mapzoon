@@ -1,3 +1,4 @@
+<?php $settings = \App\Models\SiteSetting::current(); ?>
 <section id="about" class="relative overflow-hidden bg-white py-20 lg:py-28">
     <div class="absolute left-1/2 top-1/3 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary-100/40 blur-3xl" aria-hidden="true"></div>
 
@@ -63,24 +64,61 @@
                     </li>
                 </ul>
 
-                <dl class="mt-10 grid grid-cols-2 gap-6 border-t border-slate-100 pt-8 sm:grid-cols-4">
-                    <div>
-                        <dd class="text-2xl font-extrabold text-slate-900"><span data-counter data-target="350" data-suffix="+">0</span></dd>
-                        <dt class="mt-1 text-xs font-medium text-slate-500">Businesses Served</dt>
-                    </div>
-                    <div>
-                        <dd class="text-2xl font-extrabold text-slate-900"><span data-counter data-target="500" data-suffix="+">0</span></dd>
-                        <dt class="mt-1 text-xs font-medium text-slate-500">Projects Completed</dt>
-                    </div>
-                    <div>
-                        <dd class="text-2xl font-extrabold text-slate-900"><span data-counter data-target="96" data-suffix="%">0</span></dd>
-                        <dt class="mt-1 text-xs font-medium text-slate-500">Client Satisfaction</dt>
-                    </div>
-                    <div>
-                        <dd class="text-2xl font-extrabold text-slate-900"><span data-counter data-target="6" data-suffix="+">0</span></dd>
-                        <dt class="mt-1 text-xs font-medium text-slate-500">Years Experience</dt>
-                    </div>
-                </dl>
+                <ul class="mt-10 grid grid-cols-1 gap-3 border-t border-slate-100 pt-8 sm:grid-cols-2">
+                    <li class="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                        <span class="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-primary-100 text-primary-600">
+                            <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="9" cy="8" r="3.25" />
+                                <path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5" />
+                                <path d="M17 8v4M19 10h-4" />
+                            </svg>
+                        </span>
+                        <div>
+                            <p class="text-sm font-bold text-slate-900">Founder-Led Service</p>
+                            <p class="text-xs text-slate-600">You work directly with the team, not an account manager.</p>
+                        </div>
+                    </li>
+
+                    <li class="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                        <span class="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-primary-100 text-primary-600">
+                            <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="4" width="18" height="16" rx="2" />
+                                <path d="M3 9h18" />
+                                <path d="M9.5 13.5l-2 2 2 2M14.5 13.5l2 2-2 2" />
+                            </svg>
+                        </span>
+                        <div>
+                            <p class="text-sm font-bold text-slate-900">All-in-One Platform</p>
+                            <p class="text-xs text-slate-600">Local SEO, website &amp; POS built to work together.</p>
+                        </div>
+                    </li>
+
+                    <li class="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                        <span class="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-primary-100 text-primary-600">
+                            <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M12 21s-7-7.58-7-12a7 7 0 1 1 14 0c0 4.42-7 12-7 12z" />
+                                <path d="M9 9.5l2 2 4-4.5" />
+                            </svg>
+                        </span>
+                        <div>
+                            <p class="text-sm font-bold text-slate-900">Google-Certified Team</p>
+                            <p class="text-xs text-slate-600">Trained on the same tools top agencies use.</p>
+                        </div>
+                    </li>
+
+                    <li class="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                        <span class="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-primary-100 text-primary-600">
+                            <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9" />
+                                <path d="M12 7v5l3.5 2" />
+                            </svg>
+                        </span>
+                        <div>
+                            <p class="text-sm font-bold text-slate-900">24-Hour Response</p>
+                            <p class="text-xs text-slate-600">Every inquiry gets a reply within one business day.</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
 
             <div class="relative reveal reveal-delay-2" aria-hidden="true">
@@ -97,50 +135,66 @@
                     </div>
 
                     <div class="relative z-10 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
-                        <div class="flex items-center justify-between border-b border-slate-100 px-5 py-4">
-                            <div class="flex items-center gap-2">
-                                <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-primary-500 text-white">
-                                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                        <path d="M12 21s-7-7.58-7-12a7 7 0 1 1 14 0c0 4.42-7 12-7 12z" />
-                                        <path d="M9 9.5l2 2 4-4.5" />
-                                    </svg>
-                                </span>
-                                <p class="text-sm font-bold text-slate-900">MAPZOON Growth Engine</p>
-                            </div>
-                            <span class="inline-flex items-center gap-1.5 rounded-full bg-primary-50 px-2.5 py-1 text-[11px] font-semibold text-primary-700">
+                        <div class="flex flex-col items-center gap-3 border-b border-slate-100 bg-gradient-to-b from-primary-50/60 to-white px-6 py-8 text-center">
+                            <img src="{{ $settings->logoDarkUrl() }}" alt="{{ $settings->company_name ?? 'MapZoon' }}" class="h-9 w-auto">
+                            <span class="inline-flex items-center gap-1.5 rounded-full bg-primary-50 px-3 py-1 text-[11px] font-semibold text-primary-700">
                                 <span class="h-1.5 w-1.5 rounded-full bg-primary-500 animate-pulse-soft"></span>
-                                Since 2020
+                                Now Onboarding New Clients
                             </span>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-4 p-5">
-                            <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-                                <p class="text-xs font-medium text-slate-500">Businesses Served</p>
-                                <p class="mt-1 text-xl font-extrabold text-slate-900">350+</p>
+                        <div class="grid grid-cols-2 gap-3 p-5">
+                            <div class="flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5">
+                                <svg class="h-4 w-4 flex-none text-primary-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M5 13l4 4L19 7" />
+                                </svg>
+                                <p class="text-xs font-semibold text-slate-800">Founder-Led</p>
                             </div>
-                            <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-                                <p class="text-xs font-medium text-slate-500">Projects Completed</p>
-                                <p class="mt-1 text-xl font-extrabold text-slate-900">500+</p>
+                            <div class="flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5">
+                                <svg class="h-4 w-4 flex-none text-primary-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M5 13l4 4L19 7" />
+                                </svg>
+                                <p class="text-xs font-semibold text-slate-800">Certified Team</p>
                             </div>
-                            <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-                                <p class="text-xs font-medium text-slate-500">Client Satisfaction</p>
-                                <p class="mt-1 text-xl font-extrabold text-slate-900">96%</p>
+                            <div class="flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5">
+                                <svg class="h-4 w-4 flex-none text-primary-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M5 13l4 4L19 7" />
+                                </svg>
+                                <p class="text-xs font-semibold text-slate-800">All-in-One Platform</p>
                             </div>
-                            <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-                                <p class="text-xs font-medium text-slate-500">Years Experience</p>
-                                <p class="mt-1 text-xl font-extrabold text-slate-900">6+</p>
+                            <div class="flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5">
+                                <svg class="h-4 w-4 flex-none text-primary-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M5 13l4 4L19 7" />
+                                </svg>
+                                <p class="text-xs font-semibold text-slate-800">Fast Support</p>
                             </div>
                         </div>
 
                         <div class="px-5 pb-5">
-                            <div class="rounded-2xl border border-slate-100 bg-gradient-to-br from-primary-50 to-white p-4">
-                                <p class="text-xs font-medium text-slate-500">Client Growth Trend</p>
-                                <div class="mt-3 flex items-end gap-2" aria-hidden="true">
-                                    <span class="h-6 w-full rounded-sm bg-primary-200"></span>
-                                    <span class="h-9 w-full rounded-sm bg-primary-300"></span>
-                                    <span class="h-7 w-full rounded-sm bg-primary-200"></span>
-                                    <span class="h-12 w-full rounded-sm bg-primary-400"></span>
-                                    <span class="h-16 w-full rounded-sm bg-primary-500"></span>
+                            <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
+                                <p class="text-xs font-medium text-slate-500">Tools We Work With</p>
+                                <div class="mt-3 flex flex-wrap items-center gap-2">
+                                    <svg class="h-6 w-6 flex-none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                                    </svg>
+                                    <svg class="h-6 w-6 flex-none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#EA4335"/>
+                                        <circle cx="12" cy="9" r="2.5" fill="white"/>
+                                    </svg>
+                                    <svg class="h-6 w-6 flex-none" viewBox="0 0 24 24" fill="#0866FF" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <path d="M12 2.04C6.48 2.04 2 6.52 2 12.04c0 5.02 3.66 9.18 8.44 9.96v-7.04H7.9v-2.92h2.54V9.9c0-2.51 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.81h2.77l-.44 2.92h-2.33v7.04C18.34 21.22 22 17.06 22 12.04 22 6.52 17.52 2.04 12 2.04z"/>
+                                    </svg>
+                                    <svg class="h-6 w-6 flex-none" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <rect width="40" height="40" rx="8" fill="#FF6A1A"/>
+                                        <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="22" font-weight="900" font-family="Arial, sans-serif">S</text>
+                                    </svg>
+                                    <svg class="h-6 w-6 flex-none" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <rect width="40" height="40" rx="8" fill="#1D52F0"/>
+                                        <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="20" font-weight="900" font-family="Arial, sans-serif">A</text>
+                                    </svg>
                                 </div>
                             </div>
                         </div>

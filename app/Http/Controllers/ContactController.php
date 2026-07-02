@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactReceivedMail;
 use App\Models\Lead;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -21,11 +23,17 @@ class ContactController extends Controller
 
         Log::info('New MAPZOON consultation request', $validated);
 
-        Lead::query()->create([
+        $lead = Lead::query()->create([
             ...$validated,
             'status' => 'new',
             'source' => 'website_contact',
         ]);
+
+        try {
+            Mail::to($lead->email)->send(new ContactReceivedMail($lead));
+        } catch (\Throwable $e) {
+            Log::error('Failed to send contact autoresponder email', ['lead_id' => $lead->id, 'error' => $e->getMessage()]);
+        }
 
         return redirect('/#contact', 303)->with('success', "Thanks {$validated['name']}! We've received your request and will reach out within 24 hours.");
     }

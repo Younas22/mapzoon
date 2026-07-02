@@ -15,7 +15,7 @@
                     </h2>
                     <p class="mt-1.5 max-w-lg text-sm leading-relaxed text-primary-100">
                         If you have any requirement please share with us at
-                        <a href="mailto:info@mapzoon.com" class="font-semibold underline underline-offset-2 hover:text-white">info@mapzoon.com</a>
+                        <a href="mailto:contact@mapzoon.com" class="font-semibold underline underline-offset-2 hover:text-white">contact@mapzoon.com</a>
                         or simply send us your inquiry by filling out the form below.
                     </p>
                 </div>
@@ -81,10 +81,28 @@
                     {{-- Phone --}}
                     <div>
                         <label for="q-phone" class="block text-sm font-semibold text-slate-700">Phone <span class="text-red-500">*</span></label>
-                        <div class="mt-2 flex overflow-hidden rounded-xl border border-slate-200 bg-slate-50 focus-within:border-primary-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-primary-500/30">
-                            <span class="flex items-center border-r border-slate-200 bg-slate-100 px-3 text-sm font-semibold text-slate-600 select-none">+971</span>
-                            <input type="tel" id="q-phone" name="phone" placeholder="Enter Phone" required
-                                class="min-w-0 flex-1 bg-transparent px-3 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none">
+                        <div class="relative mt-2">
+                            <div data-field-input="phone" class="flex overflow-hidden rounded-xl border border-slate-200 bg-slate-50 focus-within:border-primary-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-primary-500/30">
+                                <button type="button" id="q-country-toggle"
+                                    class="flex flex-none items-center gap-1 border-r border-slate-200 bg-slate-100 px-3 text-sm font-semibold text-slate-600 hover:bg-slate-200"
+                                    aria-haspopup="listbox" aria-expanded="false">
+                                    <span id="q-country-code">+971</span>
+                                    <svg class="h-3.5 w-3.5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </button>
+                                <input type="tel" id="q-phone" name="phone_number" placeholder="Enter Phone" required
+                                    class="min-w-0 flex-1 bg-transparent px-3 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none">
+                            </div>
+
+                            {{-- Country dropdown --}}
+                            <div id="q-country-dropdown" class="absolute left-0 top-full z-20 mt-1 hidden w-64 max-w-[90vw] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl">
+                                <div class="border-b border-slate-100 p-2">
+                                    <input type="text" id="q-country-search" placeholder="Search country..." autocomplete="off"
+                                        class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-primary-500 focus:outline-none">
+                                </div>
+                                <ul id="q-country-list" role="listbox" class="max-h-56 overflow-y-auto py-1 text-sm"></ul>
+                            </div>
                         </div>
                         <p class="mt-1 hidden text-xs text-red-600 field-error" data-field="phone"></p>
                     </div>
@@ -170,6 +188,94 @@
     const btnIcon    = document.getElementById('quote-btn-icon');
     const btnSpinner = document.getElementById('quote-btn-spinner');
 
+    // Country / phone code picker
+    const countries       = @json($countries ?? []);
+    const countryToggle   = document.getElementById('q-country-toggle');
+    const countryCode     = document.getElementById('q-country-code');
+    const countryDropdown = document.getElementById('q-country-dropdown');
+    const countrySearch   = document.getElementById('q-country-search');
+    const countryList     = document.getElementById('q-country-list');
+    const phoneInput      = document.getElementById('q-phone');
+
+    const defaultCountry = countries.find(c => c.iso2 === 'AE') || countries[0] || null;
+    let selectedCountry  = defaultCountry;
+
+    function dialCode(c) {
+        return String(c.phone_code || '').replace(/^\+/, '');
+    }
+
+    function renderCountryList(filter = '') {
+        countryList.innerHTML = '';
+        const term = filter.trim().toLowerCase();
+        const filtered = term
+            ? countries.filter(c => c.name.toLowerCase().includes(term) || c.iso2.toLowerCase() === term)
+            : countries;
+
+        if (!filtered.length) {
+            const li = document.createElement('li');
+            li.className = 'px-3 py-2 text-slate-400';
+            li.textContent = 'No countries found';
+            countryList.appendChild(li);
+            return;
+        }
+
+        filtered.forEach(c => {
+            const li = document.createElement('li');
+            li.setAttribute('role', 'option');
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'flex w-full items-center justify-between gap-2 px-3 py-2 text-left hover:bg-primary-50';
+            btn.innerHTML = `<span class="truncate">${c.name}</span><span class="flex-none text-slate-400">+${dialCode(c)}</span>`;
+            btn.addEventListener('click', () => selectCountry(c));
+            li.appendChild(btn);
+            countryList.appendChild(li);
+        });
+    }
+
+    function selectCountry(c) {
+        selectedCountry = c;
+        countryCode.textContent = '+' + dialCode(c);
+        closeCountryDropdown();
+    }
+
+    function openCountryDropdown() {
+        if (!countryDropdown) return;
+        countryDropdown.classList.remove('hidden');
+        countryToggle.setAttribute('aria-expanded', 'true');
+        countrySearch.value = '';
+        renderCountryList();
+        countrySearch.focus();
+    }
+
+    function closeCountryDropdown() {
+        if (!countryDropdown) return;
+        countryDropdown.classList.add('hidden');
+        countryToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    if (countryToggle) {
+        countryToggle.addEventListener('click', () => {
+            if (countryDropdown.classList.contains('hidden')) openCountryDropdown();
+            else closeCountryDropdown();
+        });
+    }
+
+    if (countrySearch) {
+        countrySearch.addEventListener('input', () => renderCountryList(countrySearch.value));
+    }
+
+    document.addEventListener('click', e => {
+        if (countryDropdown && !countryDropdown.classList.contains('hidden')) {
+            if (!countryDropdown.contains(e.target) && !countryToggle.contains(e.target)) {
+                closeCountryDropdown();
+            }
+        }
+    });
+
+    if (selectedCountry) {
+        countryCode.textContent = '+' + dialCode(selectedCountry);
+    }
+
     function openModal() {
         const svc = heroPick ? heroPick.value : '';
         serviceField.value = svc;
@@ -191,6 +297,7 @@
         modal.classList.add('hidden');
         modal.classList.remove('flex');
         document.body.classList.remove('overflow-hidden');
+        closeCountryDropdown();
     }
 
     function clearErrors() {
@@ -198,7 +305,7 @@
             el.classList.add('hidden');
             el.textContent = '';
         });
-        document.querySelectorAll('#quote-form input, #quote-form select').forEach(el => {
+        document.querySelectorAll('#quote-form input, #quote-form select, #quote-form [data-field-input]').forEach(el => {
             el.classList.remove('border-red-400', 'bg-red-50');
         });
     }
@@ -209,7 +316,7 @@
             errEl.textContent = msg;
             errEl.classList.remove('hidden');
         }
-        const input = document.querySelector(`#quote-form [name="${field}"]`);
+        const input = document.querySelector(`#quote-form [name="${field}"]`) || document.querySelector(`#quote-form [data-field-input="${field}"]`);
         if (input) input.classList.add('border-red-400');
     }
 
@@ -234,6 +341,8 @@
             btnSpinner.classList.remove('hidden');
 
             const data = new FormData(form);
+            const rawPhone = (phoneInput.value || '').trim();
+            data.set('phone', selectedCountry && rawPhone ? `+${dialCode(selectedCountry)}${rawPhone}` : rawPhone);
 
             try {
                 const res = await fetch('{{ route("quote.store") }}', {
@@ -249,6 +358,7 @@
                     successBox.classList.remove('hidden');
                     form.reset();
                     serviceBadge.classList.add('hidden');
+                    if (defaultCountry) selectCountry(defaultCountry);
                 } else if (res.status === 422 && json.errors) {
                     Object.entries(json.errors).forEach(([field, msgs]) => showFieldError(field, msgs[0]));
                     errorBox.textContent = 'Please fix the errors above and try again.';

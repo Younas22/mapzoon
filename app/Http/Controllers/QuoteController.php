@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\QuoteReceivedMail;
 use App\Models\Lead;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
 class QuoteController extends Controller
@@ -39,7 +41,7 @@ class QuoteController extends Controller
             $request->company_size ? "Company Size: {$request->company_size}" : null,
         ]));
 
-        Lead::query()->create([
+        $lead = Lead::query()->create([
             'name'          => $name,
             'phone'         => $request->phone,
             'email'         => $request->email,
@@ -51,6 +53,12 @@ class QuoteController extends Controller
         ]);
 
         Log::info('New MAPZOON quote request', ['name' => $name, 'email' => $request->email, 'service' => $request->service]);
+
+        try {
+            Mail::to($lead->email)->send(new QuoteReceivedMail($lead));
+        } catch (\Throwable $e) {
+            Log::error('Failed to send quote autoresponder email', ['lead_id' => $lead->id, 'error' => $e->getMessage()]);
+        }
 
         return response()->json(['success' => true, 'message' => "Thank you, {$request->first_name}! We'll get back to you within 24 hours."]);
     }
