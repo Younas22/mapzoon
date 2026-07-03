@@ -6,7 +6,11 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', [SitemapController::class, 'robots'])->name('robots');
 
 Route::get('/', function () {
     return view('landing');

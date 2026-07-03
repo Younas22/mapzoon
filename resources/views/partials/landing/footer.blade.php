@@ -30,7 +30,6 @@
                 ];
 
                 $serviceLinks = [
-                    ['label' => 'Google Business Profile Optimization', 'url' => route('services')],
                     ['label' => 'Local SEO',                            'url' => route('services')],
                     ['label' => 'Website Development',                  'url' => route('website')],
                     ['label' => 'POS & Billing System',                 'url' => route('pos-system')],
