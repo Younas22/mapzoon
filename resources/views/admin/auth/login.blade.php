@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign in — MAPZOON Admin</title>
 
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800" rel="stylesheet" />
-
     @vite(['resources/css/admin.css', 'resources/js/admin.js'])
 </head>
 <body class="flex min-h-screen items-center justify-center bg-slate-50 px-4 font-sans text-ink antialiased">

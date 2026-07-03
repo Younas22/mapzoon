@@ -8,8 +8,6 @@
 
     <title>{{ $title }} — MAPZOON Admin</title>
 
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800" rel="stylesheet" />
     <link rel="icon" href="{{ \App\Models\SiteSetting::current()->faviconUrl() }}" sizes="any">
 
     @vite(['resources/css/admin.css', 'resources/js/admin.js'])
