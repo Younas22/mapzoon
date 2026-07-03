@@ -122,7 +122,7 @@
 
         <p class="reveal mt-10 text-center text-base text-slate-600">
             Still have questions?
-            <a href="#contact" class="font-semibold text-primary-600 hover:text-primary-700">Contact our team</a>
+            <a href="{{ route('contact.page') }}" class="font-semibold text-primary-600 hover:text-primary-700">Contact our team</a>
         </p>
     </div>
 </section>

@@ -18,6 +18,7 @@ class UpdateClientRequest extends FormRequest
         return [
             'company_name' => ['nullable', 'string', 'max:255'],
             'owner_name' => ['required', 'string', 'max:255'],
+            'photo' => ['nullable', 'image', 'max:4096'],
             'phone' => ['required', 'string', 'max:30'],
             'email' => ['required', 'email', 'max:255'],
             'website' => ['nullable', 'string', 'max:255'],

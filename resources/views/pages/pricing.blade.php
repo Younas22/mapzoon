@@ -116,7 +116,7 @@
                                     @endforeach
                                 </ul>
 
-                                <a href="{{ url('/#contact') }}"
+                                <a href="{{ route('contact.page') }}"
                                    class="mt-8 block rounded-xl px-5 py-3 text-center text-sm font-semibold transition hover:-translate-y-0.5 {{ $plan['highlight'] ? 'bg-white text-primary-600 hover:bg-primary-50 shadow-md' : 'bg-primary-500 text-white hover:bg-primary-600 shadow-md shadow-primary-500/30' }}">
                                     {{ $plan['cta'] }}
                                 </a>
@@ -173,7 +173,7 @@
                 <div class="reveal mt-16 rounded-2xl bg-slate-900 p-8 text-center text-white lg:p-12">
                     <h3 class="text-2xl font-bold">Not sure which plan is right for you?</h3>
                     <p class="mt-2 text-slate-400">Book a free 30-minute consultation and we'll recommend the best package for your business.</p>
-                    <a href="{{ url('/#contact') }}" class="mt-6 inline-flex items-center gap-2 rounded-xl bg-primary-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600">
+                    <a href="{{ route('contact.page') }}" class="mt-6 inline-flex items-center gap-2 rounded-xl bg-primary-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600">
                         Book Free Consultation
                         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>

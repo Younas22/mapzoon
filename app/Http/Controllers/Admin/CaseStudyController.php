@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Concerns\StoresPublicImages;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CaseStudy\StoreCaseStudyRequest;
 use App\Http\Requests\Admin\CaseStudy\UpdateCaseStudyRequest;
 use App\Models\CaseStudy;
+use App\Models\Client;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class CaseStudyController extends Controller
 {
+    use StoresPublicImages;
+
     public function index(Request $request): View
     {
         $this->authorize('viewAny', CaseStudy::class);
@@ -41,6 +44,7 @@ class CaseStudyController extends Controller
 
         return view('admin.case-studies.create', [
             'caseStudy' => new CaseStudy(['is_active' => true]),
+            'clients' => $this->clientOptions(),
         ]);
     }
 
@@ -50,6 +54,10 @@ class CaseStudyController extends Controller
 
         if ($request->hasFile('image')) {
             $caseStudy->image = $this->storePublicImage($request->file('image'), 'case-studies');
+        }
+
+        if ($request->hasFile('owner_photo')) {
+            $caseStudy->owner_photo = $this->storePublicImage($request->file('owner_photo'), 'case-studies');
         }
 
         $caseStudy->screenshots = $this->mergedScreenshots($request);
@@ -64,6 +72,7 @@ class CaseStudyController extends Controller
 
         return view('admin.case-studies.edit', [
             'caseStudy' => $case_study,
+            'clients' => $this->clientOptions(),
         ]);
     }
 
@@ -75,6 +84,12 @@ class CaseStudyController extends Controller
             $this->deletePublicImage($case_study->getOriginal('image'));
 
             $case_study->image = $this->storePublicImage($request->file('image'), 'case-studies');
+        }
+
+        if ($request->hasFile('owner_photo')) {
+            $this->deletePublicImage($case_study->getOriginal('owner_photo'));
+
+            $case_study->owner_photo = $this->storePublicImage($request->file('owner_photo'), 'case-studies');
         }
 
         $retained = $request->validated('existing_screenshots', []) ?? [];
@@ -95,6 +110,7 @@ class CaseStudyController extends Controller
         $this->authorize('delete', $case_study);
 
         $this->deletePublicImage($case_study->image);
+        $this->deletePublicImage($case_study->owner_photo);
         foreach ($case_study->screenshots ?? [] as $screenshot) {
             $this->deletePublicImage($screenshot);
         }
@@ -102,6 +118,20 @@ class CaseStudyController extends Controller
         $case_study->delete();
 
         return response()->json(['message' => 'Case study deleted successfully.']);
+    }
+
+    protected function clientOptions()
+    {
+        return Client::query()
+            ->orderBy('owner_name')
+            ->get(['id', 'owner_name', 'company_name', 'photo'])
+            ->map(fn (Client $client) => [
+                'id' => $client->id,
+                'name' => $client->displayName(),
+                'owner_name' => $client->owner_name,
+                'photo_url' => $client->photoUrl(),
+            ])
+            ->values();
     }
 
     protected function caseStudyAttributes(StoreCaseStudyRequest|UpdateCaseStudyRequest $request): array
@@ -113,7 +143,9 @@ class CaseStudyController extends Controller
             'gmb_link' => $request->validated('gmb_link'),
             'website_link' => $request->validated('website_link'),
             'video_url' => $request->validated('video_url'),
+            'client_id' => $request->validated('client_id') ?: null,
             'owner_name' => $request->validated('owner_name'),
+            'owner_role' => $request->validated('owner_role'),
             'owner_review' => $request->validated('owner_review'),
             'display_order' => $request->validated('display_order') ?: 0,
             'is_active' => $request->boolean('is_active'),
@@ -130,31 +162,6 @@ class CaseStudyController extends Controller
             ->all();
 
         return array_values(array_merge($retained, $uploaded));
-    }
-
-    /**
-     * Moves an uploaded image into public/uploads/{folder} and returns its relative path.
-     */
-    protected function storePublicImage(UploadedFile $file, string $folder): string
-    {
-        $directory = "uploads/{$folder}";
-
-        if (! is_dir(public_path($directory))) {
-            mkdir(public_path($directory), 0755, true);
-        }
-
-        $filename = Str::random(40).'.'.$file->getClientOriginalExtension();
-
-        $file->move(public_path($directory), $filename);
-
-        return "{$directory}/{$filename}";
-    }
-
-    protected function deletePublicImage(?string $path): void
-    {
-        if ($path && file_exists(public_path($path))) {
-            unlink(public_path($path));
-        }
     }
 
     protected function filteredCaseStudies(Request $request)

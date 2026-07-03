@@ -68,5 +68,7 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::post('/quote', [QuoteController::class, 'store'])->name('quote.store');
-Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 Route::post('/newsletter', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+
+// Blog post detail — kept last so it doesn't shadow the static routes above.
+Route::get('/{slug}', [BlogController::class, 'show'])->name('blog.show');

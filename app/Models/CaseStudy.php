@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CaseStudy extends Model
 {
@@ -15,7 +16,10 @@ class CaseStudy extends Model
         'gmb_link',
         'website_link',
         'screenshots',
+        'client_id',
         'owner_name',
+        'owner_role',
+        'owner_photo',
         'owner_review',
         'video_url',
         'display_order',
@@ -35,9 +39,33 @@ class CaseStudy extends Model
         return $query->where('is_active', true);
     }
 
+    public function client(): BelongsTo
+    {
+        return $this->belongsTo(Client::class);
+    }
+
     public function imageUrl(): ?string
     {
         return $this->image ? asset($this->image) : null;
+    }
+
+    /**
+     * Falls back to the linked client's photo when this case study has no
+     * photo of its own uploaded — lets an admin reuse a client's existing
+     * display picture instead of re-uploading it per case study.
+     */
+    public function ownerPhotoUrl(): ?string
+    {
+        if ($this->owner_photo) {
+            return asset($this->owner_photo);
+        }
+
+        return $this->client?->photoUrl();
+    }
+
+    public function ownerRoleLabel(): string
+    {
+        return $this->owner_role ?: 'Client';
     }
 
     public function screenshotUrls(): array
@@ -51,7 +79,7 @@ class CaseStudy extends Model
             return null;
         }
 
-        preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/', $this->video_url, $matches);
+        preg_match('/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([\w-]+)/', $this->video_url, $matches);
 
         return isset($matches[1]) ? 'https://www.youtube.com/embed/'.$matches[1] : null;
     }

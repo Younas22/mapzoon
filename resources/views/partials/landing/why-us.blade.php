@@ -5,7 +5,7 @@
         <div class="reveal mx-auto max-w-2xl text-center">
             <p class="text-sm font-semibold uppercase tracking-wider text-primary-600">Why Choose MAPZOON</p>
             <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-                A Growth Partner, Not Just Another Agency
+                Why Businesses Choose MapZoon
             </h2>
             <p class="mt-4 text-base text-slate-600 sm:text-lg">
                 Here's what makes working with MAPZOON different.
@@ -25,9 +25,9 @@
                             <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
                         </svg>
                     </div>
-                    <h3 class="mt-5 text-lg font-bold text-slate-900">Results Driven</h3>
+                    <h3 class="mt-5 text-lg font-bold text-slate-900">We Stay Until You Get Results</h3>
                     <p class="mt-2 text-sm leading-relaxed text-slate-600">
-                        We measure success in rankings, calls, and revenue — not vanity reports.
+                        We don't believe in delivering a service and walking away. We continuously optimize, improve, and support your business until you achieve measurable growth and real business results.
                     </p>
                 </div>
             </li>
@@ -43,9 +43,9 @@
                             <circle cx="7.5" cy="7.5" r="1.25" fill="currentColor" stroke="none" />
                         </svg>
                     </div>
-                    <h3 class="mt-5 text-lg font-bold text-slate-900">Affordable</h3>
+                    <h3 class="mt-5 text-lg font-bold text-slate-900">Complete Business Growth Partner</h3>
                     <p class="mt-2 text-sm leading-relaxed text-slate-600">
-                        Premium service and pricing built for local business budgets, not big-brand budgets.
+                        Everything your local business needs under one roof—Local SEO, Google Business Profile Optimization, Professional Websites, and Smart POS Software—working together to help your business grow.
                     </p>
                 </div>
             </li>
@@ -62,9 +62,9 @@
                             <path d="M16 8.5a2.75 2.75 0 1 1 0 5.25M21 19c0-2.5-1.8-4.3-4-4.85" />
                         </svg>
                     </div>
-                    <h3 class="mt-5 text-lg font-bold text-slate-900">Professional Team</h3>
+                    <h3 class="mt-5 text-lg font-bold text-slate-900">Built for Local Businesses</h3>
                     <p class="mt-2 text-sm leading-relaxed text-slate-600">
-                        Experienced SEO strategists, designers, and developers — not outsourced freelancers.
+                        Our strategies are designed specifically for local businesses that want more Google visibility, more calls, more walk-in customers, and higher revenue.
                     </p>
                 </div>
             </li>
@@ -82,9 +82,9 @@
                             <circle cx="14.5" cy="9.5" r="1.25" fill="currentColor" stroke="none" />
                         </svg>
                     </div>
-                    <h3 class="mt-5 text-lg font-bold text-slate-900">Modern Technology</h3>
+                    <h3 class="mt-5 text-lg font-bold text-slate-900">Founder-Led Support</h3>
                     <p class="mt-2 text-sm leading-relaxed text-slate-600">
-                        We run on the same modern tools and platforms SaaS companies use — applied to your business.
+                        Work directly with Younas Dev and a dedicated team that genuinely cares about your success. We build long-term partnerships, not just client lists.
                     </p>
                 </div>
             </li>
@@ -101,9 +101,9 @@
                             <path d="M5.6 5.6l3.2 3.2M18.4 5.6l-3.2 3.2M5.6 18.4l3.2-3.2M18.4 18.4l-3.2-3.2" />
                         </svg>
                     </div>
-                    <h3 class="mt-5 text-lg font-bold text-slate-900">Dedicated Support</h3>
+                    <h3 class="mt-5 text-lg font-bold text-slate-900">Transparent &amp; Results-Driven</h3>
                     <p class="mt-2 text-sm leading-relaxed text-slate-600">
-                        A real account manager who knows your business — always reachable, never automated.
+                        No hidden fees, confusing reports, or false promises. We believe in honest communication, measurable progress, and delivering results that matter.
                     </p>
                 </div>
             </li>
@@ -120,9 +120,9 @@
                             <path d="M12 9.5c0-2.5 1.7-4 5-4.5 0 3.3-1.7 5-5 4.5z" />
                         </svg>
                     </div>
-                    <h3 class="mt-5 text-lg font-bold text-slate-900">Growth Focused</h3>
+                    <h3 class="mt-5 text-lg font-bold text-slate-900">Long-Term Growth Commitment</h3>
                     <p class="mt-2 text-sm leading-relaxed text-slate-600">
-                        Every decision is made to grow your visibility, leads, and revenue — for the long term.
+                        Our goal isn't just to improve your rankings—it's to help your business grow for years to come. We continuously adapt your strategy, embrace new technologies, and support your journey as your business evolves.
                     </p>
                 </div>
             </li>
@@ -130,7 +130,7 @@
 
         <div class="reveal mt-16 flex flex-col items-center gap-5 text-center sm:flex-row sm:justify-center sm:gap-6">
             <p class="text-base font-semibold text-slate-900">See why 350+ businesses trust MAPZOON.</p>
-            <a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+            <a href="{{ route('contact.page') }}" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
                 Book Consultation
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h14M13 6l6 6-6 6" />

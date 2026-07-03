@@ -144,5 +144,26 @@
                 @endforelse
             </div>
         </div>
+
+        {{-- Recent Subscribers --}}
+        @can('viewAny', App\Models\NewsletterSubscriber::class)
+            <div class="rounded-2xl border border-slate-200 bg-white p-6">
+                <div class="mb-4 flex items-center justify-between">
+                    <h2 class="text-base font-semibold text-ink">Recent Subscribers</h2>
+                    <a href="{{ route('admin.newsletter-subscribers.index') }}" class="text-sm font-medium text-primary-600 hover:text-primary-700">View all &rarr;</a>
+                </div>
+
+                <div class="space-y-2">
+                    @forelse ($recentSubscribers as $subscriber)
+                        <div class="flex items-center justify-between gap-3 rounded-lg border border-slate-100 px-3 py-2">
+                            <span class="text-sm font-medium text-ink">{{ $subscriber->email }}</span>
+                            <span class="flex-none text-xs text-slate-400">{{ $subscriber->created_at->diffForHumans() }}</span>
+                        </div>
+                    @empty
+                        <p class="text-sm text-slate-400">No subscribers yet.</p>
+                    @endforelse
+                </div>
+            </div>
+        @endcan
     </div>
 </x-admin-layout>

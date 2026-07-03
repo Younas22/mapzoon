@@ -48,6 +48,8 @@ export function caseStudyForm(config) {
         imagePreview: config.imagePreview ?? null,
         existingScreenshots: config.existingScreenshots?.length ? config.existingScreenshots : [],
         newScreenshotPreviews: [],
+        ownerPhotoPreview: config.ownerPhotoPreview ?? null,
+        clients: config.clients ?? [],
 
         onTitleInput(event) {
             if (this.slugTouched) return;
@@ -71,6 +73,24 @@ export function caseStudyForm(config) {
 
         removeExistingScreenshot(index) {
             this.existingScreenshots.splice(index, 1);
+        },
+
+        onOwnerPhotoChange(event) {
+            const file = event.target.files[0];
+            this.ownerPhotoPreview = file ? URL.createObjectURL(file) : this.ownerPhotoPreview;
+        },
+
+        // Autofills the reviewer name and photo preview from the linked
+        // client so admins don't have to retype/re-upload what's already
+        // on file — the name stays editable afterwards.
+        onClientSelect(clientId) {
+            const client = this.clients.find((c) => String(c.id) === String(clientId));
+            if (!client) return;
+
+            const nameInput = this.$refs.ownerNameInput;
+            if (nameInput) nameInput.value = client.owner_name ?? '';
+
+            if (client.photo_url) this.ownerPhotoPreview = client.photo_url;
         },
     };
 }

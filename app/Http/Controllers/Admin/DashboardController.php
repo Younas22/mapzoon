@@ -7,6 +7,7 @@ use App\Models\BlogPost;
 use App\Models\Client;
 use App\Models\ClientInvoice;
 use App\Models\Lead;
+use App\Models\NewsletterSubscriber;
 use App\Models\Project;
 use App\Models\ProjectActivity;
 use App\Models\Task;
@@ -32,6 +33,9 @@ class DashboardController extends Controller
                 : collect(),
             'recentTasks' => $user->hasPermission('tasks.view')
                 ? Task::query()->with('assignedUser')->latest()->limit(5)->get()
+                : collect(),
+            'recentSubscribers' => $user->hasPermission('newsletter.view')
+                ? NewsletterSubscriber::query()->latest()->limit(5)->get()
                 : collect(),
         ]);
     }
@@ -75,6 +79,14 @@ class DashboardController extends Controller
                 'label' => 'New Leads',
                 'value' => Lead::query()->where('status', 'new')->count(),
                 'url' => route('admin.leads.index', ['status' => 'new']),
+            ];
+        }
+
+        if ($user->hasPermission('newsletter.view')) {
+            $cards[] = [
+                'label' => 'Newsletter Subscribers',
+                'value' => NewsletterSubscriber::query()->count(),
+                'url' => route('admin.newsletter-subscribers.index'),
             ];
         }
 

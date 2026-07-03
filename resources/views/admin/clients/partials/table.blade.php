@@ -27,9 +27,18 @@
             @forelse ($clients as $client)
                 <tr>
                     <td class="px-4 py-3">
-                        <a href="{{ route('admin.clients.show', $client) }}" class="block hover:underline">
-                            <span class="block font-medium text-ink">{{ $client->displayName() }}</span>
-                            <span class="block text-xs text-slate-500">{{ $client->email }} · {{ $client->phone }}</span>
+                        <a href="{{ route('admin.clients.show', $client) }}" class="flex items-center gap-3 hover:underline">
+                            @if ($client->photoUrl())
+                                <img src="{{ $client->photoUrl() }}" alt="{{ $client->displayName() }}" class="h-9 w-9 flex-none rounded-full object-cover">
+                            @else
+                                <span class="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-primary-100 text-xs font-bold text-primary-700">
+                                    {{ strtoupper(substr($client->displayName(), 0, 1)) }}
+                                </span>
+                            @endif
+                            <span>
+                                <span class="block font-medium text-ink">{{ $client->displayName() }}</span>
+                                <span class="block text-xs text-slate-500">{{ $client->email }} · {{ $client->phone }}</span>
+                            </span>
                         </a>
                     </td>
                     <td class="px-4 py-3 text-slate-500">{{ $client->clientTypeLabel() }}</td>

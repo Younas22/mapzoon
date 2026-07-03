@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Concerns\StoresPublicImages;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Client\StoreClientContactRequest;
 use App\Http\Requests\Admin\Client\StoreClientContractRequest;
@@ -25,6 +26,8 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ClientController extends Controller
 {
+    use StoresPublicImages;
+
     public function index(Request $request): View
     {
         $this->authorize('viewAny', Client::class);
@@ -47,10 +50,16 @@ class ClientController extends Controller
 
     public function store(StoreClientRequest $request): JsonResponse
     {
-        Client::query()->create([
-            ...$request->validated(),
+        $client = new Client([
+            ...$request->safe()->except('photo'),
             'created_by' => Auth::id(),
         ]);
+
+        if ($request->hasFile('photo')) {
+            $client->photo = $this->storePublicImage($request->file('photo'), 'clients');
+        }
+
+        $client->save();
 
         return response()->json(['message' => 'Client created successfully.'], 201);
     }
@@ -60,16 +69,27 @@ class ClientController extends Controller
         $this->authorize('update', $client);
 
         return response()->json([
-            'client' => $client->only([
-                'id', 'company_name', 'owner_name', 'phone', 'email', 'website',
-                'address', 'industry', 'notes', 'status', 'client_type',
-            ]),
+            'client' => [
+                ...$client->only([
+                    'id', 'company_name', 'owner_name', 'phone', 'email', 'website',
+                    'address', 'industry', 'notes', 'status', 'client_type',
+                ]),
+                'photo_url' => $client->photoUrl(),
+            ],
         ]);
     }
 
     public function update(UpdateClientRequest $request, Client $client): JsonResponse
     {
-        $client->update($request->validated());
+        $client->fill($request->safe()->except('photo'));
+
+        if ($request->hasFile('photo')) {
+            $this->deletePublicImage($client->getOriginal('photo'));
+
+            $client->photo = $this->storePublicImage($request->file('photo'), 'clients');
+        }
+
+        $client->save();
 
         return response()->json(['message' => 'Client updated successfully.']);
     }
@@ -77,6 +97,8 @@ class ClientController extends Controller
     public function destroy(Client $client): JsonResponse
     {
         $this->authorize('delete', $client);
+
+        $this->deletePublicImage($client->photo);
 
         foreach ($client->files as $file) {
             Storage::disk('local')->delete($file->path);

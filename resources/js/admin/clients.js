@@ -25,12 +25,16 @@ export function clientManager(config) {
         deleteTarget: { id: null, name: '' },
         form: emptyClientForm(),
         errors: {},
+        photoFile: null,
+        photoPreview: null,
 
         openCreate() {
             this.mode = 'create';
             this.editingId = null;
             this.form = emptyClientForm();
             this.errors = {};
+            this.photoFile = null;
+            this.photoPreview = null;
             this.modalOpen = true;
         },
 
@@ -38,6 +42,7 @@ export function clientManager(config) {
             this.mode = 'edit';
             this.editingId = id;
             this.errors = {};
+            this.photoFile = null;
             this.modalOpen = true;
 
             const response = await fetch(`${this.config.baseUrl}/${id}/edit`, {
@@ -46,12 +51,19 @@ export function clientManager(config) {
             const data = await response.json();
 
             this.form = { ...emptyClientForm(), ...data.client };
+            this.photoPreview = data.client.photo_url ?? null;
 
             for (const key of Object.keys(this.form)) {
                 if (this.form[key] === null) {
                     this.form[key] = '';
                 }
             }
+        },
+
+        onPhotoChange(event) {
+            const file = event.target.files[0] ?? null;
+            this.photoFile = file;
+            if (file) this.photoPreview = URL.createObjectURL(file);
         },
 
         closeModal() {
@@ -62,10 +74,17 @@ export function clientManager(config) {
             this.saving = true;
             this.errors = {};
 
-            const url = this.mode === 'create' ? this.config.storeUrl : `${this.config.baseUrl}/${this.editingId}`;
-            const method = this.mode === 'create' ? 'POST' : 'PUT';
+            const isEdit = this.mode === 'edit';
+            const url = isEdit ? `${this.config.baseUrl}/${this.editingId}` : this.config.storeUrl;
 
-            const { ok, status, data } = await window.AdminUI.submitJson(url, method, this.form);
+            const formData = new FormData();
+            Object.entries(this.form).forEach(([key, value]) => {
+                if (value !== null) formData.append(key, value);
+            });
+            if (this.photoFile) formData.append('photo', this.photoFile);
+            if (isEdit) formData.append('_method', 'PUT');
+
+            const { ok, status, data } = await window.AdminUI.submitFormData(url, 'POST', formData);
 
             this.saving = false;
 

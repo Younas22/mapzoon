@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NewsletterSubscriber;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class NewsletterController extends Controller
 {
@@ -14,7 +14,13 @@ class NewsletterController extends Controller
             'email' => ['required', 'email', 'max:255'],
         ]);
 
-        Log::info('New MAPZOON newsletter subscription', $validated);
+        NewsletterSubscriber::query()->firstOrCreate(
+            ['email' => $validated['email']],
+            [
+                'source' => 'blog',
+                'ip_address' => $request->ip(),
+            ]
+        );
 
         return back(303)->with('newsletter_success', "You're subscribed! Watch your inbox for our next Local SEO tips.");
     }

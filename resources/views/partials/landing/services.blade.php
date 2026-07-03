@@ -27,7 +27,7 @@
                     <p class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
                         On-page, technical, and content SEO tailored to rank your business across local search results — so customers find you before they find your competitors.
                     </p>
-                    <a href="#contact" class="mt-7 inline-flex items-center gap-2 rounded-2xl bg-primary-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600">
+                    <a href="{{ route('contact.page') }}" class="mt-7 inline-flex items-center gap-2 rounded-2xl bg-primary-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600">
                         Get a Free Quote
                         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M5 12h14M13 6l6 6-6 6" />
@@ -64,7 +64,7 @@
                     <p class="mt-2 text-sm leading-relaxed text-slate-600">
                         Fast, conversion-focused websites that turn visitors into booked customers.
                     </p>
-                    <a href="#website-development" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 transition group-hover:gap-2.5">
+                    <a href="{{ route('contact.page') }}" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 transition group-hover:gap-2.5">
                         Learn more
                         <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M5 12h14M13 6l6 6-6 6" />
@@ -87,7 +87,7 @@
                     <p class="mt-2 text-sm leading-relaxed text-slate-600">
                         Complete setup, verification, and ongoing optimization to maximize visibility.
                     </p>
-                    <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 transition group-hover:gap-2.5">
+                    <a href="{{ route('contact.page') }}" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 transition group-hover:gap-2.5">
                         Learn more
                         <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M5 12h14M13 6l6 6-6 6" />
@@ -111,7 +111,7 @@
                     <p class="mt-2 text-sm leading-relaxed text-slate-600">
                         Cloud-based sales, invoicing, and inventory built for local businesses.
                     </p>
-                    <a href="#pos-billing" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 transition group-hover:gap-2.5">
+                    <a href="{{ route('contact.page') }}" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 transition group-hover:gap-2.5">
                         Learn more
                         <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M5 12h14M13 6l6 6-6 6" />

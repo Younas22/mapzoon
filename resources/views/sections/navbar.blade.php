@@ -88,7 +88,7 @@
                 0326 6787997
             </a>
 
-            <a href="{{ url('/#contact') }}" class="hidden items-center justify-center gap-2 whitespace-nowrap rounded-2xl bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-lg hover:shadow-primary-500/40 xl:inline-flex">
+            <a href="{{ route('contact.page') }}" class="hidden items-center justify-center gap-2 whitespace-nowrap rounded-2xl bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-lg hover:shadow-primary-500/40 xl:inline-flex">
                 Get Free Audit
             </a>
 
@@ -163,7 +163,7 @@
             </svg>
             0326 6787997
         </a>
-        <a href="{{ url('/#contact') }}" class="block w-full rounded-2xl bg-primary-500 px-5 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:bg-primary-600">
+        <a href="{{ route('contact.page') }}" class="block w-full rounded-2xl bg-primary-500 px-5 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:bg-primary-600">
             Get Free Audit
         </a>
     </div>

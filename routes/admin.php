@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LeadController;
+use App\Http\Controllers\Admin\NewsletterSubscriberController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ProjectCredentialController;
 use App\Http\Controllers\Admin\RoleController;
@@ -128,6 +129,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('leads/{lead}', [LeadController::class, 'show'])
             ->middleware('permission:leads.view')
             ->name('leads.show');
+
+        Route::get('newsletter-subscribers/export', [NewsletterSubscriberController::class, 'export'])
+            ->middleware('permission:newsletter.view')
+            ->name('newsletter-subscribers.export');
+
+        Route::get('newsletter-subscribers', [NewsletterSubscriberController::class, 'index'])
+            ->middleware('permission:newsletter.view')
+            ->name('newsletter-subscribers.index');
+
+        Route::delete('newsletter-subscribers/{newsletter_subscriber}', [NewsletterSubscriberController::class, 'destroy'])
+            ->middleware('permission:newsletter.delete')
+            ->name('newsletter-subscribers.destroy');
 
         Route::get('categories/data', [CategoryController::class, 'data'])
             ->middleware('permission:blogs.view')

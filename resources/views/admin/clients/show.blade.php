@@ -21,14 +21,23 @@
     >
         <div class="rounded-2xl border border-slate-200 bg-white p-6">
             <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                    <h1 class="text-lg font-semibold text-ink">{{ $client->displayName() }}</h1>
-                    <p class="text-sm text-slate-500">{{ $client->email }} · {{ $client->phone }}</p>
-                    <div class="mt-2 flex flex-wrap items-center gap-2">
-                        <span class="rounded-full px-2 py-0.5 text-xs font-medium {{ $statusColors[$client->status] ?? 'bg-slate-100 text-slate-600' }}">
-                            {{ $client->statusLabel() }}
+                <div class="flex items-start gap-4">
+                    @if ($client->photoUrl())
+                        <img src="{{ $client->photoUrl() }}" alt="{{ $client->displayName() }}" class="h-14 w-14 flex-none rounded-full object-cover">
+                    @else
+                        <span class="flex h-14 w-14 flex-none items-center justify-center rounded-full bg-primary-100 text-lg font-bold text-primary-700">
+                            {{ strtoupper(substr($client->displayName(), 0, 1)) }}
                         </span>
-                        <span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">{{ $client->clientTypeLabel() }}</span>
+                    @endif
+                    <div>
+                        <h1 class="text-lg font-semibold text-ink">{{ $client->displayName() }}</h1>
+                        <p class="text-sm text-slate-500">{{ $client->email }} · {{ $client->phone }}</p>
+                        <div class="mt-2 flex flex-wrap items-center gap-2">
+                            <span class="rounded-full px-2 py-0.5 text-xs font-medium {{ $statusColors[$client->status] ?? 'bg-slate-100 text-slate-600' }}">
+                                {{ $client->statusLabel() }}
+                            </span>
+                            <span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">{{ $client->clientTypeLabel() }}</span>
+                        </div>
                     </div>
                 </div>
 

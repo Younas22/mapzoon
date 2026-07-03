@@ -45,6 +45,20 @@
                 <h2 class="text-lg font-semibold text-ink" x-text="mode === 'create' ? 'Add Client' : 'Edit Client'"></h2>
 
                 <form @submit.prevent="submit()" class="mt-4 space-y-5">
+                    <div>
+                        <label class="mb-1 block text-sm font-medium text-slate-700">Photo</label>
+                        <div class="flex items-center gap-4">
+                            <template x-if="photoPreview">
+                                <img :src="photoPreview" class="h-16 w-16 rounded-full object-cover" alt="Client photo preview">
+                            </template>
+                            <template x-if="!photoPreview">
+                                <span class="flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 text-xs text-slate-400">No photo</span>
+                            </template>
+                            <input type="file" accept="image/*" @change="onPhotoChange($event)" class="text-sm text-slate-600">
+                        </div>
+                        <p class="mt-1 text-xs text-rose-600" x-show="errors.photo" x-text="errors.photo?.[0]"></p>
+                    </div>
+
                     <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
                         <div>
                             <label class="mb-1 block text-sm font-medium text-slate-700">Company Name</label>

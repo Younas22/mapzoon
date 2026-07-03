@@ -31,7 +31,7 @@
                         </div>
                         <h3 class="mt-4 text-lg font-semibold text-slate-900">Case studies coming soon</h3>
                         <p class="mt-1 text-sm text-slate-500">We're documenting our client success stories. Check back soon.</p>
-                        <a href="{{ url('/#contact') }}" class="mt-5 inline-flex items-center gap-2 rounded-xl bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-600">
+                        <a href="{{ route('contact.page') }}" class="mt-5 inline-flex items-center gap-2 rounded-xl bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-600">
                             Work With Us
                         </a>
                     </div>
@@ -85,7 +85,7 @@
                 <div class="reveal mt-16 rounded-2xl bg-primary-600 p-8 text-center text-white lg:p-12">
                     <h3 class="text-2xl font-bold">Ready to be our next success story?</h3>
                     <p class="mt-2 text-primary-200">Let's get your business ranking higher on Google Maps.</p>
-                    <a href="{{ url('/#contact') }}" class="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-7 py-3.5 text-sm font-semibold text-primary-600 shadow-lg transition hover:-translate-y-0.5 hover:bg-primary-50">
+                    <a href="{{ route('contact.page') }}" class="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-7 py-3.5 text-sm font-semibold text-primary-600 shadow-lg transition hover:-translate-y-0.5 hover:bg-primary-50">
                         Get a Free Audit
                         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>

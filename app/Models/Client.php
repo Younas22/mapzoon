@@ -23,6 +23,7 @@ class Client extends Model
     protected $fillable = [
         'company_name',
         'owner_name',
+        'photo',
         'phone',
         'email',
         'website',
@@ -72,6 +73,11 @@ class Client extends Model
     public function displayName(): string
     {
         return $this->company_name ?: $this->owner_name;
+    }
+
+    public function photoUrl(): ?string
+    {
+        return $this->photo ? asset($this->photo) : null;
     }
 
     public function statusLabel(): string

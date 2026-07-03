@@ -10,6 +10,8 @@
         'imagePreview' => $caseStudy->imageUrl(),
         'slugTouched' => (bool) $caseStudy->id,
         'existingScreenshots' => $existingScreenshotsForJs,
+        'ownerPhotoPreview' => $caseStudy->ownerPhotoUrl(),
+        'clients' => $clients,
     ]))"
     class="mx-auto max-w-4xl"
 >
@@ -121,22 +123,63 @@
             </div>
         </div>
 
-        {{-- Business Owner --}}
+        {{-- Client / Reviewer --}}
         <div class="rounded-2xl border border-slate-200 bg-white p-6">
-            <h2 class="mb-4 text-base font-semibold text-ink">Business Owner</h2>
+            <h2 class="mb-1 text-base font-semibold text-ink">Client / Reviewer</h2>
+            <p class="mb-4 text-sm text-slate-500">Whoever is quoted for this case study — could be the owner, a manager, or anyone else on their team.</p>
+
+            <div class="mb-5">
+                <label class="mb-1 block text-sm font-medium text-slate-700">Link to Existing Client (optional)</label>
+                <select name="client_id" @change="onClientSelect($event.target.value)"
+                        class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200">
+                    <option value="">— None —</option>
+                    @foreach ($clients as $client)
+                        <option value="{{ $client['id'] }}" @selected((string) old('client_id', $caseStudy->client_id) === (string) $client['id'])>{{ $client['name'] }}</option>
+                    @endforeach
+                </select>
+                <p class="mt-1 text-xs text-slate-500">Selecting a client fills in their name below and uses their photo if you don't upload a different one.</p>
+                @error('client_id')
+                    <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-5">
+                <label class="mb-1 block text-sm font-medium text-slate-700">Photo</label>
+                <div class="flex items-center gap-4">
+                    <template x-if="ownerPhotoPreview">
+                        <img :src="ownerPhotoPreview" class="h-16 w-16 rounded-full object-cover" alt="Reviewer photo preview">
+                    </template>
+                    <template x-if="!ownerPhotoPreview">
+                        <span class="flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 text-xs text-slate-400">No photo</span>
+                    </template>
+                    <input type="file" name="owner_photo" accept="image/*" @change="onOwnerPhotoChange($event)" class="text-sm text-slate-600">
+                </div>
+                @error('owner_photo')
+                    <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+                @enderror
+            </div>
 
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div>
-                    <label class="mb-1 block text-sm font-medium text-slate-700">Owner Name</label>
-                    <input type="text" name="owner_name" value="{{ old('owner_name', $caseStudy->owner_name) }}"
+                    <label class="mb-1 block text-sm font-medium text-slate-700">Name</label>
+                    <input type="text" name="owner_name" x-ref="ownerNameInput" value="{{ old('owner_name', $caseStudy->owner_name) }}"
                            class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200">
                     @error('owner_name')
                         <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
                     @enderror
                 </div>
 
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-700">Role</label>
+                    <input type="text" name="owner_role" value="{{ old('owner_role', $caseStudy->owner_role) }}" placeholder="e.g. Owner, Manager, Director"
+                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200">
+                    @error('owner_role')
+                        <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
                 <div class="sm:col-span-2">
-                    <label class="mb-1 block text-sm font-medium text-slate-700">Owner Review</label>
+                    <label class="mb-1 block text-sm font-medium text-slate-700">Review</label>
                     <textarea name="owner_review" rows="3"
                               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline focus:outline-2 focus:outline-primary-200">{{ old('owner_review', $caseStudy->owner_review) }}</textarea>
                     @error('owner_review')
