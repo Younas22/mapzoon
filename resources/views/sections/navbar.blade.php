@@ -1,7 +1,7 @@
 <?php $settings = \App\Models\SiteSetting::current(); ?>
 @php
     $routeName = Route::currentRouteName();
-    $companyRoutes = ['about', 'case-studies', 'case-studies.show', 'process', 'why-choose-us', 'testimonials', 'team', 'faq', 'contact.page'];
+    $companyRoutes = ['about', 'case-studies', 'case-studies.show', 'process', 'why-choose-us', 'testimonials', 'team', 'faq'];
     $isCompanyActive = in_array($routeName, $companyRoutes);
 
     $navLinks = [
