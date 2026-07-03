@@ -1,7 +1,29 @@
 @extends('layouts.app')
 
-@section('title', 'Website Development — MAPZOON')
-@section('description', 'Professional website development services by MAPZOON — fast, modern, and built to convert local customers.')
+@section('title', 'Website Development Services | SEO-Friendly Business Websites | MapZoon')
+@section('description', 'Professional website development services for local businesses. We build fast, mobile-friendly, SEO-optimized websites designed to generate more leads and grow your business.')
+
+@push('schema')
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@@context' => 'https://schema.org',
+        '@type' => 'Service',
+        'name' => 'Website Development Services',
+        'url' => url('/website'),
+        'description' => 'Professional website development services for local businesses, including responsive design, SEO optimization, fast performance, and lead generation.',
+        'provider' => [
+            '@type' => 'Organization',
+            'name' => 'MapZoon',
+            'url' => url('/'),
+        ],
+        'serviceType' => 'Website Development',
+        'areaServed' => [
+            '@type' => 'Country',
+            'name' => 'United States',
+        ],
+    ], JSON_UNESCAPED_SLASHES) !!}
+    </script>
+@endpush
 
 @section('content')
     @include('sections.navbar')

@@ -20,7 +20,7 @@
                         or simply send us your inquiry by filling out the form below.
                     </p>
                 </div>
-                <button type="button" id="quote-modal-close" class="ml-4 flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-white/20 text-white transition hover:bg-white/30" aria-label="Close">
+                <button type="button" id="quote-modal-close" class="ml-4 flex h-9 w-9 flex-none items-center justify-center rounded-none bg-white/20 text-white transition hover:bg-white/30" aria-label="Close">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M6 6l12 12M18 6 6 18" />
                     </svg>
@@ -155,7 +155,7 @@
                 {{-- Submit --}}
                 <div class="mt-7">
                     <button type="submit" id="quote-submit-btn"
-                        class="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-not-allowed disabled:opacity-60">
+                        class="inline-flex w-full items-center justify-center gap-2 rounded-none bg-primary-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-not-allowed disabled:opacity-60">
                         <span id="quote-btn-text">Submit Free Quote Request</span>
                         <svg id="quote-btn-icon" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M5 12h14M13 6l6 6-6 6" />

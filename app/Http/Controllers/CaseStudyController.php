@@ -17,8 +17,11 @@ class CaseStudyController extends Controller
 
         return view('pages.case-studies.index', [
             'caseStudies' => $caseStudies,
-            'title' => 'Case Studies — MAPZOON',
-            'description' => 'See real results. Explore how MAPZOON helped local businesses rank higher on Google Maps and grow their customer base.',
+            'title' => 'Local SEO Case Studies | MapZoon',
+            'description' => 'Explore Local SEO case studies from MapZoon and discover how we help businesses improve Google Maps rankings, increase online visibility, and attract more local customers across the USA.',
+            'canonical' => url('/case-studies'),
+            'ogDescription' => 'See how MapZoon helps local businesses grow with Local SEO, Google Business Profile optimization, and website development.',
+            'twitterDescription' => 'Discover real Local SEO strategies and business growth stories from MapZoon.',
         ]);
     }
 

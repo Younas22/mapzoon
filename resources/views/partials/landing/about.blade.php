@@ -12,12 +12,12 @@
                 </h2>
 
                 <div class="mt-5 space-y-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-                    <p>MapZoon was founded by Younas Dev with one clear mission: to help local businesses grow in the digital world.</p>
-                    <p>After working with businesses across different industries, we realized that most local companies struggle for the same reasons—they're hard to find on Google, their Google Business Profile isn't optimized, their website doesn't convert visitors into customers, and they lack the right business management tools.</p>
-                    <p class="font-bold text-slate-900">That's why we built MapZoon.</p>
-                    <p>Instead of offering one-time services and disappearing, we become your long-term growth partner. We work alongside you until your business starts generating real, measurable results. Your success is our success, and we're committed to helping you achieve sustainable growth—not just temporary rankings.</p>
-                    <p>Today, MapZoon helps businesses grow through Local SEO, Google Business Profile (GMB) Optimization, Professional Websites, and Smart POS Solutions—everything a modern local business needs to attract more customers, manage operations efficiently, and increase revenue.</p>
-                    <p>We believe every local business deserves the opportunity to compete with larger brands by using the right technology and proven digital strategies.</p>
+                    <p>At MapZoon, we believe every local business deserves the opportunity to be discovered by the customers already searching for its services.</p>
+                    <p>Our mission is simple: help local businesses increase their visibility on Google, generate more qualified leads, and achieve sustainable long-term growth through proven digital strategies and modern business technology.</p>
+                    <p>Founded by Younas Dev, MapZoon was created after recognizing a common challenge shared by businesses across multiple industries. Many local businesses offer exceptional products and services but struggle to compete online because they lack local search visibility, an optimized Google Business Profile, a website that converts visitors into customers, or the right tools to manage daily operations efficiently.</p>
+                    <p class="font-bold text-slate-900">That's where we come in.</p>
+                    <p>Rather than offering isolated marketing services, we build complete growth systems that help local businesses strengthen every stage of their customer journey—from being discovered on Google Search and Google Maps to converting visitors into paying customers and managing their business more effectively.</p>
+                    <p>Whether you're launching a new business, expanding into a new city, or looking to outperform local competitors, our team develops customized strategies based on your goals, your industry, and your local market.</p>
                 </div>
 
                 <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -31,7 +31,7 @@
                         </span>
                         <h3 class="mt-3 text-sm font-bold text-slate-900">Our Mission</h3>
                         <p class="mt-1.5 text-sm leading-relaxed text-slate-600">
-                            To empower 10,000 local businesses over the next five years by helping them build a strong online presence, attract more customers, and grow with confidence through Local SEO, Google Business Profile optimization, modern websites, and smart POS solutions.
+                            To help thousands of local businesses strengthen their digital presence by making Local SEO, Google Business Profile optimization, professional websites, and business management technology more accessible—so every local business, regardless of size, can compete online, attract more customers, and grow with confidence.
                         </p>
                     </div>
 
@@ -44,20 +44,20 @@
                         </span>
                         <h3 class="mt-3 text-sm font-bold text-slate-900">Our Vision</h3>
                         <p class="mt-1.5 text-sm leading-relaxed text-slate-600">
-                            To create a future where every local business is just one search away from its next customer—making quality products and services easier to discover while helping communities thrive in an increasingly connected world.
+                            A future where every local business can be found by the people searching for its services. By combining proven Local SEO strategies with innovative technology, we're making local businesses more visible, more competitive, and better equipped for long-term success in an increasingly digital world.
                         </p>
                     </div>
                 </div>
 
                 <div class="mt-7 rounded-2xl border border-primary-100 bg-primary-50/60 p-6">
-                    <h3 class="text-lg font-bold text-slate-900">Join Our Mission</h3>
+                    <h3 class="text-lg font-bold text-slate-900">Let's Grow Together</h3>
                     <p class="mt-2 text-sm leading-relaxed text-slate-600">
-                        We're on a mission to bring 10,000 local businesses online over the next five years.
+                        Your customers are already searching for businesses like yours. Let's make sure they find you first.
                     </p>
                     <p class="mt-2 text-sm leading-relaxed text-slate-600">
-                        If you want your business to rank higher on Google Maps, attract more customers, build a powerful online presence, and streamline your operations with modern technology, grow with MapZoon.
+                        Whether you need Local SEO, Google Business Profile optimization, a high-performing website, or a complete business growth solution, MapZoon is ready to help you build a stronger online presence and achieve sustainable growth.
                     </p>
-                    <p class="mt-3 text-sm font-semibold text-primary-700">Because when local businesses grow, communities grow.</p>
+                    <p class="mt-3 text-sm font-semibold text-primary-700">Start with a Free Local SEO Audit and discover your biggest growth opportunities today.</p>
                 </div>
 
                 <ul class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">

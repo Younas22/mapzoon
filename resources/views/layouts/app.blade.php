@@ -1,4 +1,8 @@
-<?php $settings = \App\Models\SiteSetting::current(); ?>
+<?php
+    $settings = \App\Models\SiteSetting::current();
+    $pageTitle = trim($__env->yieldContent('title', $settings->meta_title ?? 'MAPZOON — Rank Higher on Google Maps & Grow Your Local Business'));
+    $pageDescription = trim($__env->yieldContent('description', $settings->meta_description ?? 'MAPZOON helps local businesses rank higher on Google Maps and grow with Local SEO, Google Business Profile optimization, professional websites, and POS billing solutions.'));
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', $settings->meta_title ?? 'MAPZOON — Rank Higher on Google Maps & Grow Your Local Business')</title>
-    <meta name="description" content="@yield('description', $settings->meta_description ?? 'MAPZOON helps local businesses rank higher on Google Maps and grow with Local SEO, Google Business Profile optimization, professional websites, and POS billing solutions.')">
+    <title>{{ $pageTitle }}</title>
+    <meta name="description" content="{{ $pageDescription }}">
     <meta name="keywords" content="{{ $keywords ?? $settings->meta_keywords ?? 'Local SEO, Google Maps Ranking, Google Business Profile Optimization, Citation Management, Review Management, Website Development, POS Billing System' }}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ $canonical ?? url()->current() }}">
@@ -19,8 +23,8 @@
     <!-- Open Graph -->
     <meta property="og:type" content="{{ $ogType ?? 'website' }}">
     <meta property="og:site_name" content="{{ $settings->company_name ?? 'MAPZOON' }}">
-    <meta property="og:title" content="{{ $ogTitle ?? $title ?? $settings->meta_title ?? 'MAPZOON — Rank Higher on Google Maps & Grow Your Local Business' }}">
-    <meta property="og:description" content="{{ $ogDescription ?? $description ?? $settings->meta_description ?? 'Local SEO, Google Maps Ranking, Websites & POS Billing built to get local businesses more calls and customers.' }}">
+    <meta property="og:title" content="{{ $ogTitle ?? $pageTitle }}">
+    <meta property="og:description" content="{{ $ogDescription ?? $pageDescription }}">
     <meta property="og:url" content="{{ $canonical ?? url()->current() }}">
     @if (! empty($ogImage))
         <meta property="og:image" content="{{ $ogImage }}">
@@ -28,8 +32,8 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="{{ $twitterCard ?? 'summary_large_image' }}">
-    <meta name="twitter:title" content="{{ $twitterTitle ?? $ogTitle ?? $title ?? $settings->company_name ?? 'MAPZOON' }}">
-    <meta name="twitter:description" content="{{ $twitterDescription ?? $ogDescription ?? $description ?? '' }}">
+    <meta name="twitter:title" content="{{ $twitterTitle ?? $ogTitle ?? $pageTitle }}">
+    <meta name="twitter:description" content="{{ $twitterDescription ?? $ogDescription ?? $pageDescription }}">
     @if (! empty($twitterImage ?? $ogImage ?? null))
         <meta name="twitter:image" content="{{ $twitterImage ?? $ogImage }}">
     @endif
@@ -45,13 +49,23 @@
     {!! json_encode([
         '@@context' => 'https://schema.org',
         '@type' => 'ProfessionalService',
-        'name' => $settings->company_name ?? 'MAPZOON',
-        'description' => $settings->meta_description ?? 'Local SEO agency helping businesses rank higher on Google Maps with Local SEO, Google Business Profile optimization, websites, and POS billing systems.',
-        'telephone' => $settings->phone ?? '+92-326-6787997',
+        'name' => $settings->company_name ?? 'MapZoon',
+        'description' => $settings->meta_description ?? 'MapZoon helps local businesses across the USA grow through Local SEO, Google Business Profile optimization, website development, and business growth solutions.',
+        'telephone' => $settings->phone ?? '+92 333 7222222',
         'email' => $settings->email ?? 'contact@mapzoon.com',
         'url' => url('/'),
-        'areaServed' => 'Local Businesses',
-        'sameAs' => array_values(array_filter([$settings->facebook_url, $settings->twitter_url, $settings->instagram_url, $settings->linkedin_url, $settings->youtube_url])),
+        'logo' => $settings->logoLightUrl(),
+        'areaServed' => [
+            '@type' => 'Country',
+            'name' => 'United States',
+        ],
+        'sameAs' => array_values(array_filter([$settings->facebook_url, $settings->twitter_url, $settings->instagram_url, $settings->linkedin_url, $settings->youtube_url])) ?: [
+            'https://www.facebook.com/mapzoon/',
+            'https://x.com/mapzoonofficial',
+            'https://www.instagram.com/mapzoonofficial/',
+            'https://www.linkedin.com/company/mapzoon',
+            'https://www.youtube.com/@MapZoon',
+        ],
     ], JSON_UNESCAPED_SLASHES) !!}
     </script>
 

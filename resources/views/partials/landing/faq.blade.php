@@ -23,7 +23,7 @@
                 <div id="faq-answer-1" class="faq-panel grid transition-[grid-template-rows] duration-300 ease-out" style="grid-template-rows: 1fr;">
                     <div class="overflow-hidden">
                         <p class="px-6 pb-5 text-sm leading-relaxed text-slate-600 sm:px-8 sm:pb-6">
-                            Most businesses start seeing ranking improvements within 4–8 weeks, with significant Map Pack movement typically by month 3. Timelines vary based on your industry, competition, and current profile health — which is exactly what we assess in your Free Audit.
+                            Most businesses begin seeing improvements within 4 to 8 weeks, while stronger Google Maps rankings often develop over several months depending on competition, location, and the current state of the Google Business Profile.
                         </p>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 <div id="faq-answer-2" class="faq-panel grid transition-[grid-template-rows] duration-300 ease-out" style="grid-template-rows: 0fr;">
                     <div class="overflow-hidden">
                         <p class="px-6 pb-5 text-sm leading-relaxed text-slate-600 sm:px-8 sm:pb-6">
-                            We review your Google Business Profile, current Maps rankings, citation consistency, competitor positioning, and website performance — then send you a clear report showing exactly where you're losing visibility and what to fix first.
+                            Our free audit includes a Google Business Profile review, Local SEO analysis, website evaluation, competitor insights, and personalized recommendations to improve your online visibility.
                         </p>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                 <div id="faq-answer-3" class="faq-panel grid transition-[grid-template-rows] duration-300 ease-out" style="grid-template-rows: 0fr;">
                     <div class="overflow-hidden">
                         <p class="px-6 pb-5 text-sm leading-relaxed text-slate-600 sm:px-8 sm:pb-6">
-                            Yes. Your Google Business Profile drives discovery, but your website is what converts that visibility into bookings and builds long-term trust and SEO authority that a profile alone can't provide.
+                            Yes. A professional website builds trust, provides more information to potential customers, supports Local SEO, and helps convert visitors into leads.
                         </p>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                 <div id="faq-answer-4" class="faq-panel grid transition-[grid-template-rows] duration-300 ease-out" style="grid-template-rows: 0fr;">
                     <div class="overflow-hidden">
                         <p class="px-6 pb-5 text-sm leading-relaxed text-slate-600 sm:px-8 sm:pb-6">
-                            Yes. The POS &amp; Billing System is available as a standalone solution, though most clients bundle it with our SEO services to manage marketing and operations from one partner.
+                            Yes. Our POS &amp; Billing System is available as a standalone solution and can be used independently of our Local SEO services.
                         </p>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                 <div id="faq-answer-5" class="faq-panel grid transition-[grid-template-rows] duration-300 ease-out" style="grid-template-rows: 0fr;">
                     <div class="overflow-hidden">
                         <p class="px-6 pb-5 text-sm leading-relaxed text-slate-600 sm:px-8 sm:pb-6">
-                            Yes. Every invoice generated in the POS dashboard can be shared directly to your customer's WhatsApp in one tap — no extra apps or manual steps required.
+                            Yes. Our POS solution supports sharing invoices and receipts through WhatsApp, making customer communication faster and more convenient.
                         </p>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
 
             <div>
                 <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 px-6 py-5 text-left sm:px-8 sm:py-6" aria-expanded="false" aria-controls="faq-answer-6">
-                    <span class="text-base font-semibold text-slate-900 sm:text-lg">Will I lose my Maps ranking if I stop the service?</span>
+                    <span class="text-base font-semibold text-slate-900 sm:text-lg">Will I lose my Google Maps rankings if I stop the service?</span>
                     <span class="faq-icon flex h-8 w-8 flex-none items-center justify-center rounded-full bg-primary-50 text-primary-600 transition-transform duration-300">
                         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M6 9l6 6 6-6" />
@@ -113,7 +113,7 @@
                 <div id="faq-answer-6" class="faq-panel grid transition-[grid-template-rows] duration-300 ease-out" style="grid-template-rows: 0fr;">
                     <div class="overflow-hidden">
                         <p class="px-6 pb-5 text-sm leading-relaxed text-slate-600 sm:px-8 sm:pb-6">
-                            Citations and review momentum tend to hold for a while, but rankings are competitive and ongoing optimization is what keeps you ahead — most businesses choose to continue because the ROI consistently outperforms the cost.
+                            Rankings can change over time due to competition and Google's algorithm updates. Ongoing optimization helps maintain and improve your visibility in local search results.
                         </p>
                     </div>
                 </div>

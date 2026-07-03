@@ -1,20 +1,20 @@
 <?php $settings = \App\Models\SiteSetting::current(); ?>
 @php
     $routeName = Route::currentRouteName();
-    $companyRoutes = ['about', 'case-studies', 'case-studies.show', 'process', 'why-choose-us', 'testimonials', 'team', 'faq'];
+    $companyRoutes = ['about', 'process', 'why-choose-us', 'testimonials', 'team', 'faq'];
     $isCompanyActive = in_array($routeName, $companyRoutes);
 
     $navLinks = [
-        ['route' => 'services',    'label' => 'Services'],
-        ['route' => 'pricing',     'label' => 'Pricing'],
-        ['route' => 'blog.index',  'label' => 'Blog'],
-        ['route' => 'jobs',        'label' => 'Jobs'],
+        ['route' => 'services',       'label' => 'Services'],
+        ['route' => 'pricing',        'label' => 'Pricing'],
+        ['route' => 'case-studies',   'label' => 'Case Studies', 'active' => ['case-studies', 'case-studies.show']],
+        ['route' => 'blog.index',     'label' => 'Blog'],
+        ['route' => 'jobs',           'label' => 'Jobs'],
         ['route' => 'contact.page',   'label' => 'Contact'],
     ];
 
     $companyLinks = [
         ['route' => 'about',          'label' => 'About Us'],
-        ['route' => 'case-studies',   'label' => 'Case Studies'],
         ['route' => 'process',        'label' => 'Our Process'],
         ['route' => 'why-choose-us',  'label' => 'Why Choose Us'],
         ['route' => 'testimonials',   'label' => 'Testimonials'],
@@ -38,12 +38,12 @@
                 </svg>
                 <span>{{ $topbarPhone }}</span>
             </a>
-            <a href="mailto:{{ $topbarEmail }}" class="hidden items-center gap-1.5 whitespace-nowrap transition-colors hover:text-primary-400 sm:flex">
+            <a href="mailto:{{ $topbarEmail }}" class="flex items-center gap-1.5 whitespace-nowrap transition-colors hover:text-primary-400" aria-label="Email {{ $topbarEmail }}">
                 <svg class="h-3.5 w-3.5 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <rect x="3" y="5" width="18" height="14" rx="2" />
                     <path d="M3.5 6.5 12 13l8.5-6.5" />
                 </svg>
-                <span>{{ $topbarEmail }}</span>
+                <span class="hidden sm:inline">{{ $topbarEmail }}</span>
             </a>
         </div>
         <div class="hidden items-center gap-1.5 whitespace-nowrap lg:flex">
@@ -70,13 +70,14 @@
 
             {{-- Other Nav Links --}}
             @foreach ($navLinks as $link)
+                @php $linkActive = in_array($routeName, $link['active'] ?? [$link['route']]); @endphp
                 <a href="{{ route($link['route']) }}"
-                   class="group relative inline-flex items-center gap-1.5 whitespace-nowrap px-3 py-2 text-sm font-semibold transition-colors {{ $routeName === $link['route'] ? 'text-primary-600' : 'text-slate-700 hover:text-primary-600' }}">
+                   class="group relative inline-flex items-center gap-1.5 whitespace-nowrap px-3 py-2 text-sm font-semibold transition-colors {{ $linkActive ? 'text-primary-600' : 'text-slate-700 hover:text-primary-600' }}">
                     {{ $link['label'] }}
                     @if ($link['route'] === 'jobs')
                         <span class="inline-flex items-center rounded-full bg-primary-500 px-1.5 py-0.5 text-[10px] font-bold leading-none text-white">Hiring</span>
                     @endif
-                    <span class="absolute -bottom-0.5 left-0 h-0.5 w-full origin-left bg-primary-500 transition-transform duration-300 {{ $routeName === $link['route'] ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }}" aria-hidden="true"></span>
+                    <span class="absolute -bottom-0.5 left-0 h-0.5 w-full origin-left bg-primary-500 transition-transform duration-300 {{ $linkActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }}" aria-hidden="true"></span>
                 </a>
             @endforeach
 
@@ -120,12 +121,12 @@
                 {{ $topbarPhone }}
             </a>
 
-            <a href="{{ route('contact.page') }}" class="hidden items-center justify-center gap-2 whitespace-nowrap rounded-2xl bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-lg hover:shadow-primary-500/40 xl:inline-flex">
+            <a href="{{ route('contact.page') }}" class="hidden items-center justify-center gap-2 whitespace-nowrap rounded-none bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-lg hover:shadow-primary-500/40 xl:inline-flex">
                 Get Free Audit
             </a>
 
             {{-- Mobile Menu Toggle --}}
-            <button type="button" id="nav-menu-open" class="flex h-10 w-10 flex-none items-center justify-center rounded-xl text-slate-700 transition hover:bg-slate-100 xl:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <button type="button" id="nav-menu-open" class="flex h-10 w-10 flex-none items-center justify-center rounded-none text-slate-700 transition hover:bg-slate-100 xl:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
                 <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M4 7h16M4 12h16M4 17h16" />
                 </svg>
@@ -140,7 +141,7 @@
         <a href="{{ route('home') }}" class="inline-flex items-center gap-2.5">
             <img src="{{ $settings->logoDarkUrl() }}" alt="{{ $settings->company_name ?? 'MAPZOON' }}" class="h-12 w-auto" />
         </a>
-        <button type="button" id="nav-menu-close" class="flex h-10 w-10 items-center justify-center rounded-xl text-slate-700 transition hover:bg-slate-100" aria-label="Close menu">
+        <button type="button" id="nav-menu-close" class="flex h-10 w-10 items-center justify-center rounded-none text-slate-700 transition hover:bg-slate-100" aria-label="Close menu">
             <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M6 6l12 12M18 6 6 18" />
             </svg>
@@ -152,9 +153,10 @@
 
             {{-- Other Links --}}
             @foreach ($navLinks as $link)
+                @php $linkActive = in_array($routeName, $link['active'] ?? [$link['route']]); @endphp
                 <li>
                     <a href="{{ route($link['route']) }}"
-                       class="flex items-center gap-2 rounded-xl px-4 py-3 text-base font-semibold transition {{ $routeName === $link['route'] ? 'bg-primary-50 text-primary-600' : 'text-slate-800 hover:bg-slate-50 hover:text-primary-600' }}">
+                       class="flex items-center gap-2 rounded-xl px-4 py-3 text-base font-semibold transition {{ $linkActive ? 'bg-primary-50 text-primary-600' : 'text-slate-800 hover:bg-slate-50 hover:text-primary-600' }}">
                         {{ $link['label'] }}
                         @if ($link['route'] === 'jobs')
                             <span class="inline-flex items-center rounded-full bg-primary-500 px-1.5 py-0.5 text-[10px] font-bold leading-none text-white">Hiring</span>
@@ -166,7 +168,7 @@
             {{-- Company collapsible --}}
             <li>
                 <button type="button" id="mobile-company-btn"
-                        class="flex w-full items-center justify-between rounded-xl px-4 py-3 text-base font-semibold transition {{ $isCompanyActive ? 'bg-primary-50 text-primary-600' : 'text-slate-800 hover:bg-slate-50 hover:text-primary-600' }}"
+                        class="flex w-full items-center justify-between rounded-none px-4 py-3 text-base font-semibold transition {{ $isCompanyActive ? 'bg-primary-50 text-primary-600' : 'text-slate-800 hover:bg-slate-50 hover:text-primary-600' }}"
                         aria-expanded="{{ $isCompanyActive ? 'true' : 'false' }}" aria-controls="mobile-company-menu">
                     Company
                     <svg id="mobile-company-chevron" class="h-4 w-4 transition-transform duration-200 {{ $isCompanyActive ? 'rotate-180' : '' }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -195,7 +197,7 @@
             </svg>
             {{ $topbarPhone }}
         </a>
-        <a href="{{ route('contact.page') }}" class="block w-full rounded-2xl bg-primary-500 px-5 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:bg-primary-600">
+        <a href="{{ route('contact.page') }}" class="block w-full rounded-none bg-primary-500 px-5 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:bg-primary-600">
             Get Free Audit
         </a>
     </div>

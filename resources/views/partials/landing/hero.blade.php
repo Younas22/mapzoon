@@ -20,41 +20,33 @@
             {{-- Badge --}}
             <p class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-1.5 text-sm font-medium text-slate-300 shadow-sm backdrop-blur-sm">
                 <span class="h-2 w-2 rounded-full bg-primary-400 animate-pulse-soft" aria-hidden="true"></span>
-                Local SEO &amp; Growth Partner for 350+ Businesses
+                Trusted Local SEO &amp; Google Maps Growth Partner
             </p>
 
             {{-- Headline --}}
             <h1 class="mt-6 overflow-visible text-4xl font-black leading-tight tracking-tighter text-white sm:text-5xl sm:leading-[1.05] lg:text-6xl lg:leading-[1.08]">
-                Not Getting <span class="relative inline-block text-primary-400">
-                    Local Customers?
-                    <svg class="absolute -bottom-1.5 left-0 h-3 w-full sm:-bottom-2 sm:h-4" viewBox="0 0 200 16" fill="none" preserveAspectRatio="none" aria-hidden="true">
-                        <path d="M2 10 Q 50 -2, 100 7 T 198 6" stroke="white" stroke-width="5" stroke-linecap="round" vector-effect="non-scaling-stroke" />
-                    </svg>
-                </span><br>
-                <span class="text-gradient">Rank Higher</span> on Google Maps
+                Get Found on Google.<br>
+                <span class="text-gradient">Get More Local Customers.</span>
             </h1>
 
             {{-- Subtext --}}
             <p class="mx-auto mt-6 max-w-2xl text-base text-slate-400 sm:text-xl">
-                Increase your Google rankings, attract more leads, and grow faster with Local SEO, websites, and POS solutions.
+                Increase your visibility in Google Search and Google Maps with Local SEO, Google Business Profile optimization, and high-performing websites designed to generate more calls, leads, and customers.
             </p>
 
             {{-- CTAs --}}
-            <div class="mt-8 flex items-center justify-center gap-2">
-                <select id="hero-service-pick"
-                    class="rounded-xl border border-white/15 bg-white/10 px-3 py-2.5 text-sm font-medium text-white shadow-sm backdrop-blur-sm focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30 max-w-[190px] sm:max-w-[230px]">
-                    <option value="Google Business Profile Optimization" class="text-slate-900">Google Business Profile</option>
-                    <option value="Local SEO" class="text-slate-900">Local SEO</option>
-                    <option value="Website Development" class="text-slate-900">Website Development</option>
-                    <option value="POS &amp; Billing System" class="text-slate-900">POS &amp; Billing System</option>
-                </select>
+            <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <button type="button" id="open-quote-modal"
-                    class="inline-flex flex-none items-center gap-1.5 rounded-xl bg-primary-500 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-primary-500/40 transition hover:-translate-y-0.5 hover:bg-primary-400 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
-                    Get Free Quote
+                    class="inline-flex flex-none items-center gap-1.5 rounded-none bg-primary-500 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-primary-500/40 transition hover:-translate-y-0.5 hover:bg-primary-400 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+                    Get a Free SEO Audit
                     <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M5 12h14M13 6l6 6-6 6" />
                     </svg>
                 </button>
+                <a href="{{ route('services') }}"
+                    class="inline-flex flex-none items-center gap-1.5 rounded-none border border-white/20 bg-white/8 px-6 py-3 text-sm font-semibold text-white shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+                    View Our Services
+                </a>
             </div>
 
             {{-- Trusted Platforms --}}
@@ -119,7 +111,7 @@
 
                 </div>
 
-                <p class="mt-4 text-xs text-slate-600">Certified Google Maps &amp; Local SEO specialists · 350+ local businesses scaled worldwide</p>
+                <p class="mt-4 text-xs text-slate-600">Helping local businesses build stronger online visibility through proven Local SEO strategies and Google Business Profile optimization.</p>
             </div>
 
         </div>

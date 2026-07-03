@@ -29,8 +29,13 @@ class BlogController extends Controller
             'posts' => $posts,
             'categories' => $categories,
             'featured' => $featured,
-            'title' => 'Blog — MAPZOON',
-            'description' => 'Read MAPZOON\'s latest articles on Google Maps SEO, local business growth, website development, and POS billing tips.',
+            'title' => 'Local SEO Blog | Expert Tips, Guides & Google Maps Strategies | MapZoon',
+            'description' => 'Explore the MapZoon Blog for expert Local SEO tips, Google Business Profile optimization guides, Google Maps ranking strategies, website optimization, and digital marketing insights for local businesses across the USA.',
+            'canonical' => url('/blog'),
+            'ogTitle' => 'Local SEO Blog | MapZoon',
+            'ogDescription' => 'Read expert Local SEO guides, Google Maps ranking tips, and digital marketing insights to help your business grow online.',
+            'twitterTitle' => 'Local SEO Blog | MapZoon',
+            'twitterDescription' => 'Expert Local SEO tips, Google Maps strategies, and digital marketing insights for local businesses.',
         ]);
     }
 

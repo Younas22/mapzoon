@@ -22,6 +22,7 @@
             @php
                 $quickLinks = [
                     ['label' => 'About',         'url' => route('about'),          'hiring' => false],
+                    ['label' => 'Case Studies',  'url' => route('case-studies'),   'hiring' => false],
                     ['label' => 'Team',          'url' => route('team'),           'hiring' => false],
                     ['label' => 'Blog',          'url' => route('blog.index'),     'hiring' => false],
                     ['label' => 'FAQ',           'url' => route('faq'),            'hiring' => false],
@@ -68,7 +69,7 @@
                 <ul class="mt-5 space-y-4 text-sm">
                     <li>
                         <a href="tel:{{ $settings->phone ?? '+923266787997' }}" class="flex items-center gap-3 text-slate-300 transition hover:text-primary-400">
-                            <span class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-[#00a656] text-white transition duration-200 hover:bg-[#008a47]">
+                            <span class="flex h-12 w-12 flex-none items-center justify-center rounded-none bg-[#00a656] text-white transition duration-200 hover:bg-[#008a47]">
                                 <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
                                 </svg>
@@ -78,7 +79,7 @@
                     </li>
                     <li>
                         <a href="mailto:{{ $settings->email ?? 'contact@mapzoon.com' }}" class="flex items-center gap-3 text-slate-300 transition hover:text-primary-400">
-                            <span class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-[#00a656] text-white transition duration-200 hover:bg-[#008a47]">
+                            <span class="flex h-12 w-12 flex-none items-center justify-center rounded-none bg-[#00a656] text-white transition duration-200 hover:bg-[#008a47]">
                                 <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <rect x="3" y="5" width="18" height="14" rx="2" />
                                     <path d="M3.5 6.5 12 13l8.5-6.5" />
@@ -88,7 +89,7 @@
                         </a>
                     </li>
                 </ul>
-                <a href="{{ route('contact.page') }}" class="mt-5 inline-flex items-center gap-2 rounded-xl bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-600">
+                <a href="{{ route('contact.page') }}" class="mt-5 inline-flex items-center gap-2 rounded-none bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-600">
                     Get Free Audit
                     <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M5 12h14M13 6l6 6-6 6" />
@@ -143,7 +144,7 @@
                     @foreach ($socials as $s)
                         <a href="{{ $s['url'] }}" target="{{ $s['url'] !== '#' ? '_blank' : '_self' }}" rel="noopener noreferrer"
                            aria-label="{{ $s['label'] }}"
-                           class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#00a656] text-white transition duration-200 hover:bg-[#008a47]">
+                           class="flex h-12 w-12 items-center justify-center rounded-none bg-[#00a656] text-white transition duration-200 hover:bg-[#008a47]">
                             <svg class="h-6 w-6" viewBox="0 0 24 24" @if($s['fill']) fill="currentColor" @else fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" @endif aria-hidden="true">
                                 <path d="{{ $s['icon'] }}" />
                             </svg>

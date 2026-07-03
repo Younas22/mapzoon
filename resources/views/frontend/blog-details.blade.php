@@ -93,16 +93,16 @@
 
                     <div class="mt-12 flex flex-wrap items-center gap-3 border-t border-slate-100 pt-8">
                         <span class="text-sm font-semibold text-slate-700">Share this article:</span>
-                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($post->title) }}" target="_blank" rel="noopener noreferrer" class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition hover:bg-primary-50 hover:text-primary-600" aria-label="Share on X (Twitter)">
+                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($post->title) }}" target="_blank" rel="noopener noreferrer" class="flex h-9 w-9 items-center justify-center rounded-none bg-slate-100 text-slate-600 transition hover:bg-primary-50 hover:text-primary-600" aria-label="Share on X (Twitter)">
                             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.1 8.1L23 22h-6.9l-5.4-7-6.2 7H1.3l7.6-8.7L1 2h7l4.9 6.4L18.9 2z" /></svg>
                         </a>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" target="_blank" rel="noopener noreferrer" class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition hover:bg-primary-50 hover:text-primary-600" aria-label="Share on Facebook">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" target="_blank" rel="noopener noreferrer" class="flex h-9 w-9 items-center justify-center rounded-none bg-slate-100 text-slate-600 transition hover:bg-primary-50 hover:text-primary-600" aria-label="Share on Facebook">
                             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.2h2.4l.4-2.8h-2.8V9.1c0-.8.2-1.4 1.4-1.4h1.5V5.2c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8v2.8h2.5V21h3z" /></svg>
                         </a>
-                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url()->current()) }}" target="_blank" rel="noopener noreferrer" class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition hover:bg-primary-50 hover:text-primary-600" aria-label="Share on LinkedIn">
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url()->current()) }}" target="_blank" rel="noopener noreferrer" class="flex h-9 w-9 items-center justify-center rounded-none bg-slate-100 text-slate-600 transition hover:bg-primary-50 hover:text-primary-600" aria-label="Share on LinkedIn">
                             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm6.5 0h3.8v1.7h.05c.53-1 1.84-2.06 3.78-2.06 4.04 0 4.78 2.66 4.78 6.12V21h-4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.1 1.43-2.1 2.9V21h-4V9z" /></svg>
                         </a>
-                        <a href="https://wa.me/?text={{ urlencode($post->title.' '.url()->current()) }}" target="_blank" rel="noopener noreferrer" class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition hover:bg-primary-50 hover:text-primary-600" aria-label="Share on WhatsApp">
+                        <a href="https://wa.me/?text={{ urlencode($post->title.' '.url()->current()) }}" target="_blank" rel="noopener noreferrer" class="flex h-9 w-9 items-center justify-center rounded-none bg-slate-100 text-slate-600 transition hover:bg-primary-50 hover:text-primary-600" aria-label="Share on WhatsApp">
                             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.3-.6-2.2-1.1-3.1-2.5-.2-.4.2-.4.5-.8.1-.1.1-.3 0-.4-.1-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.2 1.8 2.8 4.4 3.8 2.1.8 2.5.6 3 .6.4 0 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z" /></svg>
                         </a>
                     </div>
@@ -117,7 +117,7 @@
                             <p class="text-sm text-slate-600">{{ $post->author?->designation ?? 'Contributor' }} at MAPZOON</p>
                         </div>
                         @if ($post->author?->email)
-                            <a href="mailto:{{ $post->author->email }}" class="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:text-primary-600 sm:ml-auto">
+                            <a href="mailto:{{ $post->author->email }}" class="inline-flex items-center gap-2 rounded-none bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:text-primary-600 sm:ml-auto">
                                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <rect x="3" y="5" width="18" height="14" rx="2" />
                                     <path d="M3.5 6.5 12 13l8.5-6.5" />
@@ -228,7 +228,7 @@
                                 @error('email')
                                     <p class="text-xs text-red-400">{{ $message }}</p>
                                 @enderror
-                                <button type="submit" class="w-full rounded-xl bg-primary-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-600">
+                                <button type="submit" class="w-full rounded-none bg-primary-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-600">
                                     Subscribe
                                 </button>
                             </form>

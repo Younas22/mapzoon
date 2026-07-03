@@ -3,6 +3,44 @@
 @section('title', $title)
 @section('description', $description)
 
+@push('schema')
+    <?php $settings = \App\Models\SiteSetting::current(); ?>
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@@context' => 'https://schema.org',
+        '@type' => 'Blog',
+        'name' => 'MapZoon Blog',
+        'url' => url('/blog'),
+        'description' => 'The MapZoon Blog shares expert insights on Local SEO, Google Business Profile optimization, Google Maps ranking, website optimization, and digital marketing for local businesses.',
+        'publisher' => [
+            '@type' => 'Organization',
+            'name' => $settings->company_name ?? 'MapZoon',
+            'url' => url('/'),
+            'logo' => [
+                '@type' => 'ImageObject',
+                'url' => $settings->logoLightUrl(),
+            ],
+        ],
+        'about' => [
+            ['@type' => 'Thing', 'name' => 'Local SEO'],
+            ['@type' => 'Thing', 'name' => 'Google Business Profile'],
+            ['@type' => 'Thing', 'name' => 'Google Maps SEO'],
+            ['@type' => 'Thing', 'name' => 'Website Development'],
+            ['@type' => 'Thing', 'name' => 'Digital Marketing'],
+        ],
+        'inLanguage' => 'en-US',
+        'audience' => [
+            '@type' => 'Audience',
+            'audienceType' => 'Local Business Owners',
+        ],
+        'areaServed' => [
+            '@type' => 'Country',
+            'name' => 'United States',
+        ],
+    ], JSON_UNESCAPED_SLASHES) !!}
+    </script>
+@endpush
+
 @section('content')
     @include('sections.navbar')
 
@@ -26,12 +64,12 @@
                 @if ($categories->isNotEmpty())
                     <div class="reveal mt-8 flex flex-wrap justify-center gap-2">
                         <a href="{{ route('blog.index') }}"
-                           class="rounded-full px-4 py-1.5 text-sm font-semibold transition {{ ! request('category') ? 'bg-primary-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-primary-50 hover:text-primary-600' }}">
+                           class="rounded-none px-4 py-1.5 text-sm font-semibold transition {{ ! request('category') ? 'bg-primary-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-primary-50 hover:text-primary-600' }}">
                             All
                         </a>
                         @foreach ($categories as $category)
                             <a href="{{ route('blog.index', ['category' => $category->slug]) }}"
-                               class="rounded-full px-4 py-1.5 text-sm font-semibold transition {{ request('category') === $category->slug ? 'bg-primary-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-primary-50 hover:text-primary-600' }}">
+                               class="rounded-none px-4 py-1.5 text-sm font-semibold transition {{ request('category') === $category->slug ? 'bg-primary-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-primary-50 hover:text-primary-600' }}">
                                 {{ $category->name }}
                             </a>
                         @endforeach

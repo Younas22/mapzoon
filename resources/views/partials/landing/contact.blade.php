@@ -72,7 +72,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+                    <button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-none bg-primary-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
                         Get Free Consultation
                         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M5 12h14M13 6l6 6-6 6" />
@@ -91,8 +91,8 @@
                 </p>
 
                 <div class="mt-8 space-y-4">
-                    <a href="tel:{{ $settings->phone ?? '+923266787997' }}" class="glass-dark flex items-center gap-4 rounded-2xl p-4 transition hover:bg-white/15">
-                        <span class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-primary-500 text-white">
+                    <a href="tel:{{ $settings->phone ?? '+923266787997' }}" class="glass-dark flex items-center gap-4 rounded-none p-4 transition hover:bg-white/15">
+                        <span class="flex h-12 w-12 flex-none items-center justify-center rounded-none bg-primary-500 text-white">
                             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
                             </svg>
@@ -103,8 +103,8 @@
                         </span>
                     </a>
 
-                    <a href="mailto:{{ $settings->email ?? 'contact@mapzoon.com' }}" class="glass-dark flex items-center gap-4 rounded-2xl p-4 transition hover:bg-white/15">
-                        <span class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-primary-500 text-white">
+                    <a href="mailto:{{ $settings->email ?? 'contact@mapzoon.com' }}" class="glass-dark flex items-center gap-4 rounded-none p-4 transition hover:bg-white/15">
+                        <span class="flex h-12 w-12 flex-none items-center justify-center rounded-none bg-primary-500 text-white">
                             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <rect x="3" y="5" width="18" height="14" rx="2" />
                                 <path d="M3.5 6.5 12 13l8.5-6.5" />

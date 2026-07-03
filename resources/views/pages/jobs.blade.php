@@ -1,7 +1,24 @@
 @extends('layouts.app')
 
-@section('title', 'Careers — Join the MAPZOON Team | Local SEO Jobs Pakistan')
-@section('description', 'We are actively hiring at MAPZOON. Apply for Local SEO, WordPress Development, Sales, and Digital Marketing roles in Lahore, Pakistan.')
+@section('title', 'Careers at MapZoon | Join Our Team')
+@section('description', 'Explore career opportunities at MapZoon. Join our growing team and help local businesses succeed through Local SEO, Google Business Profile optimization, website development, and digital marketing.')
+
+@push('schema')
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@@context' => 'https://schema.org',
+        '@type' => 'CollectionPage',
+        'name' => 'Careers at MapZoon',
+        'url' => url('/jobs'),
+        'description' => 'Browse career opportunities at MapZoon and join our team of Local SEO, digital marketing, and website development professionals.',
+        'about' => [
+            '@type' => 'Organization',
+            'name' => 'MapZoon',
+            'url' => url('/'),
+        ],
+    ], JSON_UNESCAPED_SLASHES) !!}
+    </script>
+@endpush
 
 @section('content')
     @include('sections.navbar')
@@ -9,7 +26,7 @@
     <div class="pt-[7.25rem]">
 
         {{-- Hero --}}
-        <section class="relative overflow-hidden bg-black py-20 lg:py-28">
+        <section class="relative overflow-hidden bg-black py-16 lg:py-24">
             <div class="absolute inset-0 -z-10" aria-hidden="true">
                 <div class="absolute -left-40 -top-40 h-[600px] w-[600px] rounded-full bg-primary-600/20 blur-3xl"></div>
                 <div class="absolute -bottom-40 right-0 h-[500px] w-[500px] rounded-full bg-primary-500/10 blur-3xl"></div>
@@ -24,17 +41,17 @@
                         </span>
                         We're Actively Hiring
                     </span>
-                    <h1 class="mt-5 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                    <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
                         Build Your Career in<br>
                         <span class="text-primary-400">Local SEO & Digital Growth</span>
                     </h1>
-                    <p class="mt-6 text-base leading-relaxed text-slate-400 sm:text-lg">
+                    <p class="mt-4 text-base leading-relaxed text-slate-400 sm:text-lg">
                         MAPZOON is a fast-growing Local SEO agency helping businesses dominate Google Maps across Pakistan.
                         We're looking for passionate individuals to join our team and grow with us.
                     </p>
 
                     {{-- Perks --}}
-                    <div class="mt-10 flex flex-wrap justify-center gap-3">
+                    <div class="mt-6 flex flex-wrap justify-center gap-3">
                         @foreach ([
                             ['icon' => 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z', 'label' => 'Lahore, Pakistan'],
                             ['icon' => 'M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6', 'label' => 'Market-Competitive Salary'],
@@ -348,7 +365,7 @@
 
                     {{-- Submit --}}
                     <button type="submit"
-                            class="w-full rounded-2xl bg-primary-500 px-6 py-4 text-base font-bold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/40 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                            class="w-full rounded-none bg-primary-500 px-6 py-4 text-base font-bold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/40 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
                         Submit My Application
                     </button>
 

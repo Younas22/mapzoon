@@ -20,7 +20,7 @@
                 Meet The Experts Behind MAPZOON
             </h2>
             <p class="mt-4 text-base text-slate-600 sm:text-lg">
-                A passionate team helping local businesses dominate Google Maps and grow online.
+                A passionate team helping local businesses improve their Google visibility, rank higher on Google Maps, and grow online through Local SEO, Google Business Profile optimization, and website development.
             </p>
         </div>
 

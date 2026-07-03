@@ -9,7 +9,12 @@ class JobsController extends Controller
 {
     public function index()
     {
-        return view('pages.jobs');
+        return view('pages.jobs', [
+            'canonical' => url('/jobs'),
+            'ogDescription' => 'Discover career opportunities at MapZoon and grow your career in Local SEO, digital marketing, and web development.',
+            'twitterTitle' => 'Careers at MapZoon',
+            'twitterDescription' => 'Join the MapZoon team and build the future of Local SEO and digital marketing.',
+        ]);
     }
 
     public function store(Request $request)

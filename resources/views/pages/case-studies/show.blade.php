@@ -53,7 +53,7 @@
                                         <div class="flex flex-none gap-3 overflow-x-auto pb-1 sm:w-24 sm:flex-col sm:overflow-x-visible sm:overflow-y-auto sm:pb-0 sm:max-h-[420px]">
                                             @foreach ($galleryImages as $index => $url)
                                                 <button type="button" data-gallery-thumb data-index="{{ $index }}"
-                                                        class="aspect-video w-20 flex-none overflow-hidden rounded-lg border-2 {{ $index === 0 ? 'border-primary-500' : 'border-transparent' }} transition hover:border-primary-300 sm:w-full">
+                                                        class="aspect-video w-20 flex-none overflow-hidden rounded-none border-2 {{ $index === 0 ? 'border-primary-500' : 'border-transparent' }} transition hover:border-primary-300 sm:w-full">
                                                     <img src="{{ $url }}" alt="Preview {{ $index + 1 }}" class="h-full w-full object-cover">
                                                 </button>
                                             @endforeach
@@ -61,10 +61,10 @@
                                     @endif
 
                                     <button type="button" data-gallery-main data-index="0"
-                                            class="group relative aspect-video flex-1 overflow-hidden rounded-2xl shadow-lg">
+                                            class="group relative aspect-video flex-1 overflow-hidden rounded-none shadow-lg">
                                         <img data-gallery-main-img src="{{ $galleryImages->first() }}" alt="{{ $caseStudy->title }}" class="h-full w-full object-cover">
                                         <span class="absolute inset-0 flex items-center justify-center bg-slate-900/0 transition group-hover:bg-slate-900/25">
-                                            <span class="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 opacity-0 shadow-lg transition group-hover:opacity-100">
+                                            <span class="flex h-12 w-12 items-center justify-center rounded-none bg-white/90 opacity-0 shadow-lg transition group-hover:opacity-100">
                                                 <svg class="h-5 w-5 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
                                             </span>
                                         </span>
@@ -74,15 +74,15 @@
 
                             {{-- Lightbox --}}
                             <div id="screenshot-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-slate-950/90 p-4 sm:p-8" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
-                                <button type="button" id="screenshot-modal-close" class="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:right-6 sm:top-6" aria-label="Close">
+                                <button type="button" id="screenshot-modal-close" class="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-none bg-white/10 text-white transition hover:bg-white/20 sm:right-6 sm:top-6" aria-label="Close">
                                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
                                 </button>
 
                                 @if ($galleryImages->count() > 1)
-                                    <button type="button" id="screenshot-modal-prev" class="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:left-6" aria-label="Previous image">
+                                    <button type="button" id="screenshot-modal-prev" class="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-none bg-white/10 text-white transition hover:bg-white/20 sm:left-6" aria-label="Previous image">
                                         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
                                     </button>
-                                    <button type="button" id="screenshot-modal-next" class="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:right-6" aria-label="Next image">
+                                    <button type="button" id="screenshot-modal-next" class="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-none bg-white/10 text-white transition hover:bg-white/20 sm:right-6" aria-label="Next image">
                                         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
                                     </button>
                                 @endif
@@ -188,7 +188,7 @@
                             </div>
 
                             <a href="{{ route('contact.page') }}"
-                               class="mt-5 flex items-center justify-center gap-2 rounded-xl bg-primary-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:bg-primary-600">
+                               class="mt-5 flex items-center justify-center gap-2 rounded-none bg-primary-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:bg-primary-600">
                                 Get Similar Results
                                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
                             </a>

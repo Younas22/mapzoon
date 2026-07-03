@@ -3,23 +3,105 @@
 @section('title', $title)
 @section('description', $description)
 
+@push('schema')
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@@context' => 'https://schema.org',
+        '@type' => 'CollectionPage',
+        'name' => 'Local SEO Case Studies',
+        'url' => url('/case-studies'),
+        'description' => 'Case studies showcasing how MapZoon helps local businesses improve Google Maps rankings, optimize Google Business Profiles, and grow through Local SEO and website development.',
+        'about' => [
+            '@type' => 'ProfessionalService',
+            'name' => 'MapZoon',
+            'url' => url('/'),
+            'serviceType' => [
+                'Local SEO',
+                'Google Business Profile Optimization',
+                'Google Maps SEO',
+                'Website Development',
+            ],
+            'areaServed' => [
+                '@type' => 'Country',
+                'name' => 'United States',
+            ],
+        ],
+        'breadcrumb' => [
+            '@type' => 'BreadcrumbList',
+            'itemListElement' => [
+                [
+                    '@type' => 'ListItem',
+                    'position' => 1,
+                    'name' => 'Home',
+                    'item' => url('/'),
+                ],
+                [
+                    '@type' => 'ListItem',
+                    'position' => 2,
+                    'name' => 'Case Studies',
+                    'item' => url('/case-studies'),
+                ],
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES) !!}
+    </script>
+@endpush
+
 @section('content')
     @include('sections.navbar')
 
     <div class="pt-[7.25rem]">
+
+        {{-- Hero --}}
+        <section class="relative overflow-hidden bg-black py-16 lg:py-24">
+            <div class="absolute inset-0 -z-10" aria-hidden="true">
+                <div class="absolute -left-40 -top-40 h-[600px] w-[600px] rounded-full bg-primary-600/20 blur-3xl"></div>
+                <div class="absolute -bottom-40 right-0 h-[500px] w-[500px] rounded-full bg-primary-500/10 blur-3xl"></div>
+            </div>
+
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="mx-auto max-w-3xl text-center">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-primary-500/20 px-4 py-1.5 text-sm font-semibold text-primary-400 ring-1 ring-primary-500/30">
+                        <span class="relative flex h-2 w-2">
+                            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400 opacity-75"></span>
+                            <span class="relative inline-flex h-2 w-2 rounded-full bg-primary-500"></span>
+                        </span>
+                        Real Results
+                    </span>
+                    <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+                        Real Strategies. Real Growth.<br>
+                        <span class="text-primary-400">Real Local Businesses.</span>
+                    </h1>
+                    <p class="mt-4 text-base leading-relaxed text-slate-400 sm:text-lg">
+                        See how MapZoon helps local businesses improve Google visibility, strengthen their online presence, and attract more customers through Local SEO, Google Business Profile optimization, and website development — with a customized strategy built for long-term growth.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <section class="relative bg-white py-20 lg:py-28">
             <div class="absolute left-1/2 top-0 -z-10 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-primary-100/40 blur-3xl" aria-hidden="true"></div>
 
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
-                <div class="reveal mx-auto max-w-2xl text-center">
-                    <p class="text-sm font-semibold uppercase tracking-wider text-primary-600">Real Results</p>
-                    <h1 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-                        Case Studies
-                    </h1>
-                    <p class="mt-5 text-base text-slate-600 sm:text-lg">
-                        See how we helped local businesses rank higher on Google Maps, get more calls, and grow their revenue.
-                    </p>
+                <div class="reveal mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900">What Our Case Studies Cover</h2>
+                    <ul class="mt-4 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+                        @foreach ([
+                            'Business Challenges',
+                            'Local SEO Strategy',
+                            'Google Business Profile Optimization',
+                            'Website Improvements',
+                            'Results & Key Takeaways',
+                        ] as $item)
+                            <li class="flex items-center gap-2 text-sm font-semibold text-slate-800">
+                                <svg class="h-5 w-5 flex-none text-primary-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M5 13l4 4L19 7" />
+                                </svg>
+                                {{ $item }}
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
 
                 @if ($caseStudies->isEmpty())
@@ -31,7 +113,7 @@
                         </div>
                         <h3 class="mt-4 text-lg font-semibold text-slate-900">Case studies coming soon</h3>
                         <p class="mt-1 text-sm text-slate-500">We're documenting our client success stories. Check back soon.</p>
-                        <a href="{{ route('contact.page') }}" class="mt-5 inline-flex items-center gap-2 rounded-xl bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-600">
+                        <a href="{{ route('contact.page') }}" class="mt-5 inline-flex items-center gap-2 rounded-none bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-600">
                             Work With Us
                         </a>
                     </div>
@@ -83,10 +165,10 @@
 
                 {{-- CTA --}}
                 <div class="reveal mt-16 rounded-2xl bg-primary-600 p-8 text-center text-white lg:p-12">
-                    <h3 class="text-2xl font-bold">Ready to be our next success story?</h3>
-                    <p class="mt-2 text-primary-200">Let's get your business ranking higher on Google Maps.</p>
-                    <a href="{{ route('contact.page') }}" class="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-7 py-3.5 text-sm font-semibold text-primary-600 shadow-lg transition hover:-translate-y-0.5 hover:bg-primary-50">
-                        Get a Free Audit
+                    <h3 class="text-2xl font-bold">Ready to Grow Your Business?</h3>
+                    <p class="mt-2 text-primary-200">Your business could be our next success story. Let's build a strategy that helps you get found on Google, attract more customers, and grow with confidence.</p>
+                    <a href="{{ route('contact.page') }}" class="mt-6 inline-flex items-center gap-2 rounded-none bg-white px-7 py-3.5 text-sm font-semibold text-primary-600 shadow-lg transition hover:-translate-y-0.5 hover:bg-primary-50">
+                        Get Your Free Local SEO Audit
                         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
                 </div>

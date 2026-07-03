@@ -1,7 +1,25 @@
 @extends('layouts.app')
 
-@section('title', 'Our Team — MAPZOON')
-@section('description', 'Meet the MAPZOON team — experienced Google Maps SEO specialists, web developers, and business growth experts.')
+@section('title', 'Meet the MapZoon Team | Local SEO Experts')
+@section('description', 'Meet the team behind MapZoon. Local SEO experts helping businesses across the USA improve Google Maps rankings, optimize Google Business Profiles, and grow online.')
+
+@push('schema')
+    <?php $settings = \App\Models\SiteSetting::current(); ?>
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@@context' => 'https://schema.org',
+        '@type' => 'AboutPage',
+        'name' => 'Meet the MapZoon Team',
+        'url' => url('/team'),
+        'description' => 'Meet the experts behind MapZoon, a Local SEO agency helping businesses grow online.',
+        'mainEntity' => [
+            '@type' => 'Organization',
+            'name' => $settings->company_name ?? 'MapZoon',
+            'url' => url('/'),
+        ],
+    ], JSON_UNESCAPED_SLASHES) !!}
+    </script>
+@endpush
 
 @section('content')
     @include('sections.navbar')

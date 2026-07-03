@@ -35,7 +35,7 @@
                             <span class="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-sm font-bold text-white ring-1 ring-white/30">{{ $review->initials() }}</span>
 
                             <span class="absolute inset-0 flex items-center justify-center">
-                                <span class="glass-dark flex h-16 w-16 items-center justify-center rounded-full shadow-xl transition duration-300 group-hover:scale-110 group-hover:bg-primary-500/90">
+                                <span class="glass-dark flex h-16 w-16 items-center justify-center rounded-none shadow-xl transition duration-300 group-hover:scale-110 group-hover:bg-primary-500/90">
                                     <svg class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                         <path d="M8 5v14l11-7z" />
                                     </svg>
@@ -78,7 +78,7 @@
 
         <div class="reveal mt-16 flex flex-col items-center gap-5 text-center sm:flex-row sm:justify-center sm:gap-6">
             <p class="text-base font-semibold text-slate-900">Ready to become our next success story?</p>
-            <a href="{{ route('contact.page') }}" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+            <a href="{{ route('contact.page') }}" class="inline-flex items-center justify-center gap-2 rounded-none bg-primary-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
                 Get Free Audit
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h14M13 6l6 6-6 6" />
@@ -90,7 +90,7 @@
     {{-- Video popup modal: a single instance shared by every play button above --}}
     <div id="video-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-slate-950/80 p-4 sm:p-8" role="dialog" aria-modal="true" aria-label="Video player">
         <div class="relative w-full max-w-3xl">
-            <button type="button" id="video-modal-close" class="absolute -top-12 right-0 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20" aria-label="Close video">
+            <button type="button" id="video-modal-close" class="absolute -top-12 right-0 flex h-10 w-10 items-center justify-center rounded-none bg-white/10 text-white transition hover:bg-white/20" aria-label="Close video">
                 <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M6 6l12 12M18 6 6 18" />
                 </svg>

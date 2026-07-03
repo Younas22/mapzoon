@@ -130,7 +130,7 @@
 
         <div class="reveal mt-16 flex flex-col items-center gap-5 text-center sm:flex-row sm:justify-center sm:gap-6">
             <p class="text-base font-semibold text-slate-900">See why 350+ businesses trust MAPZOON.</p>
-            <a href="{{ route('contact.page') }}" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+            <a href="{{ route('contact.page') }}" class="inline-flex items-center justify-center gap-2 rounded-none bg-primary-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
                 Book Consultation
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h14M13 6l6 6-6 6" />
