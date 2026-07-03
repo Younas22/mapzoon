@@ -6,7 +6,7 @@
 @section('content')
     @include('sections.navbar')
 
-    <div class="pt-20">
+    <div class="pt-[7.25rem]">
         <section class="relative bg-white py-20 lg:py-28">
             <div class="absolute left-1/2 top-0 -z-10 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-primary-100/40 blur-3xl" aria-hidden="true"></div>
 

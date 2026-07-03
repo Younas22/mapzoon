@@ -1,3 +1,4 @@
+<?php $settings = \App\Models\SiteSetting::current(); ?>
 {{-- Get Free Quote Modal --}}
 <div id="quote-modal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="quote-modal-title">
     {{-- Backdrop --}}
@@ -15,7 +16,7 @@
                     </h2>
                     <p class="mt-1.5 max-w-lg text-sm leading-relaxed text-primary-100">
                         If you have any requirement please share with us at
-                        <a href="mailto:contact@mapzoon.com" class="font-semibold underline underline-offset-2 hover:text-white">contact@mapzoon.com</a>
+                        <a href="mailto:{{ $settings->email ?? 'contact@mapzoon.com' }}" class="font-semibold underline underline-offset-2 hover:text-white">{{ $settings->email ?? 'contact@mapzoon.com' }}</a>
                         or simply send us your inquiry by filling out the form below.
                     </p>
                 </div>

@@ -1,4 +1,4 @@
-<section id="hero" class="relative overflow-hidden bg-black pt-28 pb-20 lg:pt-36 lg:pb-28">
+<section id="hero" class="relative overflow-hidden bg-black pt-[7.25rem] pb-20 lg:pt-36 lg:pb-28">
 
     {{-- Background grid pattern --}}
     <div class="absolute inset-0 -z-20 bg-grid opacity-[0.06]" aria-hidden="true"></div>
@@ -25,7 +25,12 @@
 
             {{-- Headline --}}
             <h1 class="mt-6 overflow-visible text-4xl font-black leading-tight tracking-tighter text-white sm:text-5xl sm:leading-[1.05] lg:text-6xl lg:leading-[1.08]">
-                Not Getting <span class="text-primary-400 underline decoration-white decoration-[5px] underline-offset-[1px]">Local Customers?</span><br>
+                Not Getting <span class="relative inline-block text-primary-400">
+                    Local Customers?
+                    <svg class="absolute -bottom-1.5 left-0 h-3 w-full sm:-bottom-2 sm:h-4" viewBox="0 0 200 16" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                        <path d="M2 10 Q 50 -2, 100 7 T 198 6" stroke="white" stroke-width="5" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+                    </svg>
+                </span><br>
                 <span class="text-gradient">Rank Higher</span> on Google Maps
             </h1>
 

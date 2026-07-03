@@ -5,7 +5,7 @@
 
 @section('content')
     @include('sections.navbar')
-    <div class="pt-20">
+    <div class="pt-[7.25rem]">
         @include('partials.landing.pos')
     </div>
     @include('partials.landing.footer')

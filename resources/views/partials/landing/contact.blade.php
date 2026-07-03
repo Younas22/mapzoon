@@ -1,3 +1,4 @@
+<?php $settings = \App\Models\SiteSetting::current(); ?>
 <section id="contact" class="relative overflow-hidden bg-black py-20 lg:py-28">
     <div class="absolute inset-0 -z-20 bg-grid opacity-10" aria-hidden="true"></div>
     <div class="absolute -top-20 left-1/2 -z-10 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-primary-500/20 blur-3xl" aria-hidden="true"></div>
@@ -90,7 +91,7 @@
                 </p>
 
                 <div class="mt-8 space-y-4">
-                    <a href="tel:+923266787997" class="glass-dark flex items-center gap-4 rounded-2xl p-4 transition hover:bg-white/15">
+                    <a href="tel:{{ $settings->phone ?? '+923266787997' }}" class="glass-dark flex items-center gap-4 rounded-2xl p-4 transition hover:bg-white/15">
                         <span class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-primary-500 text-white">
                             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
@@ -98,11 +99,11 @@
                         </span>
                         <span>
                             <span class="block text-xs font-medium text-slate-400">Call Us</span>
-                            <span class="block text-base font-semibold text-white">0326 6787997</span>
+                            <span class="block text-base font-semibold text-white">{{ $settings->phone ?? '0326 6787997' }}</span>
                         </span>
                     </a>
 
-                    <a href="mailto:contact@mapzoon.com" class="glass-dark flex items-center gap-4 rounded-2xl p-4 transition hover:bg-white/15">
+                    <a href="mailto:{{ $settings->email ?? 'contact@mapzoon.com' }}" class="glass-dark flex items-center gap-4 rounded-2xl p-4 transition hover:bg-white/15">
                         <span class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-primary-500 text-white">
                             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -111,7 +112,7 @@
                         </span>
                         <span>
                             <span class="block text-xs font-medium text-slate-400">Email Us</span>
-                            <span class="block text-base font-semibold text-white">contact@mapzoon.com</span>
+                            <span class="block text-base font-semibold text-white">{{ $settings->email ?? 'contact@mapzoon.com' }}</span>
                         </span>
                     </a>
                 </div>

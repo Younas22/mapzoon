@@ -6,7 +6,7 @@
 @section('content')
     @include('sections.navbar')
 
-    <div class="pt-20">
+    <div class="pt-[7.25rem]">
 
         {{-- Hero --}}
         <section class="relative overflow-hidden bg-black py-20 lg:py-28">

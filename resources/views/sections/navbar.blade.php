@@ -20,11 +20,43 @@
         ['route' => 'testimonials',   'label' => 'Testimonials'],
         ['route' => 'team',           'label' => 'Team'],
         ['route' => 'faq',            'label' => 'FAQ'],
-        
+
     ];
+
+    $topbarPhone = $settings->phone ?? '+92 326 6787997';
+    $topbarEmail = $settings->email ?? 'contact@mapzoon.com';
+    $topbarHours = $settings->working_hours ? trim(strtok($settings->working_hours, "\r\n")) : 'Mon - Sat: 9:00 AM - 6:00 PM';
 @endphp
 
-<header id="site-navbar" class="reveal fixed inset-x-0 top-0 z-40 bg-white shadow-sm border-b border-slate-200/80 transition-all duration-300">
+{{-- Top Info Bar --}}
+<div id="topbar" class="fixed inset-x-0 top-0 z-40 flex h-9 items-center bg-black px-4 text-xs font-medium text-slate-300 sm:px-6 lg:px-10">
+    <div class="mx-auto flex w-full max-w-[1600px] items-center justify-center gap-4 sm:justify-between">
+        <div class="flex items-center gap-4 sm:gap-6">
+            <a href="tel:{{ $topbarPhone }}" class="flex items-center gap-1.5 whitespace-nowrap transition-colors hover:text-primary-400">
+                <svg class="h-3.5 w-3.5 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
+                </svg>
+                <span>{{ $topbarPhone }}</span>
+            </a>
+            <a href="mailto:{{ $topbarEmail }}" class="hidden items-center gap-1.5 whitespace-nowrap transition-colors hover:text-primary-400 sm:flex">
+                <svg class="h-3.5 w-3.5 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3.5 6.5 12 13l8.5-6.5" />
+                </svg>
+                <span>{{ $topbarEmail }}</span>
+            </a>
+        </div>
+        <div class="hidden items-center gap-1.5 whitespace-nowrap lg:flex">
+            <svg class="h-3.5 w-3.5 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3 3" />
+            </svg>
+            <span>{{ $topbarHours }}</span>
+        </div>
+    </div>
+</div>
+
+<header id="site-navbar" class="reveal fixed inset-x-0 top-9 z-40 bg-white shadow-sm border-b border-slate-200/80 transition-all duration-300">
     <div class="mx-auto flex h-20 max-w-[1600px] items-center justify-between gap-4 px-6 lg:px-10">
 
         {{-- Logo --}}
@@ -81,11 +113,11 @@
 
         {{-- Right Side Actions --}}
         <div class="flex flex-none items-center gap-3 xl:gap-4">
-            <a href="tel:+923266787997" class="hidden items-center gap-2 whitespace-nowrap text-sm font-semibold text-slate-700 transition-colors hover:text-primary-600 xl:flex">
+            <a href="tel:{{ $topbarPhone }}" class="hidden items-center gap-2 whitespace-nowrap text-sm font-semibold text-slate-700 transition-colors hover:text-primary-600 xl:flex">
                 <svg class="h-4 w-4 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
                 </svg>
-                0326 6787997
+                {{ $topbarPhone }}
             </a>
 
             <a href="{{ route('contact.page') }}" class="hidden items-center justify-center gap-2 whitespace-nowrap rounded-2xl bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-primary-500/30 transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-lg hover:shadow-primary-500/40 xl:inline-flex">
@@ -157,11 +189,11 @@
     </nav>
 
     <div class="space-y-4 border-t border-slate-100 px-6 py-6">
-        <a href="tel:+923266787997" class="flex items-center justify-center gap-2 text-sm font-semibold text-slate-700">
+        <a href="tel:{{ $topbarPhone }}" class="flex items-center justify-center gap-2 text-sm font-semibold text-slate-700">
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
             </svg>
-            0326 6787997
+            {{ $topbarPhone }}
         </a>
         <a href="{{ route('contact.page') }}" class="block w-full rounded-2xl bg-primary-500 px-5 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:bg-primary-600">
             Get Free Audit
