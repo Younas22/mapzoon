@@ -34,13 +34,13 @@
 
                             <span class="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-sm font-bold text-white ring-1 ring-white/30">{{ $review->initials() }}</span>
 
-                            <span class="absolute inset-0 flex items-center justify-center">
+                            <!-- <span class="absolute inset-0 flex items-center justify-center">
                                 <span class="glass-dark flex h-16 w-16 items-center justify-center rounded-none shadow-xl transition duration-300 group-hover:scale-110 group-hover:bg-primary-500/90">
                                     <svg class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                         <path d="M8 5v14l11-7z" />
                                     </svg>
                                 </span>
-                            </span>
+                            </span> -->
                         </button>
 
                         <div class="p-6">
