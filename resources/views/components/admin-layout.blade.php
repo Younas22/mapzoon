@@ -96,6 +96,14 @@
                     </a>
                 @endcan
 
+                @can('viewAny', App\Models\JobApplication::class)
+                    <a href="{{ route('admin.job-applications.index') }}"
+                       class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition {{ request()->routeIs('admin.job-applications.*') ? 'bg-primary-50 text-primary-700' : 'text-slate-600 hover:bg-slate-100' }}">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M20 13V7a2 2 0 00-2-2h-3V4a2 2 0 00-2-2h-2a2 2 0 00-2 2v1H6a2 2 0 00-2 2v6M4 13h16v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6zm0 0l2.5 2M20 13l-2.5 2M9 4h6" /></svg>
+                        Job Applications
+                    </a>
+                @endcan
+
                 @can('viewAny', App\Models\NewsletterSubscriber::class)
                     <a href="{{ route('admin.newsletter-subscribers.index') }}"
                        class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition {{ request()->routeIs('admin.newsletter-subscribers.*') ? 'bg-primary-50 text-primary-700' : 'text-slate-600 hover:bg-slate-100' }}">

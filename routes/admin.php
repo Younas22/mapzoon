@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CaseStudyController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\JobApplicationController;
 use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\NewsletterSubscriberController;
 use App\Http\Controllers\Admin\ProjectController;
@@ -129,6 +130,30 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('leads/{lead}', [LeadController::class, 'show'])
             ->middleware('permission:leads.view')
             ->name('leads.show');
+
+        Route::get('job-applications/data', [JobApplicationController::class, 'data'])
+            ->middleware('permission:job-applications.view')
+            ->name('job-applications.data');
+
+        Route::get('job-applications/export', [JobApplicationController::class, 'export'])
+            ->middleware('permission:job-applications.view')
+            ->name('job-applications.export');
+
+        Route::get('job-applications', [JobApplicationController::class, 'index'])
+            ->middleware('permission:job-applications.view')
+            ->name('job-applications.index');
+
+        Route::patch('job-applications/{job_application}/status', [JobApplicationController::class, 'updateStatus'])
+            ->middleware('permission:job-applications.edit')
+            ->name('job-applications.status');
+
+        Route::delete('job-applications/{job_application}', [JobApplicationController::class, 'destroy'])
+            ->middleware('permission:job-applications.delete')
+            ->name('job-applications.destroy');
+
+        Route::get('job-applications/{job_application}', [JobApplicationController::class, 'show'])
+            ->middleware('permission:job-applications.view')
+            ->name('job-applications.show');
 
         Route::get('newsletter-subscribers/export', [NewsletterSubscriberController::class, 'export'])
             ->middleware('permission:newsletter.view')
