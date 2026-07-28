@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -60,7 +59,7 @@ class User extends Authenticatable
 
     public function avatarUrl(): ?string
     {
-        return $this->avatar ? Storage::disk('public')->url($this->avatar) : null;
+        return $this->avatar ? asset($this->avatar) : null;
     }
 
     public function role(): BelongsTo

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Concerns\StoresPublicImages;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TeamMember\StoreTeamMemberRequest;
 use App\Http\Requests\Admin\TeamMember\UpdateTeamMemberRequest;
@@ -9,11 +10,12 @@ use App\Models\TeamMember;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class TeamMemberController extends Controller
 {
+    use StoresPublicImages;
+
     public function index(Request $request): View
     {
         $this->authorize('viewAny', TeamMember::class);
@@ -43,7 +45,7 @@ class TeamMemberController extends Controller
         ]);
 
         if ($request->hasFile('photo')) {
-            $teamMember->photo = $request->file('photo')->store('team', 'public');
+            $teamMember->photo = $this->storePublicImage($request->file('photo'), 'team');
         }
 
         $teamMember->save();
@@ -74,11 +76,9 @@ class TeamMemberController extends Controller
         ]);
 
         if ($request->hasFile('photo')) {
-            if ($team_member->photo) {
-                Storage::disk('public')->delete($team_member->photo);
-            }
+            $this->deletePublicImage($team_member->photo);
 
-            $team_member->photo = $request->file('photo')->store('team', 'public');
+            $team_member->photo = $this->storePublicImage($request->file('photo'), 'team');
         }
 
         $team_member->save();
@@ -90,9 +90,7 @@ class TeamMemberController extends Controller
     {
         $this->authorize('delete', $team_member);
 
-        if ($team_member->photo) {
-            Storage::disk('public')->delete($team_member->photo);
-        }
+        $this->deletePublicImage($team_member->photo);
 
         $team_member->delete();
 

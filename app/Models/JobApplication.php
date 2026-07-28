@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class JobApplication extends Model
 {
@@ -35,11 +34,11 @@ class JobApplication extends Model
 
     public function photoUrl(): ?string
     {
-        return $this->photo_path ? Storage::disk('public')->url($this->photo_path) : null;
+        return $this->photo_path ? asset($this->photo_path) : null;
     }
 
     public function cvUrl(): ?string
     {
-        return $this->cv_path ? Storage::disk('public')->url($this->cv_path) : null;
+        return $this->cv_path ? asset($this->cv_path) : null;
     }
 }

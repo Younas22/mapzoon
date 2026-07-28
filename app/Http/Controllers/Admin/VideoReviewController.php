@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Concerns\StoresPublicImages;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\VideoReview\StoreVideoReviewRequest;
 use App\Http\Requests\Admin\VideoReview\UpdateVideoReviewRequest;
@@ -9,11 +10,12 @@ use App\Models\VideoReview;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class VideoReviewController extends Controller
 {
+    use StoresPublicImages;
+
     public function index(Request $request): View
     {
         $this->authorize('viewAny', VideoReview::class);
@@ -43,7 +45,7 @@ class VideoReviewController extends Controller
         ]);
 
         if ($request->hasFile('thumbnail')) {
-            $videoReview->thumbnail = $request->file('thumbnail')->store('reviews', 'public');
+            $videoReview->thumbnail = $this->storePublicImage($request->file('thumbnail'), 'reviews');
         }
 
         $videoReview->save();
@@ -74,11 +76,9 @@ class VideoReviewController extends Controller
         ]);
 
         if ($request->hasFile('thumbnail')) {
-            if ($video_review->thumbnail) {
-                Storage::disk('public')->delete($video_review->thumbnail);
-            }
+            $this->deletePublicImage($video_review->thumbnail);
 
-            $video_review->thumbnail = $request->file('thumbnail')->store('reviews', 'public');
+            $video_review->thumbnail = $this->storePublicImage($request->file('thumbnail'), 'reviews');
         }
 
         $video_review->save();
@@ -90,9 +90,7 @@ class VideoReviewController extends Controller
     {
         $this->authorize('delete', $video_review);
 
-        if ($video_review->thumbnail) {
-            Storage::disk('public')->delete($video_review->thumbnail);
-        }
+        $this->deletePublicImage($video_review->thumbnail);
 
         $video_review->delete();
 

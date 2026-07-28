@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Concerns\StoresPublicImages;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\JobApplication\UpdateJobApplicationStatusRequest;
 use App\Models\JobApplication;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class JobApplicationController extends Controller
 {
+    use StoresPublicImages;
+
     public function index(Request $request): View
     {
         $this->authorize('viewAny', JobApplication::class);
@@ -62,13 +64,8 @@ class JobApplicationController extends Controller
     {
         $this->authorize('delete', $jobApplication);
 
-        if ($jobApplication->photo_path) {
-            Storage::disk('public')->delete($jobApplication->photo_path);
-        }
-
-        if ($jobApplication->cv_path) {
-            Storage::disk('public')->delete($jobApplication->cv_path);
-        }
+        $this->deletePublicImage($jobApplication->photo_path);
+        $this->deletePublicImage($jobApplication->cv_path);
 
         $jobApplication->delete();
 

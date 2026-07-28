@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Concerns\StoresPublicImages;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\UpdateUserRequest;
@@ -11,11 +12,12 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class UserController extends Controller
 {
+    use StoresPublicImages;
+
     public function index(Request $request): View
     {
         $this->authorize('viewAny', User::class);
@@ -56,7 +58,7 @@ class UserController extends Controller
         $user->is_active = $request->boolean('is_active');
 
         if ($request->hasFile('avatar')) {
-            $user->avatar = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar = $this->storePublicImage($request->file('avatar'), 'avatars');
         }
 
         $user->save();
@@ -96,11 +98,9 @@ class UserController extends Controller
         }
 
         if ($request->hasFile('avatar')) {
-            if ($user->avatar) {
-                Storage::disk('public')->delete($user->avatar);
-            }
+            $this->deletePublicImage($user->avatar);
 
-            $user->avatar = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar = $this->storePublicImage($request->file('avatar'), 'avatars');
         }
 
         $user->save();
@@ -113,9 +113,7 @@ class UserController extends Controller
     {
         $this->authorize('delete', $user);
 
-        if ($user->avatar) {
-            Storage::disk('public')->delete($user->avatar);
-        }
+        $this->deletePublicImage($user->avatar);
 
         $user->delete();
 

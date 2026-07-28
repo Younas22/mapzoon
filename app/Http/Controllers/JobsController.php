@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Concerns\StoresPublicImages;
 use App\Models\JobApplication;
 use Illuminate\Http\Request;
 
 class JobsController extends Controller
 {
+    use StoresPublicImages;
+
     public function index()
     {
         return view('pages.jobs', [
@@ -47,12 +50,12 @@ class JobsController extends Controller
 
         $photoPath = null;
         if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('job-applications/photos', 'public');
+            $photoPath = $this->storePublicImage($request->file('photo'), 'job-applications/photos');
         }
 
         $cvPath = null;
         if ($request->hasFile('cv')) {
-            $cvPath = $request->file('cv')->store('job-applications/cvs', 'public');
+            $cvPath = $this->storePublicImage($request->file('cv'), 'job-applications/cvs');
         }
 
         JobApplication::create([

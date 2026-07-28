@@ -6,7 +6,6 @@ use App\Models\Concerns\HasInitials;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Storage;
 
 class TeamMember extends Model
 {
@@ -50,7 +49,7 @@ class TeamMember extends Model
 
     public function photoUrl(): ?string
     {
-        return $this->photo ? Storage::disk('public')->url($this->photo) : null;
+        return $this->photo ? asset($this->photo) : null;
     }
 
     public function statusLabel(): string

@@ -6,7 +6,6 @@ use App\Models\Concerns\HasInitials;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Storage;
 
 class VideoReview extends Model
 {
@@ -84,7 +83,7 @@ class VideoReview extends Model
     public function thumbnailUrl(): ?string
     {
         if ($this->thumbnail) {
-            return Storage::disk('public')->url($this->thumbnail);
+            return asset($this->thumbnail);
         }
 
         if ($videoId = $this->youtubeVideoId()) {
