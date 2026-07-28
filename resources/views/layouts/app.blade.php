@@ -47,7 +47,7 @@
         '@type' => 'ProfessionalService',
         'name' => $settings->company_name ?? 'MapZoon',
         'description' => $settings->meta_description ?? 'MapZoon helps local businesses across the USA grow through Local SEO, Google Business Profile optimization, website development, and business growth solutions.',
-        'telephone' => $settings->phone ?? '+92 333 7222222',
+        'telephone' => $settings->phone ?? '+92 326 6987997',
         'email' => $settings->email ?? 'contact@mapzoon.com',
         'url' => url('/'),
         'logo' => $settings->logoLightUrl(),
@@ -75,5 +75,7 @@
 </head>
 <body class="bg-white text-ink antialiased selection:bg-primary-200 selection:text-primary-900">
     @yield('content')
+
+    @include('partials.whatsapp-float')
 </body>
 </html>

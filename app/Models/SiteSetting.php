@@ -52,4 +52,12 @@ class SiteSetting extends Model
     {
         return $this->favicon_path ? asset($this->favicon_path) : asset('favicon.ico');
     }
+
+    public function whatsappUrl(): string
+    {
+        $digits = preg_replace('/\D+/', '', $this->phone ?: '+923266987997');
+        $message = 'Hi, I visited the Mapzoon website and would like more information about your services.';
+
+        return 'https://wa.me/'.$digits.'?text='.rawurlencode($message);
+    }
 }

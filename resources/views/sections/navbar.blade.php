@@ -23,7 +23,7 @@
 
     ];
 
-    $topbarPhone = $settings->phone ?? '+92 326 6787997';
+    $topbarPhone = $settings->phone ?? '+92 326 6987997';
     $topbarEmail = $settings->email ?? 'contact@mapzoon.com';
     $topbarHours = $settings->working_hours ? trim(strtok($settings->working_hours, "\r\n")) : 'Mon - Sat: 9:00 AM - 6:00 PM';
 @endphp
