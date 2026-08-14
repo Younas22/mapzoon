@@ -24,10 +24,10 @@
                     Trusted Local SEO &amp; Google Maps Growth Partner
                 </p>
 
-                {{-- Headline --}}
-                <h1 class="mt-6 overflow-visible font-black leading-tight tracking-tighter text-white">
-                    <span class="block whitespace-nowrap text-[6.6vw] sm:text-4xl md:text-[2.75rem] lg:text-4xl xl:text-5xl">More Visibility. More Calls.</span>
-                    <span class="block whitespace-nowrap text-[6.6vw] text-primary-500 sm:text-4xl md:text-[2.75rem] lg:text-4xl xl:text-5xl">More Customers.</span>
+                {{-- Headline. Font-size is set once on the h1 (responsive per breakpoint); each line scales off it in em so both lines stay the same size at every screen size. --}}
+                <h1 class="mt-6 overflow-visible text-[6.6vw] font-black leading-tight tracking-tighter text-white sm:text-4xl md:text-[2.75rem] lg:text-4xl xl:text-5xl">
+                    <span class="flex flex-nowrap items-baseline leading-none text-[0.68em]"><span class="mr-[0.3em] leading-none">More</span><span class="mr-[0.22em] text-[1.5em] leading-none">Visibility.</span><span class="mr-[0.3em] leading-none">More</span><span class="text-[1.5em] leading-none">Calls.</span></span>
+                    <span class="flex items-baseline whitespace-nowrap text-[1.35em] leading-none text-primary-500">More Customers.</span>
                 </h1>
 
                 {{-- Subtext --}}
